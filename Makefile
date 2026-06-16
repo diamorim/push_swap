@@ -1,7 +1,7 @@
 NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SRCS = main.c
+SRCS = main.c check_flags.c check_allflags.c ft_isnumber.c ft_strtol.c libft/libft.a
 OBJS = $(SRCS:.c=.o)
 HEADER = push_swap.h
 
