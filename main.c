@@ -12,27 +12,32 @@
 
 #include "push_swap.h"
 
-int check_errors(int argc, char **argv);
-int check_maxint(char **argv);
-int reps_check(char **argv, int occ);
-
 int	main(int argc, char **argv)
 {
-	t_program_state	*prog_state;
+	t_prog_state	*prog_state;
 
-	if (argc == 1)
+	if (argc < 2)
+		return (0);
+	if (argc == 2 && ft_isnumber(argv[1]))
 		return (0);
 	if (!check_errors(argc, argv))
+	{
 		write(1, "Error\n", 7);
-	//prog_state = malloc(sizeof(t_prog_state)); i think you meant prog_state instead of t_progstate
-	prog_state = malloc(sizeof(prog_state));
+		return (1);
+	}
+	prog_state = init_prog_state();
 	if (!prog_state)
 	{
 		write(2, "Error\n", 6);
 		return (1);
 	}
-//	init_prog_state(prog_state);
-//	run_prog_state(prog_state, argc, argv);
+	if (!parse_input(prog_state, argv + 1))
+	{
+		free_prog_state(prog_state);
+		write(2, "Error\n", 6);
+		return (1);
+	}
+//	run_prog(prog_state, argc, argv);
 	return (0);
 }
 
@@ -41,8 +46,7 @@ int check_errors(int argc, char **argv)
 	int i;
 
 	i = 0;
-	//i don't know if only one argument is valid as theres nothing to organize
-	if (argc <= 2)
+	if (argc < 2)
 		return 0;
 	//adding 1 to arguments so that it is out of the first argument, that is the programs name
 	argv++;
@@ -116,5 +120,5 @@ int reps_check(char **argv, int occ)
 			occurences++;
 		argv++;
 	}
-	return occurences;
+	return (occurences);
 }

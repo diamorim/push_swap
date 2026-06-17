@@ -1,6 +1,6 @@
 NAME = libft.a
 CC  = cc
-CFGLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 SRC =   ft_isalpha.c \
         ft_isdigit.c \
         ft_isalnum.c \

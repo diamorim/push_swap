@@ -9,11 +9,49 @@
 
 int	check_allflags(char **argv);
 //same as atoi but works with long integers
-int ft_strtol(char *str);
-//a fucntion to check if a string is made only of numbers
+long ft_strtol(char *str);
+//a function to check if a string is made only of numbers
 int ft_isnumber(char *str);
 //a function to check if the arguments are flags
-int	check_flags(char *str);
+int				check_flags(char *str);
+int				check_errors(int argc, char **argv);
+int				check_maxint(char **argv);
+int				reps_check(char **argv, int occ);
+
+t_stack			*init_stack(void);
+t_prog_state	*init_prog_state(void);
+void			free_stack(t_stack *stack);
+void			free_prog_state(t_prog_state *state);
+
+t_node			*new_node(int value);
+void			stack_add_back(t_stack *stack, t_node *new_node);
+int				parse_input(t_prog_state *state, char **argv);
+
+
+typedef enum e_strategy
+{
+	ADAPTIVE,
+	SIMPLE,
+	MEDIUM,
+	COMPLEX
+}	t_strategy;
+
+typedef enum e_op_type
+{
+	OP_SA,
+	OP_SB,
+	OP_SS,
+	OP_PA,
+	OP_PB,
+	OP_RA,
+	OP_RB,
+	OP_RR,
+	OP_RRA,
+	OP_RRB,
+	OP_RRR,
+	OP_TYPES_TOTAL
+}	t_op_type;
+
 typedef struct s_node
 {
 	int				value;
@@ -27,11 +65,26 @@ typedef struct s_stack
 	int		size;
 }	t_stack;
 
-typedef struct s_program_state
+
+// bench is just boolean for the --bench benchmarking flag
+// strat_req is the strategy requested by the user in CLI
+// strat_used is the strategy our program uses
+// if the user selects adaptive strategy (or it runs
+// adaptive by default -- no user input)
+// 'n' is the input size of number of elements
+//
+
+typedef struct s_prog_state
 {
 	t_stack		*a;
 	t_stack		*b;
-}	t_program_state;
-
+	int			n;
+	int			ops_count_total;
+	int			ops_count_per_type[OP_TYPES_TOTAL];
+	t_strategy	strat_req;
+	t_strategy	strat_used;
+	int			bench;
+	double		disorder;
+}	t_prog_state;
 
 #endif
