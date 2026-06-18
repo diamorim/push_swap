@@ -1,16 +1,19 @@
 #include "push_swap.h"
 
-t_stack	*init_stack(void)
-{
-	t_stack	*stack;
+/*
+	__ init.c __ includes:
+		- init_prog_state()
+		- init_stack()
+		- free_prog_state()
+		- free_stack()
 
-	stack = malloc(sizeof(t_stack));
-	if (!stack)
-		return (NULL);
-	stack->top = NULL;
-	stack->size = 0;
-	return (stack);
-}
+		These functions are used by main() which
+		calls init_prog_state() -- just below.
+
+		The point of these functions is to try to allocate
+	 	memory for the stacks and to be able to free memory
+		when it is no longer required.
+*/
 
 t_prog_state	*init_prog_state(void)
 {
@@ -43,6 +46,32 @@ t_prog_state	*init_prog_state(void)
 	return (state);
 }
 
+
+t_stack	*init_stack(void)
+{
+	t_stack	*stack;
+
+	stack = malloc(sizeof(t_stack));
+	if (!stack)
+		return (NULL);
+	stack->top = NULL;
+	stack->size = 0;
+	return (stack);
+}
+
+
+void	free_prog_state(t_prog_state *state)
+{
+	if (!state)
+		return ;
+	if (state->a)
+		free_stack(state->a);
+	if (state->b)
+		free_stack(state->b);
+	free(state);
+}
+
+
 void	free_stack(t_stack *stack)
 {
 	t_node	*current;
@@ -58,15 +87,4 @@ void	free_stack(t_stack *stack)
 		current = next;
 	}
 	free(stack);
-}
-
-void	free_prog_state(t_prog_state *state)
-{
-	if (!state)
-		return ;
-	if (state->a)
-		free_stack(state->a);
-	if (state->b)
-		free_stack(state->b);
-	free(state);
 }
