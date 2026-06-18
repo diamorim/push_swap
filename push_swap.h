@@ -38,6 +38,8 @@ void			stack_add_back(t_stack *stack, t_node *new_node);
 
 
 //	___	algorothm-sorting ___
+double			compute_disorder(t_stack *a)
+void			dispatch_algo_strategy(t_prog_state *prst)
 void			sort_simple(t_prog_state *prst);
 void			sort_medium(t_prog_state *prst);
 void			sort_medium(t_prog_state *prst);
