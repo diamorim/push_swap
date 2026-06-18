@@ -18,14 +18,31 @@ int				check_errors(int argc, char **argv);
 int				check_maxint(char **argv);
 int				reps_check(char **argv, int occ);
 
+
+// ___ parsing ___
+int				parse_input(t_prog_state *state, char **argv);
+
+
+
+// ___ initalization and freeing functions ___
 t_stack			*init_stack(void);
 t_prog_state	*init_prog_state(void);
 void			free_stack(t_stack *stack);
 void			free_prog_state(t_prog_state *state);
 
+
+
+// ___ stack utilities ___ (not sure need these...)
 t_node			*new_node(int value);
 void			stack_add_back(t_stack *stack, t_node *new_node);
-int				parse_input(t_prog_state *state, char **argv);
+
+
+//	___	algorothm-sorting ___
+void			sort_simple(t_prog_state *prst);
+void			sort_medium(t_prog_state *prst);
+void			sort_medium(t_prog_state *prst);
+void			sort_complex(t_prog_state *prst);
+void			sort_adaptive(t_prog_state *psrst);
 
 
 typedef enum e_strategy
@@ -36,6 +53,7 @@ typedef enum e_strategy
 	COMPLEX
 }	t_strategy;
 
+/*
 typedef enum e_op_type
 {
 	OP_SA,
@@ -51,6 +69,8 @@ typedef enum e_op_type
 	OP_RRR,
 	OP_TYPES_TOTAL
 }	t_op_type;
+*/
+
 
 typedef struct s_node
 {
