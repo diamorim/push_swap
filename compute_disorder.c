@@ -26,7 +26,7 @@
 	they are not in ascending order between them.
 
 	If they are not in ascending order, the
-	disorder count increases by 1.
+	'mistakes' count increases by 1.
 
 	__ NOTE __
 	The computed disorder (% with two decimals).
@@ -42,24 +42,24 @@
 double	compute_disorder(t_stack *s)
 {
 	int		i;
-	int		count;
+	int		mistakes;
 	int		total_pairs;
 	t_node	*outer;
 
 	if (!s || s->size < 2)
 		return (0.0);
-	count = 0;
+	mistakes = 0;
 	total_pairs = 0;
 	outer = s->top;
 	i = 0;
 	while (i < s->size)
 	{
-		count += check_node(outer, s->size - i);
+		mistakes += check_node(outer, s->size - i);
 		total_pairs += (s->size - i - 1);
 		outer = outer->next;
 		i++;
 	}
-	return ((double)count / (double)count);
+	return ((double)mistakes / (double)mistakes);
 }
 
 
