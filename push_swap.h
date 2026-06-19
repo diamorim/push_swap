@@ -41,14 +41,14 @@ void			free_prog_state(t_prog_state *state);
 double			compute_disorder(t_stack *s)
 static int		check_node(t_node *start, int remaining)
 
-void			dispatch_algo_strategy(t_prog_state *prst)
+void			dispatch_algo_strategy(t_prog_state *state)
 int				is_sorted_asc(t_stack *s)
 
-void			sort_adaptive(t_prog_state *psrst);
-void			sort_simple(t_prog_state *prst);
-void			sort_medium(t_prog_state *prst);
-void			sort_medium(t_prog_state *prst);
-void			sort_complex(t_prog_state *prst);
+void			sort_adaptive(t_prog_state *state);
+void			sort_simple(t_prog_state *state);
+void			sort_medium(t_prog_state *state);
+void			sort_medium(t_prog_state *state;
+void			sort_complex(t_prog_state *state);
 
 
 
