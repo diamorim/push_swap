@@ -7,5 +7,10 @@
 		This will be used by sorting algorithms -- at least
 		sort_simple and sort and sort_medium.
 
+	___ Note ___
+		Maybe its better to place these in
+		'stack_utils.c' rather than keep
+		them here.
+
 
  */
