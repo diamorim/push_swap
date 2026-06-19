@@ -1,3 +1,5 @@
+#include "push_swap.h"
+
 /*
 	__ compute_disorder.c_ contiains:
 		- computer_disorder()

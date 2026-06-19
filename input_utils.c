@@ -15,3 +15,4 @@ input_utilities
 	we are not :-(
 
 */
+#include "push_swap.h"

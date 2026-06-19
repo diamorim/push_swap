@@ -31,23 +31,26 @@ void			free_stack(t_stack *stack);
 void			free_prog_state(t_prog_state *state);
 
 
-
-// ___ stack utilities ___ (not sure need these actually...)
-//t_node			*new_node(int value);
-//void			stack_add_back(t_stack *stack, t_node *new_node);
+// _____ stack utilities _____
+// used by sort_simple & sort_medium
+//
+t_node			*new_node(int value);
+void			stack_add_back(t_stack *stack, t_node *new_node);
 
 
 //	___	algorothm-sorting ___
-double			compute_disorder(t_stack *s)
-static int		check_node(t_node *start, int remaining)
+double			compute_disorder(t_stack *s);
+// Not including check_node here as functions with
+// static return values should only be declared
+// in the script that is calling them
+//
 
-void			dispatch_algo_strategy(t_prog_state *state)
-int				is_sorted_asc(t_stack *s)
+void			dispatch_algo_strategy(t_prog_state *state);
+int				is_sorted_asc(t_stack *s);
 
 void			sort_adaptive(t_prog_state *state);
 void			sort_simple(t_prog_state *state);
 void			sort_medium(t_prog_state *state);
-void			sort_medium(t_prog_state *state;
 void			sort_complex(t_prog_state *state);
 
 
@@ -101,13 +104,21 @@ typedef struct s_stack
 // 'n' is the input size of number of elements
 //
 
+// ____ Regarding `11` vs OP_TYPES_TOTAL as enum ____
+//	- I replaced the enum with 11. From my research
+// we cannot use const int for this -- relates to
+// compile time requirements in C. We can otherwise
+// use enum (this is normal way), #define, or
+// hardcoding. In this case, it's not a big deal
+// to hardcode since we only use it here.
+//
 typedef struct s_prog_state
 {
 	t_stack		*a;
 	t_stack		*b;
 	int			n;
 	int			ops_count_total;
-	int			ops_count_per_type[OP_TYPES_TOTAL];
+	int			ops_count_per_type[11];
 	t_strategy	strat_req;
 	t_strategy	strat_used;
 	int			bench;
