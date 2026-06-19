@@ -36,23 +36,23 @@
 	either way.
 */
 
-double	compute_disorder(t_stack *a)
+double	compute_disorder(t_stack *s)
 {
 	int		i;
 	int		count;
 	int		total_pairs;
 	t_node	*outer;
 
-	if (!a || a->size < 2)
+	if (!s || s->size < 2)
 		return (0.0);
 	count = 0;
 	total_pairs = 0;
-	outer = a->top;
+	outer = s->top;
 	i = 0;
-	while (i < a->size)
+	while (i < s->size)
 	{
-		count += check_node(outer, a->size - i);
-		total_pairs += (a->size - i - 1);
+		count += check_node(outer, s->size - i);
+		total_pairs += (s->size - i - 1);
 		outer = outer->next;
 		i++;
 	}
@@ -82,7 +82,7 @@ static int	check_node(t_node *start, int remaining)
 
 /*
 	__ IMPORTANT NOTE :-) __
-	if the stack 'a' doesn't exist or 'a'
+	if the stack 's' doesn't exist or 's'
 	has <2 members then there is "no
 	disorder" and we can a return (0.0)
 	as the disorder score.
