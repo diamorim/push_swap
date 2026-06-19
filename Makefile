@@ -7,8 +7,16 @@ SRCS = 	main.c \
 		ft_isnumber.c \
 		ft_strtol.c \
 		init.c \
-		stack_utils.c \
-		parser.c
+		parser.c \
+		compute_disorder.c \
+		sort_strategy_dispatcher.c \
+		sort_adaptive.c \
+		sort_simple.c \
+		sort_medium.c \
+		sort_complex.c \
+		sort_utils.c
+
+
 
 OBJS = $(SRCS:.c=.o)
 

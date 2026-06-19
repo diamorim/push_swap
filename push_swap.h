@@ -32,19 +32,23 @@ void			free_prog_state(t_prog_state *state);
 
 
 
-// ___ stack utilities ___ (not sure need these...)
-t_node			*new_node(int value);
-void			stack_add_back(t_stack *stack, t_node *new_node);
+// ___ stack utilities ___ (not sure need these actually...)
+//t_node			*new_node(int value);
+//void			stack_add_back(t_stack *stack, t_node *new_node);
 
 
 //	___	algorothm-sorting ___
 double			compute_disorder(t_stack *a)
+
 void			dispatch_algo_strategy(t_prog_state *prst)
+int				is_sorted_asc(t_stack *s)
+
+void			sort_adaptive(t_prog_state *psrst);
 void			sort_simple(t_prog_state *prst);
 void			sort_medium(t_prog_state *prst);
 void			sort_medium(t_prog_state *prst);
 void			sort_complex(t_prog_state *prst);
-void			sort_adaptive(t_prog_state *psrst);
+
 
 
 typedef enum e_strategy
