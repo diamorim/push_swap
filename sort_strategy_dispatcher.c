@@ -7,25 +7,41 @@
 	includes the "strategy" request (from the user
 	or by default) in CLI to execute the strategy.
 
+	__ Called by __
+		- prog_state() in mainc.
+
+	__ Includes
+		- is_sorted_sc()
+		- dispatch_algo_strategy()
+
+	__ Uses __
+		- is_sorted_asc()
+		- sort_adaptive()
+		- sort_simple()
+		- sort_medium()
+		- sort_complex()
+
 	Function uses a simple dispatch pattern.
+
+	__ Note about parameter(s) __
  */
 
-void	dispatch_algo_strategy(t_prog_state *prst)
+void	dispatch_algo_strategy(t_prog_state *state)
 {
-	if (is_sorted_asc(prst->a))
+	if (is_sorted_asc(state->a))
 		return ;
-	if (prst->strategy == ADAPTIVE)
+	if (state->strategy == ADAPTIVE)
 	{
-		sort_adaptive(prst);
+		sort_adaptive(state);
 		return ;
 	}
-	prst->adaptive_used = prst->strategy;
-	if (prst->strategy == SIMPLE)
-		sort_simple(prst);
-	else if (prst->strategy == MEDIUM)
-		sort_medium(prst);
-	else if (prst->strategy == COMPLEX)
-		sort_complex(prst);
+	state->strat_used = state->strategy;
+	if (state->strategy == SIMPLE)
+		sort_simple(state);
+	else if (state->strategy == MEDIUM)
+		sort_medium(state);
+	else if (state->strategy == COMPLEX)
+		sort_complex(state);
 }
 
 /*
