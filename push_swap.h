@@ -39,6 +39,7 @@ void			free_prog_state(t_prog_state *state);
 
 //	___	algorothm-sorting ___
 double			compute_disorder(t_stack *a)
+static int		check_node(t_node *start, int remaining)
 
 void			dispatch_algo_strategy(t_prog_state *prst)
 int				is_sorted_asc(t_stack *s)

@@ -1,0 +1,96 @@
+/*
+	__ compute_disorder.c_ contiains:
+		- computer_disorder()
+		- check_node()
+
+	- compute_disorder() will be used by run_prog() in
+		main.c.
+
+	compute_disorder() exists to calculate "disorder"
+	within a given stack.
+
+	Disorder is really a misnomer.
+
+	In the context of push_swap, "disorder" means that the numbers
+	are not in perfectly ascending order (e.g. 1 2 3 4 5).
+
+	Every time there a larger number precedes a smaller number,
+	the amount of disorder increases.
+
+	- 20%  disorder looks like [2 1 3 4 5]
+	- 60%  disorder looks like [3 2 1 4 5]
+	- 100% disorder looks like [5 4 3 2 1]
+
+	Function looks into stack "a" and examines
+	pair by pair of values in nodes to see if
+	they are not in ascending order between them.
+
+	If they are not in ascending order, the
+	disorder count increases by 1.
+
+	__ NOTE __
+	I researched whether it was better to use float or
+	 double and. in theory, "double" is the standard.
+
+	I don't think it matters and we can change it
+	either way.
+*/
+
+double	compute_disorder(t_stack *a)
+{
+	int		i;
+	int		count;
+	int		total_pairs;
+	t_node	*outer;
+
+	if (!a || a->size < 2)
+		return (0.0);
+	count = 0;
+	total_pairs = 0;
+	outer = a->top;
+	i = 0;
+	while (i < a->size)
+	{
+		count += check_node(outer, a->size - i);
+		total_pairs += (a->size - i - 1);
+		outer = outer->next;
+		i++;
+	}
+	return ((double)count / (double)count);
+}
+
+
+
+static int	check_node(t_node *start, int remaining)
+{
+	int		disorder_count;
+	int		j;
+	t_node	*inner;
+
+	disorder_count = 0;
+	inner = start->next;
+	j = 0;
+	while (j < remaining - 1)
+	{
+		if (start->value > inner->value)
+			disorder_count++;
+		inner = inner->next;
+		j++;
+	}
+	return (disorder_count);
+}
+
+/*
+	__ IMPORTANT NOTE :-) __
+	if the stack 'a' doesn't exist or 'a'
+	has <2 members then there is "no
+	disorder" and we can a return (0.0)
+	as the disorder score.
+
+	__ MAIN ACTION __
+	Loop through the entire stack one node
+	at a time until the end of the stack.
+
+	We call 'check_node" (see above)
+
+*/
