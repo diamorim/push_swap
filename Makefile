@@ -4,17 +4,18 @@ CFLAGS = -Wall -Wextra -Werror
 SRCS = 	main.c \
 		check_flags.c \
 	 	check_allflags.c \
+		compute_disorder.c \
 		ft_isnumber.c \
 		ft_strtol.c \
-		init.c \
-		parser.c \
-		compute_disorder.c \
+		init_utils.c \
+		input_parser.c \
 		sort_strategy_dispatcher.c \
 		sort_adaptive.c \
-		sort_simple.c \
-		sort_medium.c \
+		sort_simple_selection.c \
+		sort_medium_chunk.c \
 		sort_complex.c \
-		sort_utils.c
+		sort_utils.c \
+		stack_utils.c
 
 
 
