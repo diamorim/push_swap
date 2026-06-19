@@ -32,17 +32,17 @@ void	dispatch_algo_strategy(t_prog_state *state)
 {
 	if (is_sorted_asc(state->a))
 		return ;
-	if (state->strategy == ADAPTIVE)
+	if (state->strat_req == ADAPTIVE)
 	{
 		sort_adaptive(state);
 		return ;
 	}
-	state->strat_used = state->strategy;
-	if (state->strategy == SIMPLE)
+	state->strat_used = state->strat_req;
+	if (state->strat_req == SIMPLE)
 		sort_simple(state);
-	else if (state->strategy == MEDIUM)
+	else if (state->strat_req == MEDIUM)
 		sort_medium(state);
-	else if (state->strategy == COMPLEX)
+	else if (state->strat_req == COMPLEX)
 		sort_complex(state);
 }
 
@@ -61,6 +61,9 @@ void	dispatch_algo_strategy(t_prog_state *state)
 		function returns (1).
 
 	BASIC IDEA
+		This is a version of selection sort.
+
+
 		Function loops through the stack and looks
 		at each node. If it finds one case where
 		it is not sorted, the function returns (0)
