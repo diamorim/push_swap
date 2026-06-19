@@ -29,11 +29,14 @@
 	disorder count increases by 1.
 
 	__ NOTE __
+	The computed disorder (% with two decimals).
+
 	I researched whether it was better to use float or
 	 double and. in theory, "double" is the standard.
 
-	I don't think it matters and we can change it
-	either way.
+	We will need to see how to output the data with
+	the ft_printf() -- or maybe we need to create a modified
+	version.
 */
 
 double	compute_disorder(t_stack *s)
