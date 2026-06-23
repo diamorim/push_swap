@@ -6,7 +6,7 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 09:26:05 by diamo             #+#    #+#             */
-/*   Updated: 2026/06/23 13:31:38 by diamo            ###   ########.fr       */
+/*   Updated: 2026/06/23 13:41:05 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void op_pa(t_stack *stack_a, t_stack *stack_b, t_prog_state *prog_state)
 	stack_b->size--;
 	prog_state->ops_count_per_type[OP_PA]++;
 	prog_state->ops_count_total++;
-	
 }
 void ra_op(t_stack *stack_a, t_prog_state *state)
 {
