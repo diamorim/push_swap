@@ -125,15 +125,17 @@ void			stack_add_front(t_stack *stack, t_node *new);
 // ___ parsing ___
 int				parse_input(t_prog_state *state, char **argv);
 
-void op_sa(t_stack *stack_a, t_prog_state *prog_state);
-void op_pa(t_stack *stack_a, t_stack *stack_b, t_prog_state *prog_state);
-void ra_op(t_stack *stack_a, t_prog_state *state);
-void rra_op(t_stack *stack_a, t_prog_state *prog_state);
-void op_sb(t_stack *stack_b, t_prog_state *prog_state);
-void op_pb(t_stack *stack_b, t_stack *stack_a, t_prog_state *prog_state);
-void rb_op(t_stack *stack_b, t_prog_state *state);
-void rrb_op(t_stack *stack_b, t_prog_state *prog_state);
-void ss_op(t_stack *stack_a, t_stack *stack_b, t_prog_state *prog_state)
+void sa_op(t_prog_state *state);
+void pa_op(t_prog_state *state);
+void ra_op(t_prog_state *state);
+void rra_op(t_prog_state *state);
+void sb_op(t_prog_state *state);
+void pb_op(t_prog_state *state);
+void rb_op(t_prog_state *state);
+void rrb_op(t_prog_state *state);
+void ss_op(t_prog_state *state);
+void rr_op(t_prog_state *state);
+void rrr_op(t_prog_state *state);
 
 
 #endif

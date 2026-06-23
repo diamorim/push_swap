@@ -6,19 +6,21 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 09:26:05 by diamo             #+#    #+#             */
-/*   Updated: 2026/06/23 16:59:59 by diamo            ###   ########.fr       */
+/*   Updated: 2026/06/23 18:01:57 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void op_sa(t_stack *stack_a, t_prog_state *prog_state)
+void op_sa(t_prog_state *state)
 {
+	t_stack *stack_a;
 	t_node *top_node;
 	t_node *new_top;
 
-	if (!stack_a || stack_a->size < 2)
+	if (!state->a || state->a->size < 2)
 		return ;
+	stack_a = state->a;
 	top_node = stack_a->top;
 	new_top = top_node->next;
 	if (new_top->next)
@@ -34,18 +36,21 @@ void op_sa(t_stack *stack_a, t_prog_state *prog_state)
 		change_next_prev(new_node, top_node, top_node);
 	}
 	stack_a->top = new_top;
-	prog_state->ops_count_per_type[OP_SA]++;
-	prog_state->ops_count_total++;
+	state->ops_count_per_type[OP_SA]++;
+	state->ops_count_total++;
 	ft_putstr_fd("sa\n", 1);
 }
 
-void op_pa(t_stack *stack_a, t_stack *stack_b, t_prog_state *prog_state)
+void pa_op(t_prog_state *state)
 {
+	t_stack *stack_a;
+	t_stack *stack_b;
 	t_node *new_btop;
 	t_node *top;
 
-	if (!stack_b || !prog_state)
+	if (!state->a || !state)
 		return;
+	stack_a = state->a;
 	if (!stack_b->top)
 		return ;
 	top = stack_b->top;
@@ -62,26 +67,30 @@ void op_pa(t_stack *stack_a, t_stack *stack_b, t_prog_state *prog_state)
 		stack_b->top = NULL;
 	}
 	stack_b->size--;
-	prog_state->ops_count_per_type[OP_PA]++;
-	prog_state->ops_count_total++;
+	state->ops_count_per_type[OP_PA]++;
+	state->ops_count_total++;
 	ft_putstr_fd("pa\n", 1);
 }
-void ra_op(t_stack *stack_a, t_prog_state *state)
+void ra_op(t_prog_state *state)
 {
-	if (!stack_a || !state)
+	t_stack *stack_a;
+	if (!state->a || !state)
 		return ;
+	stack_a = state->a;
 	stack_a->top = stack_a->top->next;
 	state->ops_count_per_type[OP_RA]++;
 	state->ops_count_total++;
 	ft_putstr_fd("ra\n", 1);
 }
-void rra_op(t_stack *stack_a, t_prog_state *prog_state)
+void rra_op(t_prog_state *state)
 {
-	if (!stack_a || !prog_state)
+	t_stack *stack_a;
+	if (!state->a || !state)
 		return ;
+	stack_a = state->a;
 	stack_a->top = stack_a->top->prev;
-	prog_state->ops_count_per_type[OP_RRA]++;
-	prog_state->ops_count_total++;
+	state->ops_count_per_type[OP_RRA]++;
+	state->ops_count_total++;
 	ft_putstr_fd("rra\n", 1);
 }
 
