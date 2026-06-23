@@ -1,17 +1,14 @@
 #include "push_swap.h"
 
 /*
-	__sort_utils.c__ has two functions:
+	__sort_utils.c__ has four functions:
 		- new_node()
 		- stack_add_back()
+		- stack_add_front()
+		- stack_last_node()
 
 	___ Used by ___
 		- parse_input() via input_parser.c
-
-	___ Note ___
-		- If no other scripts are using these
-		functions then let's consolidate into
-		input_parser.c
 
 */
 
@@ -72,12 +69,18 @@ void	stack_add_back(t_stack *stack, t_node *new)
 }
 void	stack_add_front(t_stack *stack, t_node *new)
 {
+<<<<<<< Updated upstream
 	t_node *old_top;
+=======
+	t_node	*last;
+
+>>>>>>> Stashed changes
 	if (!stack || !new)
 		return ;
 	if (!stack->top)
 	{
 		stack->top = new;
+<<<<<<< Updated upstream
 		new->next = NULL;
 		new->prev = NULL;
 	}
@@ -87,20 +90,28 @@ void	stack_add_front(t_stack *stack, t_node *new)
 		old_top = stack->top;
 		old_top->prev = new;
 		new->next = old_top;
+=======
+		new->next = new;
+		new->prev = new;
+	}
+	else
+	{
+		last = stack->top->prev;
+		new->next = stack->top;
+		new->prev = last;
+		last->next = new;
+		stack->top->prev = new;
+>>>>>>> Stashed changes
 		stack->top = new;
 	}
 	stack->size++;
 }
 
-t_node *stack_last_node(t_stack *stack)
+t_node	*stack_last_node(t_stack *stack)
 {
-	t_node *current_node;
 	if (!stack || !stack->top)
-		return NULL;
-	current_node = stack->top;
-	while (current_node->prev)
-		current_node = current_node->prev;
-	return current_node;
+		return (NULL);
+	return (stack->top->prev);
 }
 void change_next_prev(t_node *node, t_node *new_prev, t_node *new_next)
 {

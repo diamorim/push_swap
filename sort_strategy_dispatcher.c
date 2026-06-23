@@ -63,9 +63,10 @@ void	dispatch_algo_strategy(t_prog_state *state)
 	BASIC IDEA
 		This is a version of selection sort.
 
-
 		Function loops through the stack and looks
-		at each node. If it finds one case where
+		at each node.
+
+		If it finds one case where
 		it is not sorted, the function returns (0)
 		and stops the process.
 
