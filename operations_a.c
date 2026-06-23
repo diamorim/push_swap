@@ -6,7 +6,7 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 09:26:05 by diamo             #+#    #+#             */
-/*   Updated: 2026/06/23 13:41:05 by diamo            ###   ########.fr       */
+/*   Updated: 2026/06/23 15:52:12 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,18 @@ void op_sa(t_stack *stack_a, t_prog_state *prog_state)
 void op_pa(t_stack *stack_a, t_stack *stack_b, t_prog_state *prog_state)
 {
 	t_node *new_btop;
+	t_node *top;
 
 	if (!stack_b || !prog_state)
 		return;
 	if (!stack_b->top)
 		return ;
-	if (stack_a->top->next)
+	top = stack_b->top;
+	if (top->next)
 	{
-		new_btop = stack_b->top->next;
+		new_btop = top->next;
 		new_btop->prev = NULL;
-		stack_add_front(stack_a, stack_b->top);
+		stack_add_front(stack_a, top);
 		stack_b->top = new_btop;
 	}
 	else
@@ -59,7 +61,7 @@ void ra_op(t_stack *stack_a, t_prog_state *state)
 {
 	t_node *last_node;
 	t_node *new_top;
-
+	
 	if (!stack_a || !state)
 		return ;
 	last_node = stack_last_node(stack_a);

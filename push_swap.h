@@ -118,6 +118,7 @@ void			free_prog_state(t_prog_state *state);
 t_node			*stack_last_node(t_stack *stack);
 t_node			*new_node(int value);
 void			stack_add_back(t_stack *stack, t_node *new_node);
+// ____ adds a new node at the top of the stack, it deals with the next and previous node.
 void			stack_add_front(t_stack *stack, t_node *new);
 
 // ___ parsing ___
