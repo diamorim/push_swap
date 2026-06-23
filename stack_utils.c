@@ -66,3 +66,28 @@ void	stack_add_back(t_stack *stack, t_node *new)
 	}
 	stack->size++;
 }
+void	stack_add_front(t_stack *stack, t_node *new)
+{
+	if (!stack || !new)
+		return ;
+	if (!stack->top)
+		stack->top = new;
+	else
+	{
+		stack->top->prev = new;
+		new->next = stack->top;
+		stack->top = new;
+	}
+	new->prev = NULL;
+	stack->size++;
+}
+t_node *stack_last_node(t_stack *stack)
+{
+	t_node *current_node;
+	if (!stack || !stack->top)
+		return NULL;
+	current_node = stack->top;
+	while (current_node->prev)
+		current_node = current_node->prev;
+	return current_node;
+}

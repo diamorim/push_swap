@@ -19,25 +19,6 @@ int				check_maxint(char **argv);
 int				reps_check(char **argv, int occ);
 
 
-// ___ parsing ___
-int				parse_input(t_prog_state *state, char **argv);
-
-
-
-// ___ initalization and freeing functions ___
-t_stack			*init_stack(void);
-t_prog_state	*init_prog_state(void);
-void			free_stack(t_stack *stack);
-void			free_prog_state(t_prog_state *state);
-
-
-// _____ stack utilities _____
-// used by sort_simple & sort_medium
-//
-t_node			*new_node(int value);
-void			stack_add_back(t_stack *stack, t_node *new_node);
-
-
 //	___	algorothm-sorting ___
 double			compute_disorder(t_stack *s);
 // Not including check_node here as functions with
@@ -63,7 +44,7 @@ typedef enum e_strategy
 	COMPLEX
 }	t_strategy;
 
-/*
+
 typedef enum e_op_type
 {
 	OP_SA,
@@ -79,7 +60,7 @@ typedef enum e_op_type
 	OP_RRR,
 	OP_TYPES_TOTAL
 }	t_op_type;
-*/
+
 
 
 typedef struct s_node
@@ -124,5 +105,28 @@ typedef struct s_prog_state
 	int			bench;
 	double		disorder;
 }	t_prog_state;
+
+// ___ initalization and freeing functions ___
+t_stack			*init_stack(void);
+t_prog_state	*init_prog_state(void);
+void			free_stack(t_stack *stack);
+void			free_prog_state(t_prog_state *state);
+
+// _____ stack utilities _____
+// used by sort_simple & sort_medium
+//
+t_node			*stack_last_node(t_stack *stack);
+t_node			*new_node(int value);
+void			stack_add_back(t_stack *stack, t_node *new_node);
+void			stack_add_front(t_stack *stack, t_node *new);
+
+// ___ parsing ___
+int				parse_input(t_prog_state *state, char **argv);
+
+void op_sa(t_stack *stack_a, t_prog_state *prog_state);
+void op_pa(t_stack *stack_a, t_stack *stack_b, t_prog_state *prog_state);
+void ra_op(t_stack *stack_a, t_prog_state *state);
+void rra_op(t_stack *stack_a, t_prog_state *prog_state);
+
 
 #endif
