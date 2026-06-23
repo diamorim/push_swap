@@ -6,7 +6,7 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 09:26:05 by diamo             #+#    #+#             */
-/*   Updated: 2026/06/23 15:52:12 by diamo            ###   ########.fr       */
+/*   Updated: 2026/06/23 16:35:47 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,18 @@ void op_sa(t_stack *stack_a, t_prog_state *prog_state)
 	top_node = stack_a->top;
 	new_top = top_node->next;
 	if (new_top->next)
+	{
+		top_node->next = new_top->next;
 		new_top->next = top_node;
-	top_node->next = new_top->next;
-	top_node->prev = new_top->prev;
-	new_top->next = top_node;
-	new_top->prev = NULL;
+		new_top->prev = top_node->prev;
+		top_node->prev = new_top;
+	}
+	else
+	{
+		change_next_prev(top_node, new_top, NULL);
+		change_next_prev(new_node, NULL, top_node);
+	}
+	stack_a->top = new_top;
 	prog_state->ops_count_per_type[OP_SA]++;
 	prog_state->ops_count_total++;
 }
@@ -44,7 +51,7 @@ void op_pa(t_stack *stack_a, t_stack *stack_b, t_prog_state *prog_state)
 	if (top->next)
 	{
 		new_btop = top->next;
-		new_btop->prev = NULL;
+		new_btop->prev = top->prev;
 		stack_add_front(stack_a, top);
 		stack_b->top = new_btop;
 	}
