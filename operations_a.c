@@ -6,7 +6,7 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 09:26:05 by diamo             #+#    #+#             */
-/*   Updated: 2026/06/23 16:35:47 by diamo            ###   ########.fr       */
+/*   Updated: 2026/06/23 16:59:59 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,13 @@ void op_sa(t_stack *stack_a, t_prog_state *prog_state)
 	}
 	else
 	{
-		change_next_prev(top_node, new_top, NULL);
-		change_next_prev(new_node, NULL, top_node);
+		change_next_prev(top_node, new_top, new_top);
+		change_next_prev(new_node, top_node, top_node);
 	}
 	stack_a->top = new_top;
 	prog_state->ops_count_per_type[OP_SA]++;
 	prog_state->ops_count_total++;
+	ft_putstr_fd("sa\n", 1);
 }
 
 void op_pa(t_stack *stack_a, t_stack *stack_b, t_prog_state *prog_state)
@@ -63,37 +64,24 @@ void op_pa(t_stack *stack_a, t_stack *stack_b, t_prog_state *prog_state)
 	stack_b->size--;
 	prog_state->ops_count_per_type[OP_PA]++;
 	prog_state->ops_count_total++;
+	ft_putstr_fd("pa\n", 1);
 }
 void ra_op(t_stack *stack_a, t_prog_state *state)
 {
-	t_node *last_node;
-	t_node *new_top;
-	
 	if (!stack_a || !state)
 		return ;
-	last_node = stack_last_node(stack_a);
-	new_top = stack_a->top->prev;
-	stack_a->top->prev = NULL;
-	stack_a->top->next = last_node;
-	stack_a->top = new_top;
-	new_top->next = NULL;
+	stack_a->top = stack_a->top->next;
 	state->ops_count_per_type[OP_RA]++;
 	state->ops_count_total++;
+	ft_putstr_fd("ra\n", 1);
 }
 void rra_op(t_stack *stack_a, t_prog_state *prog_state)
 {
-	t_node *last_node;
-	t_node *new_top;
-
 	if (!stack_a || !prog_state)
 		return ;
-	new_top = stack_last_node(stack_a);
-	new_top->next->prev = NULL;
-	stack_a->top = new_top;
-	new_top->prev = stack_a->top;
-	new_top->next = NULL;
-	stack_a->top = new_top;
+	stack_a->top = stack_a->top->prev;
 	prog_state->ops_count_per_type[OP_RRA]++;
 	prog_state->ops_count_total++;
+	ft_putstr_fd("rra\n", 1);
 }
 

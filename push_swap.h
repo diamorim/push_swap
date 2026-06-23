@@ -118,7 +118,7 @@ void			free_prog_state(t_prog_state *state);
 t_node			*stack_last_node(t_stack *stack);
 t_node			*new_node(int value);
 void			stack_add_back(t_stack *stack, t_node *new_node);
-void 			change_next_prev(t_node *node, t_node *new_prev, t_node *new_next)
+void 			change_next_prev(t_node *node, t_node *new_prev, t_node *new_next);
 // ____ adds a new node at the top of the stack, it deals with the next and previous node.
 void			stack_add_front(t_stack *stack, t_node *new);
 
@@ -129,6 +129,11 @@ void op_sa(t_stack *stack_a, t_prog_state *prog_state);
 void op_pa(t_stack *stack_a, t_stack *stack_b, t_prog_state *prog_state);
 void ra_op(t_stack *stack_a, t_prog_state *state);
 void rra_op(t_stack *stack_a, t_prog_state *prog_state);
+void op_sb(t_stack *stack_b, t_prog_state *prog_state);
+void op_pb(t_stack *stack_b, t_stack *stack_a, t_prog_state *prog_state);
+void rb_op(t_stack *stack_b, t_prog_state *state);
+void rrb_op(t_stack *stack_b, t_prog_state *prog_state);
+void ss_op(t_stack *stack_a, t_stack *stack_b, t_prog_state *prog_state)
 
 
 #endif
