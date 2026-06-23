@@ -55,14 +55,18 @@ void	stack_add_back(t_stack *stack, t_node *new)
 	if (!stack || !new)
 		return ;
 	if (!stack->top)
+	{
 		stack->top = new;
+		new->next = new;
+		new->prev = new;
+	}
 	else
 	{
-		last = stack->top;
-		while (last->next)
-			last = last->next;
+		last = stack->top->prev;
 		last->next = new;
 		new->prev = last;
+		new->next = stack->top;
+		stack->top->prev = new;
 	}
 	stack->size++;
 }
@@ -81,6 +85,7 @@ void	stack_add_front(t_stack *stack, t_node *new)
 	new->prev = NULL;
 	stack->size++;
 }
+
 t_node *stack_last_node(t_stack *stack)
 {
 	t_node *current_node;
