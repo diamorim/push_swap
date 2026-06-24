@@ -41,7 +41,7 @@ void op_sa(t_prog_state *state)
 	ft_putstr_fd("sa\n", 1);
 }
 
-void pa_op(t_prog_state *state)
+void op_pa(t_prog_state *state)
 {
 	t_stack *stack_a;
 	t_stack *stack_b;
@@ -71,7 +71,7 @@ void pa_op(t_prog_state *state)
 	state->ops_count_total++;
 	ft_putstr_fd("pa\n", 1);
 }
-void ra_op(t_prog_state *state)
+void op_ra(t_prog_state *state)
 {
 	t_stack *stack_a;
 	if (!state->a || !state)
@@ -82,7 +82,7 @@ void ra_op(t_prog_state *state)
 	state->ops_count_total++;
 	ft_putstr_fd("ra\n", 1);
 }
-void rra_op(t_prog_state *state)
+void op_rra(t_prog_state *state)
 {
 	t_stack *stack_a;
 	if (!state->a || !state)
@@ -93,4 +93,3 @@ void rra_op(t_prog_state *state)
 	state->ops_count_total++;
 	ft_putstr_fd("rra\n", 1);
 }
-

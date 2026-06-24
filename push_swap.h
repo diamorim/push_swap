@@ -125,17 +125,20 @@ void			stack_add_front(t_stack *stack, t_node *new);
 // ___ parsing ___
 int				parse_input(t_prog_state *state, char **argv);
 
-void sa_op(t_prog_state *state);
-void pa_op(t_prog_state *state);
-void ra_op(t_prog_state *state);
-void rra_op(t_prog_state *state);
-void sb_op(t_prog_state *state);
-void pb_op(t_prog_state *state);
-void rb_op(t_prog_state *state);
-void rrb_op(t_prog_state *state);
-void ss_op(t_prog_state *state);
-void rr_op(t_prog_state *state);
-void rrr_op(t_prog_state *state);
+
+// ___ operations engine ___
+
+void op_sa(t_prog_state *state);
+void op_pa(t_prog_state *state);
+void op_ra(t_prog_state *state);
+void op_rra(t_prog_state *state);
+void op_sb(t_prog_state *state);
+void op_pb(t_prog_state *state);
+void op_rb(t_prog_state *state);
+void op_rrb(t_prog_state *state);
+void op_ss(t_prog_state *state);
+void op_rr(t_prog_state *state);
+void op_rrr(t_prog_state *state);
 
 
 #endif
