@@ -70,7 +70,7 @@ void op_rb(t_prog_state *state)
 	state->ops_count_total++;
 	ft_putstr_fd("rb\n", 1);
 }
-void op_rrb (t_prog_state *state)
+void op_rra(t_prog_state *state)
 {
 		t_stack *stack_b;
 	if (!state->b || !state)

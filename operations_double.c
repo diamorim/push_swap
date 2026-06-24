@@ -11,5 +11,25 @@ void op_ss(t_prog_state *state)
 	state->ops_count_per_type[OP_SS]++;
 	state->ops_count_total--;
 }
-void op_rr(t_prog_state *state);
-void op_rrr(t_prog_state *state);
+void op_rr(t_prog_state *state)
+{
+	if (!state)
+		return ;
+	ra_op(state);
+	rb_op(state);
+	state->ops_count_per_type[OP_RA]--;
+	state->ops_count_per_type[OP_RB]--;
+	state->ops_count_per_type[OP_RR]++;
+	state->ops_count_total--;
+}
+void op_rrr(t_prog_state *state)
+{
+	if (!state)
+		return ;
+		rra_op(state);
+		rrb_op(state);
+	state->ops_count_per_type[OP_RRA]--;
+	state->ops_count_per_type[OP_RRB]--;
+	state->ops_count_per_type[OP_RRR]++;
+	state->ops_count_total--;
+}
