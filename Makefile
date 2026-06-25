@@ -2,13 +2,11 @@ NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 SRCS = 	main.c \
-		check_flags.c \
-	 	check_allflags.c \
-		compute_disorder.c \
-		ft_isnumber.c \
-		ft_strtol.c \
 		init_utils.c \
 		input_parser.c \
+		input_utils_a.c \
+		input_utils_b.c \
+		sor_compute_disorder.c
 		sort_strategy_dispatcher.c \
 		sort_adaptive.c \
 		sort_simple_selection.c \
