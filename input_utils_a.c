@@ -16,7 +16,6 @@
 #include "push_swap.h"
 
 
-#include "push_swap.h"
 #include "libft/libft.h"
 
 int	ft_isdigit(int c)
