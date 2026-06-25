@@ -6,7 +6,7 @@ void op_sb(t_prog_state *state)
 	t_node *new_top;
 	t_stack *stack_b;
 
-	if (!state->b || stack_b->size < 2)
+	if (!state->b || state->b->size < 2)
 		return ;
 	stack_b = state->b;
 	top_node = stack_b->top;
@@ -21,14 +21,14 @@ void op_sb(t_prog_state *state)
 	else
 	{
 		change_next_prev(top_node, new_top, new_top);
-		change_next_prev(new_node, top_node, top_node);
+		change_next_prev(new_top, top_node, top_node);
 	}
 	stack_b->top = new_top;
 	state->ops_count_per_type[OP_SB]++;
 	state->ops_count_total++;
 	ft_putstr_fd("sb\n", 1);
 }
-void op_pa(t_prog_state *state)
+void op_pb(t_prog_state *state)
 {
 	t_node *new_btop;
 	t_node *top;
@@ -51,7 +51,7 @@ void op_pa(t_prog_state *state)
 	}
 	else
 	{
-		stack_add_front(stack_b->top, stack_a->top);
+		stack_add_front(stack_b, stack_a->top);
 		stack_a->top = NULL;
 	}
 	stack_a->size--;
@@ -70,7 +70,7 @@ void op_rb(t_prog_state *state)
 	state->ops_count_total++;
 	ft_putstr_fd("rb\n", 1);
 }
-void op_rra(t_prog_state *state)
+void op_rrb(t_prog_state *state)
 {
 		t_stack *stack_b;
 	if (!state->b || !state)

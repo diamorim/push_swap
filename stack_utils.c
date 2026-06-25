@@ -69,30 +69,15 @@ void	stack_add_back(t_stack *stack, t_node *new)
 }
 void	stack_add_front(t_stack *stack, t_node *new)
 {
-<<<<<<< Updated upstream
-	t_node *old_top;
-=======
 	t_node	*last;
 
->>>>>>> Stashed changes
 	if (!stack || !new)
 		return ;
 	if (!stack->top)
 	{
 		stack->top = new;
-<<<<<<< Updated upstream
 		new->next = NULL;
 		new->prev = NULL;
-	}
-	else
-	{
-		new->prev = old_top->prev;
-		old_top = stack->top;
-		old_top->prev = new;
-		new->next = old_top;
-=======
-		new->next = new;
-		new->prev = new;
 	}
 	else
 	{
@@ -101,7 +86,6 @@ void	stack_add_front(t_stack *stack, t_node *new)
 		new->prev = last;
 		last->next = new;
 		stack->top->prev = new;
->>>>>>> Stashed changes
 		stack->top = new;
 	}
 	stack->size++;

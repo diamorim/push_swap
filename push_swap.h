@@ -1,7 +1,6 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
 // # include "ft_printf.h"
@@ -18,21 +17,6 @@ int				check_errors(int argc, char **argv);
 int				check_maxint(char **argv);
 int				reps_check(char **argv, int occ);
 
-
-//	___	algorothm-sorting ___
-double			compute_disorder(t_stack *s);
-// Not including check_node here as functions with
-// static return values should only be declared
-// in the script that is calling them
-//
-
-void			dispatch_algo_strategy(t_prog_state *state);
-int				is_sorted_asc(t_stack *s);
-
-void			sort_adaptive(t_prog_state *state);
-void			sort_simple(t_prog_state *state);
-void			sort_medium(t_prog_state *state);
-void			sort_complex(t_prog_state *state);
 
 
 
@@ -139,6 +123,21 @@ void op_rrb(t_prog_state *state);
 void op_ss(t_prog_state *state);
 void op_rr(t_prog_state *state);
 void op_rrr(t_prog_state *state);
+
+//	___	algorothm-sorting ___
+double			compute_disorder(t_stack *s);
+// Not including check_node here as functions with
+// static return values should only be declared
+// in the script that is calling them
+//
+
+void			dispatch_algo_strategy(t_prog_state *state);
+int				is_sorted_asc(t_stack *s);
+
+void			sort_adaptive(t_prog_state *state);
+void			sort_simple(t_prog_state *state);
+void			sort_medium(t_prog_state *state);
+void			sort_complex(t_prog_state *state);
 
 
 #endif

@@ -15,8 +15,8 @@ void op_rr(t_prog_state *state)
 {
 	if (!state)
 		return ;
-	ra_op(state);
-	rb_op(state);
+	op_ra(state);
+	op_rb(state);
 	state->ops_count_per_type[OP_RA]--;
 	state->ops_count_per_type[OP_RB]--;
 	state->ops_count_per_type[OP_RR]++;
@@ -26,8 +26,8 @@ void op_rrr(t_prog_state *state)
 {
 	if (!state)
 		return ;
-		rra_op(state);
-		rrb_op(state);
+	op_rra(state);
+	op_rrb(state);
 	state->ops_count_per_type[OP_RRA]--;
 	state->ops_count_per_type[OP_RRB]--;
 	state->ops_count_per_type[OP_RRR]++;

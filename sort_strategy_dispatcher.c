@@ -28,23 +28,23 @@
 
 #include "push_swap.h"
 
-void	dispatch_algo_strategy(t_prog_state *state)
-{
-	if (is_sorted_asc(state->a))
-		return ;
-	if (state->strat_req == ADAPTIVE)
-	{
-		sort_adaptive(state);
-		return ;
-	}
-	state->strat_used = state->strat_req;
-	if (state->strat_req == SIMPLE)
-		sort_simple(state);
-	else if (state->strat_req == MEDIUM)
-		sort_medium(state);
-	else if (state->strat_req == COMPLEX)
-		sort_complex(state);
-}
+// void	dispatch_algo_strategy(t_prog_state *state)
+// {
+// 	if (is_sorted_asc(state->a))
+// 		return ;
+// 	if (state->strat_req == ADAPTIVE)
+// 	{
+// 		sort_adaptive(state);
+// 		return ;
+// 	}
+// 	state->strat_used = state->strat_req;
+// 	if (state->strat_req == SIMPLE)
+// 		sort_simple(state);
+// 	else if (state->strat_req == MEDIUM)
+// 		sort_medium(state);
+// 	else if (state->strat_req == COMPLEX)
+// 		sort_complex(state);
+// }
 
 /*
 	__ is_sorted_asc() __ is used by
@@ -76,21 +76,21 @@ void	dispatch_algo_strategy(t_prog_state *state)
 		function returns to the caller.
 */
 
-int	is_sorted_asc(t_stack *s)
-{
-	t_node	*node;
-	int		i;
+// int	is_sorted_asc(t_stack *s)
+// {
+// 	t_node	*node;
+// 	int		i;
 
-	if (!s || s->size <= 1)
-		return (1);
-	node = s->top;
-	i = 0;
-	while (i < s->size - 1)
-	{
-		if (node->value > node->next->value)
-			return (0);
-		node = node->next;
-		i++;
-	}
-	return (1);
-}
+// 	if (!s || s->size <= 1)
+// 		return (1);
+// 	node = s->top;
+// 	i = 0;
+// 	while (i < s->size - 1)
+// 	{
+// 		if (node->value > node->next->value)
+// 			return (0);
+// 		node = node->next;
+// 		i++;
+// 	}
+// 	return (1);
+// }

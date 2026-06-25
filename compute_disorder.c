@@ -40,6 +40,7 @@
 	the ft_printf() -- or maybe we need to create a modified
 	version.
 */
+static int	check_node(t_node *start, int remaining);
 
 double	compute_disorder(t_stack *s)
 {

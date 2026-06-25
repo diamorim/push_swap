@@ -6,7 +6,7 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 09:26:05 by diamo             #+#    #+#             */
-/*   Updated: 2026/06/23 18:01:57 by diamo            ###   ########.fr       */
+/*   Updated: 2026/06/25 17:27:43 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void op_sa(t_prog_state *state)
 	else
 	{
 		change_next_prev(top_node, new_top, new_top);
-		change_next_prev(new_node, top_node, top_node);
+		change_next_prev(new_top, top_node, top_node);
 	}
 	stack_a->top = new_top;
 	state->ops_count_per_type[OP_SA]++;
@@ -51,8 +51,9 @@ void op_pa(t_prog_state *state)
 	if (!state->a || !state)
 		return;
 	stack_a = state->a;
-	if (!stack_b->top)
+	if (!state->b->top)
 		return ;
+	stack_b = state->b;
 	top = stack_b->top;
 	if (top->next)
 	{
@@ -63,7 +64,7 @@ void op_pa(t_prog_state *state)
 	}
 	else
 	{
-		stack_add_front(stack_a->top, stack_b->top);
+		stack_add_front(stack_a, stack_b->top);
 		stack_b->top = NULL;
 	}
 	stack_b->size--;
@@ -93,3 +94,4 @@ void op_rra(t_prog_state *state)
 	state->ops_count_total++;
 	ft_putstr_fd("rra\n", 1);
 }
+
