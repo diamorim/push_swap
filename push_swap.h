@@ -7,11 +7,11 @@
 # include "libft/libft.h"
 
 int				check_maxint(char **argv);
-int	check_allflags(char **argv);
+int				check_allflags(char **argv);
 //same as atoi but works with long integers
-long ft_strtol(char *str);
+long			ft_strtol(char *str);
 //a function to check if a string is made only of numbers
-int ft_isnumber(char *str);
+int				ft_isnumber(char *str);
 //a function to check if the arguments are flags
 int				check_flags(char *str);
 int				check_errors(int argc, char **argv);
@@ -105,7 +105,6 @@ void			stack_add_back(t_stack *stack, t_node *new_node);
 void 			change_next_prev(t_node *node, t_node *new_prev, t_node *new_next);
 // ____ adds a new node at the top of the stack, it deals with the next and previous node.
 void			stack_add_front(t_stack *stack, t_node *new);
-
 // ___ parsing ___
 int				parse_input(t_prog_state *state, char **argv);
 
