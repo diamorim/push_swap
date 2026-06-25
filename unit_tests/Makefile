@@ -8,7 +8,8 @@ SRC = $(wildcard $(PROJECT_DIR)/*.c)
 #removes main if it exists
 SRC := $(filter-out $(PROJECT_DIR)/main.c, $(SRC))
 
-TEST_SRC = $(wildcard *.c)
+TEST_DIR = tests
+TEST_SRC = $(wildcard $(TEST_DIR)/*.c)
 
 TEST_BIN = test_runner
 

@@ -6,6 +6,7 @@
 // # include "ft_printf.h"
 # include "libft/libft.h"
 
+int				check_maxint(char **argv);
 int	check_allflags(char **argv);
 //same as atoi but works with long integers
 long ft_strtol(char *str);
@@ -14,7 +15,6 @@ int ft_isnumber(char *str);
 //a function to check if the arguments are flags
 int				check_flags(char *str);
 int				check_errors(int argc, char **argv);
-int				check_maxint(char **argv);
 int				reps_check(char **argv, int occ);
 
 

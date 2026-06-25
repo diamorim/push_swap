@@ -6,7 +6,7 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 16:21:03 by diamo             #+#    #+#             */
-/*   Updated: 2026/06/16 18:16:22 by diamo            ###   ########.fr       */
+/*   Updated: 2026/06/25 19:34:18 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,42 +83,4 @@ int check_errors(int argc, char **argv)
 		i++;
 	}
 	return 1;
-}
-//checks if theres any argument that is higher than the maximum integer or lower than the minimum integer
-int check_maxint(char **argv)
-{
-	//check if there's any argument
-	if (!argv)
-		return 0;
-	//looping throught arguments and checking if they are between the maximum int and the minimum int
-	while (*argv)
-	{
-		if (check_flags(*argv))
-		{
-			argv++;
-			continue;
-		}
-		if (ft_strtol(*argv) > INT_MAX || ft_strtol(*argv) < INT_MIN)
-			return 0;
-		argv++;
-	}
-	return 1;
-}
-int reps_check(char **argv, int occ)
-{
-	int occurences;
-
-	occurences = 0;
-	while (*argv)
-	{
-		if (check_flags(*argv))
-		{
-			argv++;
-			continue;
-		}
-		if (ft_atoi(*argv) == occ)
-			occurences++;
-		argv++;
-	}
-	return (occurences);
 }

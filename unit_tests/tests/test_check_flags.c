@@ -3,10 +3,10 @@
 
 Test(checkflag, basic)
 {
-	cr_assert_eq(check_flags("simple--"), 1);
-	cr_assert_eq(check_flags("medium--"), 1);
-	cr_assert_eq(check_flags("adaptive--"), 1);
-	cr_assert_eq(check_flags("complex--"), 1);
-	cr_assert_eq(check_flags("--comple"), 0);
-	cr_assert_eq(check_flags("complex--\0"), 0);
+	cr_expect(check_flags("--simple"));
+	cr_expect(check_flags("--medium"));
+	cr_expect(check_flags("--adaptive"));
+	cr_expect(check_flags("--complex"));
+	cr_expect_not(check_flags("--comple"));
+	cr_expect_not(check_flags("--complexi"));
 }
