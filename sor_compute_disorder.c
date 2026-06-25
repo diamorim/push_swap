@@ -62,7 +62,7 @@ double	compute_disorder(t_stack *s)
 		outer = outer->next;
 		i++;
 	}
-	return ((double)mistakes / (double)mistakes);
+	return ((double)mistakes / (double)total_pairs);
 }
 
 

@@ -35,5 +35,5 @@ void	do_op(t_prog_state *state, t_op_type op)
 		op_rrb(state);
 	else if (op == OP_RRR)
 		op_rrr(state);
-	state->ops_count_total++;
+//	state->ops_count_total++;
 }
