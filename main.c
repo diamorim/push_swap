@@ -6,7 +6,7 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 16:21:03 by diamo             #+#    #+#             */
-/*   Updated: 2026/06/25 20:06:50 by diamo            ###   ########.fr       */
+/*   Updated: 2026/06/25 20:06:50 by diamo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-	t_prog_state	*prog_state;
+	t_prog_state	*state;
 
 	if (argc < 2)
 		return (0);
@@ -25,18 +25,29 @@ int	main(int argc, char **argv)
 		write(1, "Error\n", 7);
 		return (1);
 	}
-	prog_state = init_prog_state();
-	if (!prog_state)
+	state = init_prog_state();
+	if (!state)
 	{
-		write(2, "Error\n", 6);
+		write(2, "Error\n", 7);
 		return (1);
 	}
-	if (!parse_input(prog_state, argv + 1))
+	if (!parse_input(state, argv + 1))
 	{
-		free_prog_state(prog_state);
-		write(2, "Error\n", 6);
+		free_prog_state(state);
+		write(2, "Error\n", 7);
 		return (1);
 	}
-//	run_prog(prog_state, argc, argv);
+//	run_prog(state, argc, argv);
+	free_prog_state(state);
 	return (0);
 }
+
+
+/*
+ * Changing '1' in "write(1, "Error\n", 7);" to
+ * '2' because '2' is for the stderr
+ *
+ * Also fixing '6' in "write(2, "Error\n", 6);" to
+ * '7' to allow for null terminator
+
+ */
