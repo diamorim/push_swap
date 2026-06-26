@@ -1,0 +1,11 @@
+
+________ TOPICS ________
+___ op ___
+- _Q:_
+	- What's the idea of passing prog_state into the operation for a given stack?
+	- Why not just pass just the stack
+
+	op_	*(t_stack *stack_a, t_prog_state *prog_state)
+- _A:_
+	- I need the prog state to access the ops_count_total and ops_count_per_type[]
+___
