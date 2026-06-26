@@ -99,15 +99,14 @@ void			free_prog_state(t_prog_state *state);
 // _____ stack utilities _____
 // used by sort_simple & sort_medium
 //
-t_node			*stack_last_node(t_stack *stack);
 t_node			*new_node(int value);
 void			stack_add_back(t_stack *stack, t_node *new_node);
-void 			change_next_prev(t_node *node, t_node *new_prev, t_node *new_next);
 // ____ adds a new node at the top of the stack, it deals with the next and previous node.
 void			stack_add_front(t_stack *stack, t_node *new);
 // ___ parsing ___
 int				parse_input(t_prog_state *state, char **argv);
 
+void 			change_next_prev(t_node *node, t_node *new_prev, t_node *new_next);
 
 // ___ operations engine ___
 
