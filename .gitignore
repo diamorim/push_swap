@@ -53,3 +53,9 @@ dkms.conf
 
 # debug information files
 *.dwo
+
+# ____ Noahs personal working folders ___
+# I will move files back and forth as appropriate
+# but this is basically a local sandbox
+/___noah_local
+/___testing_noah
