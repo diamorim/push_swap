@@ -111,6 +111,12 @@ void 			change_next_prev(t_node *node, t_node *new_prev, t_node *new_next);
 
 // ___ operations engine ___
 
+void	swap(t_stack *stack);
+void	push(t_stack *stack_1, t_stack *stack_2);
+void	rotate(t_stack *stack);
+void	reverse_rotate(t_stack *stack);
+void	record_ops(t_prog_state *state, t_op_type op);
+
 void op_sa(t_prog_state *state);
 void op_pa(t_prog_state *state);
 void op_ra(t_prog_state *state);
