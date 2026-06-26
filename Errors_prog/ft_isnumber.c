@@ -6,20 +6,12 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 16:20:51 by diamo             #+#    #+#             */
-/*   Updated: 2026/06/25 19:21:06 by diamo            ###   ########.fr       */
+/*   Updated: 2026/06/26 14:04:58 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft/libft.h"
-
-int	ft_isdigit(int c)
-{
-	if (c >= 48 && c <= 57)
-		return (1);
-	else
-		return (0);
-}
 
 int ft_isnumber(char *str)
 {

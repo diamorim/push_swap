@@ -28,24 +28,25 @@ im just		- sort_simple()
 
 #include "push_swap.h"
 
-void	dispatch_algo_strategy(t_prog_state *state)
-{
-	if (is_sorted_asc(state->a))
- 		return ;
- 	if (state->strat_req == ADAPTIVE)
- 	{
-  		state->strat_used = state->strat_req;
- 		sort_adaptive(state);
- 		return ;
- 	}
- 	state->strat_used = state->strat_req;
- 	if (state->strat_req == SIMPLE)
- 		sort_simple(state);
- 	else if (state->strat_req == MEDIUM)
- 		sort_medium(state);
- 	else if (state->strat_req == COMPLEX)
- 		sort_complex(state);
-}
+// void	dispatch_algo_strategy(t_prog_state *state)
+// {
+// 	if (is_sorted_asc(state->a))
+//  		return ;
+//  	if (state->strat_req == ADAPTIVE)
+//  	{
+//   		state->strat_used = state->strat_req;
+//  		sort_adaptive(state);
+//  		return ;
+//  	}
+//  	state->strat_used = state->strat_req;
+//  	if (state->strat_req == SIMPLE)
+//  		sort_simple(state);
+//  	else if (state->strat_req == MEDIUM)
+//  		sort_medium(state);
+//  	else if (state->strat_req == COMPLEX)
+//  		sort_complex(state);
+// }
+
 
 /*
 	__ is_sorted_asc() __ is used by
