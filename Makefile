@@ -6,7 +6,7 @@ SRCS = 	main.c \
 		input_parser.c \
 		input_utils_a.c \
 		input_utils_b.c \
-		sor_compute_disorder.c
+		sor_compute_disorder.c \
 		sort_strategy_dispatcher.c \
 		sort_adaptive.c \
 		sort_simple_selection.c \

@@ -84,7 +84,8 @@ void	stack_add_front(t_stack *stack, t_node *new)
 		last = stack->top->prev;
 		new->next = stack->top;
 		new->prev = last;
-		last->next = new;
+		if (last)
+			last->next = new;
 		stack->top->prev = new;
 		stack->top = new;
 	}

@@ -22,19 +22,19 @@ int	main(int argc, char **argv)
 		return (0);
 	if (!check_errors(argc, argv))
 	{
-		write(1, "Error\n", 7);
+		write(2, "Error\n", 6);
 		return (1);
 	}
 	state = init_prog_state();
 	if (!state)
 	{
-		write(2, "Error\n", 7);
+		write(2, "Error\n", 6);
 		return (1);
 	}
 	if (!parse_input(state, argv + 1))
 	{
 		free_prog_state(state);
-		write(2, "Error\n", 7);
+		write(2, "Error\n", 6);
 		return (1);
 	}
 //	run_prog(state, argc, argv);
