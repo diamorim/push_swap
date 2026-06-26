@@ -6,11 +6,11 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 09:26:05 by diamo             #+#    #+#             */
-/*   Updated: 2026/06/25 17:27:43 by diamo            ###   ########.fr       */
+/*   Updated: 2026/06/26 15:03:38 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void op_sa(t_prog_state *state)
 {
@@ -94,4 +94,3 @@ void op_rra(t_prog_state *state)
 	state->ops_count_total++;
 	ft_putstr_fd("rra\n", 1);
 }
-

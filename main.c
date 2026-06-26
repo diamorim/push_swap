@@ -6,11 +6,11 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 16:21:03 by diamo             #+#    #+#             */
-/*   Updated: 2026/06/26 13:44:14 by diamo            ###   ########.fr       */
+/*   Updated: 2026/06/26 15:03:38 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 int	main(int argc, char **argv)
 {

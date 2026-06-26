@@ -26,7 +26,7 @@ im just		- sort_simple()
 	__ Note about parameter(s) __
  */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 // void	dispatch_algo_strategy(t_prog_state *state)
 // {

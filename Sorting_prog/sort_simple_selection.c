@@ -24,7 +24,7 @@
 	metric (decided per adaptive algorithm).
 */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 // void	sort_simple(t_prog_state *state)
 // {

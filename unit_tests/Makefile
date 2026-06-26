@@ -3,7 +3,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 PROJECT_DIR = ..
 
-SRC = $(wildcard $(PROJECT_DIR)/*.c)
+SRC = $(wildcard $(PROJECT_DIR)/*_prog/*.c)
 
 #removes main if it exists
 SRC := $(filter-out $(PROJECT_DIR)/main.c, $(SRC))

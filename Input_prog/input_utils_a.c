@@ -13,7 +13,7 @@
 	we are not :-(
 
 */
-#include "push_swap.h"
+#include "../push_swap.h"
 
 
 #include "libft/libft.h"

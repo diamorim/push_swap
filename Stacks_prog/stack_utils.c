@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../push_swap.h"
 
 /*
 	__sort_utils.c__ has four functions:
