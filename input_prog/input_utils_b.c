@@ -46,10 +46,10 @@ int check_errors(int argc, char **argv)
 
 int check_maxint(char **argv)
 {
-	//check if there's any argument
+	long	val;
+
 	if (!argv)
 		return 0;
-	//looping throught arguments and checking if they are between the maximum int and the minimum int
 	while (*argv)
 	{
 		if (check_flags(*argv))
@@ -57,7 +57,8 @@ int check_maxint(char **argv)
 			argv++;
 			continue;
 		}
-		if (ft_strtol(*argv) > INT_MAX || ft_strtol(*argv) < INT_MIN)
+		val = ft_strtol(*argv);
+		if (val > INT_MAX || val < INT_MIN)
 			return 0;
 		argv++;
 	}

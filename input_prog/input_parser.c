@@ -18,7 +18,6 @@ int	parse_input(t_prog_state *state, char **argv)
 	t_node	*node;
 
 	i = 0;
-	// argv[0] is program name, we skip it
 	while (argv[i])
 	{
 		if (check_flags(argv[i]))

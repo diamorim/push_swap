@@ -1,7 +1,7 @@
 #include "../push_swap.h"
 
 /*
-	__sort_utils.c__ has four functions:
+	__stack_utils.c__ has four functions:
 		- new_node()
 		- stack_add_back()
 		- stack_add_front()
@@ -76,8 +76,8 @@ void	stack_add_front(t_stack *stack, t_node *new)
 	if (!stack->top)
 	{
 		stack->top = new;
-		new->next = NULL;
-		new->prev = NULL;
+		new->next = new;
+		new->prev = new;
 	}
 	else
 	{
@@ -98,6 +98,7 @@ t_node	*stack_last_node(t_stack *stack)
 		return (NULL);
 	return (stack->top->prev);
 }
+
 void change_next_prev(t_node *node, t_node *new_prev, t_node *new_next)
 {
 	if (!node || !new_next || !new_prev)

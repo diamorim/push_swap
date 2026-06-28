@@ -12,19 +12,19 @@
 	Are we allowed to put files in folders? I think we
 	we are not :-(
 
+
+// removing #include/libft.h because it's already in push_swap.h
+// ft_isdigit because it's in libft already
+
+
 */
 #include "../push_swap.h"
 
+# define LONG_MAX_DIV (LONG_MAX / 10)
+# define LONG_MAX_MOD (LONG_MAX % 10)
 
 #include "libft/libft.h"
 
-int	ft_isdigit(int c)
-{
-	if (c >= 48 && c <= 57)
-		return (1);
-	else
-		return (0);
-}
 
 int ft_isnumber(char *str)
 {
@@ -43,29 +43,26 @@ int ft_isnumber(char *str)
 	return 1;
 }
 
-
 long	ft_strtol(char *str)
 {
-    long	result;
-    int		sign;
+	long	result;
+	int		sign;
 
-    result = 0;
-    sign = 1;
-    if (!str)
-        return 0;
-
-    while (*str == ' ' || (*str >= 9 && *str <= 13))
-        str++;
-    if (*str == '-' || *str == '+')
-    {
-        if (*str == '-')
-            sign = -1;
-        str++;
-    }
-    while (*str >= '0' && *str <= '9')
-    {
-        result = result * 10 + (*str - '0');
-        str++;
-    }
-    return (result * sign);
+	if (!str)
+		return (0);
+	result = 0;
+	sign = 1;
+	if (*str == '-')
+	{
+		sign = -1;
+		str++;
+	}
+	while (*str >= '0' && *str <= '9')
+	{
+		if (result > LONG_MAX_DIV || (result == LONG_MAX_DIV && (*str - '0') > LONG_MAX_MOD))
+			return (sign == 1 ? LONG_MAX : LONG_MIN);
+		result = result * 10 + (*str - '0');
+		str++;
+	}
+	return (result * sign);
 }

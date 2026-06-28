@@ -70,21 +70,13 @@ typedef struct s_stack
 // 'n' is the input size of number of elements
 //
 
-// ____ Regarding `11` vs OP_TYPES_TOTAL as enum ____
-//	- I replaced the enum with 11. From my research
-// we cannot use const int for this -- relates to
-// compile time requirements in C. We can otherwise
-// use enum (this is normal way), #define, or
-// hardcoding. In this case, it's not a big deal
-// to hardcode since we only use it here.
-//
 typedef struct s_prog_state
 {
 	t_stack		*a;
 	t_stack		*b;
 	int			n;
 	int			ops_count_total;
-	int			ops_count_per_type[11];
+	int			ops_count_per_type[OP_TYPES_TOTAL];
 	t_strategy	strat_req;
 	t_strategy	strat_used;
 	int			bench;
