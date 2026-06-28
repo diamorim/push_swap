@@ -11,6 +11,7 @@ void op_ss(t_prog_state *state)
 	state->ops_count_per_type[OP_SS]++;
 	state->ops_count_total--;
 }
+
 void op_rr(t_prog_state *state)
 {
 	if (!state)
@@ -22,6 +23,7 @@ void op_rr(t_prog_state *state)
 	state->ops_count_per_type[OP_RR]++;
 	state->ops_count_total--;
 }
+
 void op_rrr(t_prog_state *state)
 {
 	if (!state)

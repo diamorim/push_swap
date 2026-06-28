@@ -17,6 +17,7 @@ void op_pb(t_prog_state *state)
 	record_ops(state, OP_PB);
 	ft_putstr_fd("pa\n", 1);
 }
+
 void op_rb(t_prog_state *state)
 {
 	if (!state->b || !state)
@@ -25,6 +26,7 @@ void op_rb(t_prog_state *state)
 	record_ops(state, OP_RB);
 	ft_putstr_fd("ra\n", 1);
 }
+
 void op_rrb(t_prog_state *state)
 {
 	t_stack *stack_a;

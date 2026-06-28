@@ -32,17 +32,19 @@ void	push(t_stack *stack_1, t_stack *stack_2)
 	{
 		top_1->prev->next = top_1->next;
 		top_1->next->prev = top_1->prev;
-		stack_1->top = top_1->next; 
+		stack_1->top = top_1->next;
 	}
 	stack_add_front(stack_2, top_1);
 	stack_1->size--;
 }
+
 void	rotate(t_stack *stack)
 {
 	if(!stack || stack < 2)
 		return ;
 	stack->top = stack->top->next;
 }
+
 void	reverse_rotate(t_stack *stack)
 {
 	if(!stack || stack < 2)
