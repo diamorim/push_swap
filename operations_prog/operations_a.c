@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations_a.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: norobins <norobinson@student.42berlin.d    +#+  +:+       +#+        */
+/*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 09:26:05 by diamo             #+#    #+#             */
-/*   Updated: 2026/06/29 13:28:52 by norobins         ###   ########.fr       */
+/*   Updated: 2026/06/29 13:35:50 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,12 @@ void op_rra(t_prog_state *state) {
   reverse_rotate(state->a);
   record_ops(state, OP_RRA);
   ft_putstr_fd("rra\n", 1);
+}
+void op_rra(t_prog_state *state)
+{
+	if (!state->a || !state)
+		return ;
+	reverse_rotate(state->a);
+	record_ops(state, OP_RRA);
+	ft_putstr_fd("rra\n", 1);
 }

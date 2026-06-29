@@ -32,3 +32,11 @@ void op_rrb(t_prog_state *state) {
   record_ops(state, OP_RRB);
   ft_putstr_fd("rrb\n", 1);
 }
+void op_rrb(t_prog_state *state)
+{
+	if (!state->b || !state)
+		return ;
+	reverse_rotate(state->b);
+	record_ops(state, OP_RRB);
+	ft_putstr_fd("rra\n", 1);
+}
