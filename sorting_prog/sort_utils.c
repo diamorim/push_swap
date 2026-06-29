@@ -24,8 +24,6 @@
 		and the `bottom` of the stack is `size`.
 */
 
-
-/*
  int	find_pos_min(t_stack *s)
  {
  	t_node	*curr;
@@ -51,7 +49,6 @@
  	}
  	return (pos_min);
 }
-*/
 
 
 /*
@@ -70,7 +67,6 @@
  		reverse rotate the nodes backwards.
 */
 
-/*
  	void	smart_rotate(t_prog_state *state, t_stack *s, int pos)
  	{
 		int			i;
