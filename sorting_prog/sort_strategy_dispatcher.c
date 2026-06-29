@@ -32,7 +32,7 @@ void	dispatch_algo_strategy(t_prog_state *state)
 {
 	if (is_sorted_asc(state->a))
  		return ;
- 	if (state->strat_req == ADAPTIVE)
+ 	if (state->strat_req == SIMPLE)
  	{
   		state->strat_used = state->strat_req;
  		sort_adaptive(state);
