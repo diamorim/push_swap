@@ -8,6 +8,8 @@ SRC = $(wildcard $(PROJECT_DIR)/*_prog/*.c)
 #removes main if it exists
 SRC := $(filter-out $(PROJECT_DIR)/main.c, $(SRC))
 
+INCLUDE = helper_func.c
+
 TEST_DIR = tests
 TEST_SRC = $(wildcard $(TEST_DIR)/*.c)
 
@@ -25,6 +27,7 @@ build:
 	-I$(PROJECT_DIR) \
 	$(SRC) \
 	$(LIBFT) \
+	$(INCLUDE) \
 	$(TEST_SRC) \
 	$(CRITERION) \
 	-o $(TEST_BIN)
