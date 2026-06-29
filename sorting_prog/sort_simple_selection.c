@@ -40,32 +40,6 @@ void	sort_simple(t_prog_state *state)
 		op_pa(state);
 }
 
-/*
-	Handle stacks of size 0–3 so algorithm entry points stay DRY.
-	Returns 1 if the caller should return immediately (small stack fully
-	sorted), 0 if the caller should proceed with its main algorithm.
-	Size 2: swastate only if the top element is greater than the second.
-*/
-
-int	handle_small_sort(t_prog_state *state)
-{
-	if (!state || !state->a)
-		return (1);
-	if (state->a->size <= 1)
-		return (1);
-	if (state->a->size == 2)
-	{
-		if (state->a->top->value > state->a->top->next->value)
-			op_sa(state);
-		return (1);
-	}
-	if (state->a->size == 3)
-	{
-		sort_3(state);
-		return (1);
-	}
-	return (0);
-}
 
 /*
 	Sort exactly 3 elements in stack A in at most 2 operations.

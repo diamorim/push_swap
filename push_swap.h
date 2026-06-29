@@ -140,11 +140,11 @@ void			sort_complex(t_prog_state *state);
 
 //	___ sort_utils.c __
 int				handle_small_sort(t_prog_state *state);
-int				find_pos_min(t_stack *s);
 void			smart_rotate(t_prog_state *state, t_stack *s, int pos);
 
 
 // ___ stack_queries.c
+int				find_pos_min(t_stack *s);
 int				find_pos_max(t_stack *s)
 int				find_pos_of_value(t_stack *s, int target)
 int				*index_stack(t_stack *s)
