@@ -33,11 +33,11 @@ void	sort_simple(t_prog_state *state)
  	while (state->a->size > 3)
  	{
  		smart_rotate(state, state->a, find_pos_min(state->a));
- 		do_op(state, OP_PB);
+ 		op_pb(state);
  	}
  	sort_3(state);
  	while (state->b->size > 0)
- 		do_op(state, OP_PA); */
+		op_pa(state);
 }
 
 /*
@@ -54,7 +54,7 @@ int	handle_small_sort(t_prog_state *state)
 	if (state->a->size == 2)
 	{
 		if (state->a->top->value > state->a->top->next->value)
-			do_op(state, OP_SA);
+			op_sa(state);
 		return (1);
 	}
 	if (state->a->size == 3)
@@ -84,22 +84,22 @@ void	sort_3(t_prog_state *state)
 	{
 		if (b > c)
 		{
-			do_op(state, OP_SA);
-			do_op(state, OP_RRA);
+			op_sa(state);
+			op_rra(state);
 		}
 		else
-			do_op(state, OP_RA);
+			op_ra(state)
 	}
 	else if (a > b)
-		do_op(state, OP_SA);
+		op_sa(state);
 	else if (b > c)
 	{
 		if (a > c)
-			do_op(state, OP_RRA);
+			op_rra(state);
 		else
 		{
-			do_op(state, OP_SA);
-			do_op(state, OP_RA);
+			op_sa(state);
+			op_ra(state);
 		}
 	}
 }

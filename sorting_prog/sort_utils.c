@@ -50,7 +50,6 @@
  	return (pos_min);
 }
 
-
 /*
  	__ smart_rotate() __
  		Attempts to rotate nodes in a given stack with
@@ -69,31 +68,34 @@
 
  	void	smart_rotate(t_prog_state *state, t_stack *s, int pos)
  	{
-		int			i;
- 		t_op_type	op;
  		int			steps;
+		int			i;
 
  		if (pos == 0 || pos >= s->size)
  			return ;
+ 	 	i = 0;
  		if (pos <= s->size / 2)
  		{
- 			op = OP_RA;
- 			if (s != state->a)
- 				op = OP_RB;
  			steps = pos;
- 		}
+			while (i < steps )
+			{
+				if (s == state->a)
+					op_ra(state);
+				else
+					op_rb(state);
+				i++;
+			}
+		}
  		else
  		{
- 			op = OP_RRA;
- 			if (s != state->a)
- 				op = OP_RRB;
- 			steps = s->size - pos;
- 		}
- 		i = 0;
- 		while (i < steps)
- 		{
- 			do_op(state, op);
- 			i++;
- 		}
- 	}
-*/
+ 	 		steps = s->size - pos;
+	 		while (i <steps)
+			{
+				if (s == state->a)
+					op_rra(state);
+				else
+					op_rrb(state);
+				i++;
+			}
+		}
+	}
