@@ -4,7 +4,6 @@
 # include <unistd.h>
 # include <limits.h>
 
-// # include "ft_printf.h"
 # include "libft/libft.h"
 
 int				check_maxint(char **argv);
@@ -17,8 +16,6 @@ int				ft_isnumber(char *str);
 int				check_flags(char *str);
 int				check_errors(int argc, char **argv);
 int				reps_check(char **argv, int occ);
-
-
 
 
 typedef enum e_strategy
@@ -89,59 +86,56 @@ t_prog_state	*init_prog_state(void);
 void			free_stack(t_stack *stack);
 void			free_prog_state(t_prog_state *state);
 
-// _____ stack utilities _____
+// _____ stack_utils.c  _____
 // used by sort_simple & sort_medium
-//
+
 t_node			*new_node(int value);
-void			stack_add_back(t_stack *stack, t_node *new_node);
-// ____ adds a new node at the top of the stack, it deals with the next and previous node.
 void			stack_add_front(t_stack *stack, t_node *new);
+void			stack_add_back(t_stack *stack, t_node *new_node);
+t_node			*stack_last_node(t_stack *stack);
+void 			change_next_prev(t_node *node, t_node *new_prev, t_node *new_next);
+
+
 // ___ parsing ___
 int				parse_input(t_prog_state *state, char **argv);
 
-void 			change_next_prev(t_node *node, t_node *new_prev, t_node *new_next);
 
 // ___ operations engine ___
-
 void	swap(t_stack *stack);
 void	push(t_stack *stack_1, t_stack *stack_2);
 void	rotate(t_stack *stack);
 void	reverse_rotate(t_stack *stack);
 void	record_ops(t_prog_state *state, t_op_type op);
 
-void op_sa(t_prog_state *state);
-void op_pa(t_prog_state *state);
-void op_ra(t_prog_state *state);
-void op_rra(t_prog_state *state);
-void op_sb(t_prog_state *state);
-void op_pb(t_prog_state *state);
-void op_rb(t_prog_state *state);
-void op_rrb(t_prog_state *state);
-void op_ss(t_prog_state *state);
-void op_rr(t_prog_state *state);
-void op_rrr(t_prog_state *state);
+void	op_sa(t_prog_state *state);
+void	op_pa(t_prog_state *state);
+void	op_ra(t_prog_state *state);
+void	op_rra(t_prog_state *state);
+void	op_sb(t_prog_state *state);
+void	op_pb(t_prog_state *state);
+void	op_rb(t_prog_state *state);
+void	op_rrb(t_prog_state *state);
+void	op_ss(t_prog_state *state);
+void	op_rr(t_prog_state *state);
+void	op_rrr(t_prog_state *state);
 
-//	___	algorothm-sorting ___
-double			compute_disorder(t_stack *s);
+
+//	___	algorithm-sorting - sorting_prog` ___
 // Not including check_node here as functions with
 // static return values should only be declared
 // in the script that is calling them
-//
 
+double			compute_disorder(t_stack *s);
+void			sort_adaptive(t_prog_state *state);
 void			dispatch_algo_strategy(t_prog_state *state);
 int				is_sorted_asc(t_stack *s);
 
-void			sort_adaptive(t_prog_state *state);
 void			sort_simple(t_prog_state *state);
 int				handle_small_sort(t_prog_state *state);
 void			sort_3(t_prog_state *state);
 
-
 void			sort_medium(t_prog_state *state);
 void			sort_complex(t_prog_state *state);
-
-
-
 
 
 //	___ sort_utils __

@@ -37,6 +37,36 @@ t_node	*new_node(int value)
 }
 
 
+
+void	stack_add_front(t_stack *stack, t_node *new)
+{
+	if (!stack || !new)
+		return ;
+	if (!stack->top)
+	{
+		stack->top = new;
+		change_next_prev(new, new, new);
+	}
+	else
+	{
+		if (stack->size == 1)
+		{
+			change_next_prev(stack->top, new, new);
+			change_next_prev(new, stack->top, stack->top);
+		}
+		else
+		{
+			change_next_prev(new, stack->top->prev, stack->top);
+			stack->top->prev->next = new;
+			stack->top->prev = new;
+		}
+		stack->top = new;
+	}
+	stack->size++;
+}
+
+
+
 /*
 	__stack_add_back()__
 		This function receives a pointer
@@ -73,32 +103,6 @@ void	stack_add_back(t_stack *stack, t_node *new)
 	}
 	stack->size++;
 }
-void	stack_add_front(t_stack *stack, t_node *new)
-{
-	if (!stack || !new)
-		return ;
-	if (!stack->top)
-	{
-		stack->top = new;
-		change_next_prev(new, new, new);
-	}
-	else
-	{
-		if (stack->size == 1)
-		{
-			change_next_prev(stack->top, new, new);
-			change_next_prev(new, stack->top, stack->top);
-		}
-		else
-		{
-			change_next_prev(new, stack->top->prev, stack->top);
-			stack->top->prev->next = new;
-			stack->top->prev = new;
-		}
-		stack->top = new;
-	}
-	stack->size++;
-}
 
 t_node	*stack_last_node(t_stack *stack)
 {
@@ -106,6 +110,7 @@ t_node	*stack_last_node(t_stack *stack)
 		return (NULL);
 	return (stack->top->prev);
 }
+
 
 void change_next_prev(t_node *node, t_node *new_prev, t_node *new_next)
 {
