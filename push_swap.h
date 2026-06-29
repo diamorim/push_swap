@@ -133,8 +133,8 @@ int				is_sorted_asc(t_stack *s);
 
 void			sort_adaptive(t_prog_state *state);
 void			sort_simple(t_prog_state *state);
-int				handle_small_sort(t_prog_state *state)
-void			sort_3(t_prog_state *state)
+int				handle_small_sort(t_prog_state *state);
+void			sort_3(t_prog_state *state);
 
 
 void			sort_medium(t_prog_state *state);
