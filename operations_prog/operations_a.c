@@ -6,7 +6,7 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 09:26:05 by diamo             #+#    #+#             */
-/*   Updated: 2026/06/29 13:35:50 by diamo            ###   ########.fr       */
+/*   Updated: 2026/06/29 13:47:47 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,19 @@ void op_pa(t_prog_state *state) {
 }
 
 void op_ra(t_prog_state *state) {
+<<<<<<< HEAD
 	if (!state || state->a)
 		return;
 	rotate(state->a);
 	record_ops(state, OP_RA);
 	ft_putstr_fd("ra\n", 1);
+=======
+  if (!state || !state->a)
+    return;
+  rotate(state->a);
+  record_ops(state, OP_RA);
+  ft_putstr_fd("ra\n", 1);
+>>>>>>> c864e63 (just minor changes in operations nullguard)
 }
 
 void op_rra(t_prog_state *state)

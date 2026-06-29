@@ -18,8 +18,8 @@ Test(op_sa, basic)
 			cr_expect(current_node->prev->value == 5);
 		}
 		else if (current_node == stack_a->top->prev){
-			cr_expect_eq(current_node->next->value, 1,  "expeceted: %d and got: %d", current_node->next->value);
-			cr_expect_eq(current_node->prev->value, 4, "expeceted: %d and got: %d", current_node->prev->value);
+			cr_expect_eq(current_node->next->value, 1,  "expeceted: %d and got: %d", current_node->next->value, 1);
+			cr_expect_eq(current_node->prev->value, 4, "expeceted: %d and got: %d", current_node->prev->value, 1);
 		}
 		else
 		{
