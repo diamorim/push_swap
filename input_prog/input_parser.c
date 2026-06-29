@@ -17,6 +17,8 @@ int	parse_input(t_prog_state *state, char **argv)
 	int		i;
 	t_node	*node;
 
+	if (!state || !state->a || !argv)
+		return (0);
 	i = 0;
 	while (argv[i])
 	{
