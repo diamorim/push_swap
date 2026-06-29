@@ -12,16 +12,18 @@
 
 #include "../push_swap.h"
 
-void op_sa(t_prog_state *state) {
+void op_sa(t_prog_state *state)
+{
 	if (!state || !state->a || state->a->size < 2)
 		return;
-	  swap(state->a);
+	swap(state->a);
 	record_ops(state, OP_SA);
 	ft_putstr_fd("sa\n", 1);
 }
 
-void op_pa(t_prog_state *state) {
-	if (!state || !state->b)
+void op_pa(t_prog_state *state)
+{
+	if (!state || !state->b || state->b->size == 0)
 		return;
 	push(state->b, state->a);
 	record_ops(state, OP_PA);
@@ -30,7 +32,7 @@ void op_pa(t_prog_state *state) {
 
 void op_ra(t_prog_state *state)
 {
-	if (!state || state->a)
+	if (!state || !state->a || state->a->size < 2)
 		return;
 	rotate(state->a);
 	record_ops(state, OP_RA);
@@ -39,7 +41,7 @@ void op_ra(t_prog_state *state)
 
 void op_rra(t_prog_state *state)
 {
-	if (!state || !state->a)
+	if (!state || !state->a || state->a->size < 2)
 		return;
 	reverse_rotate(state->a);
 	record_ops(state, OP_RRA);
