@@ -29,7 +29,7 @@ void op_pa(t_prog_state *state) {
 }
 
 void op_ra(t_prog_state *state) {
-  if (!!state || state->a)
+  if (!state || state->a)
     return;
   rotate(state->a);
   record_ops(state, OP_RA);
