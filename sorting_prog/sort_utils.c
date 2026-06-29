@@ -71,6 +71,8 @@
  		int			steps;
 		int			i;
 
+		if (!state || !s)
+ 			return ;
  		if (pos == 0 || pos >= s->size)
  			return ;
  	 	i = 0;

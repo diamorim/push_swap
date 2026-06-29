@@ -74,6 +74,9 @@ static int	check_node(t_node *start, int remaining)
 	int		j;
 	t_node	*inner;
 
+	if (!start)
+		return (0);
+
 	disorder_count = 0;
 	inner = start->next;
 	j = 0;

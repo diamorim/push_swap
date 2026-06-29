@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Push Swap Test Dashboard</title>
+  <!-- Outfit Font for Premium UI -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
+      --card-bg: rgba(0, 0, 0, 0.02);
+      --card-border: rgba(0, 0, 0, 0.06);
+      --card-hover-border: rgba(124, 58, 237, 0.4);
+      --text-main: #1f2937;
+      --text-muted: #6b7280;
+      --primary: #7c3aed;
+      --primary-glow: rgba(124, 58, 237, 0.1);
+      --success: #10b981;
+      --success-glow: rgba(16, 185, 129, 0.1);
+      --error: #ef4444;
+      --error-glow: rgba(239, 68, 68, 0.1);
+      --accent-cyan: #0891b2;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      min-height: 100vh;
+      padding: 2rem;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Ambient Glow background blobs */
+    body::before, body::after {
+      content: "";
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      filter: blur(150px);
+      z-index: -1;
+      opacity: 0.15;
+    }
+    body::before {
+      top: 10%;
+      left: 10%;
+      background: var(--primary);
+    }
+    body::after {
+      bottom: 10%;
+      right: 10%;
+      background: var(--accent-cyan);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3rem;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 1.5rem;
+    }
+
+    .logo-area h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(to right, #a855f7, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.25rem;
+      letter-spacing: -0.05em;
+    }
+
+    .logo-area p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    /* Status Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      backdrop-filter: blur(12px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: transparent;
+    }
+
+    .stat-card.success-border::before { background: var(--success); }
+    .stat-card.error-border::before { background: var(--error); }
+    .stat-card.info-border::before { background: var(--accent-cyan); }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--card-hover-border);
+      box-shadow: 0 10px 30px -10px var(--primary-glow);
+    }
+
+    .stat-label {
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1;
+    }
+
+    .stat-indicator {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 9999px;
+      width: fit-content;
+    }
+
+    .indicator-pass {
+      background: var(--success-glow);
+      color: #34d399;
+    }
+
+    /* Content Area Split */
+    .content-split {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    /* Paste Box & Controls */
+    .control-panel {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 2rem;
+      backdrop-filter: blur(12px);
+    }
+
+    .panel-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text-main);
+    }
+
+    textarea {
+      width: 100%;
+      height: 200px;
+      background: rgba(0, 0, 0, 0.03);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1rem;
+      color: #0369a1;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    textarea:focus {
+      border-color: var(--primary);
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    button {
+      flex: 1;
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+      color: white;
+      box-shadow: 0 4px 15px rgba(124, 58, 237, 0.2);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(124, 58, 237, 0.3);
+    }
+
+    .btn-secondary {
+      background: rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(0, 0, 0, 0.08);
+    }
+
+    /* Interactive Test Log Viewer */
+    .dashboard-view {
+      background: rgba(0, 0, 0, 0.01);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 2rem;
+      backdrop-filter: blur(12px);
+    }
+
+    .module-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .module-card:hover {
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .module-header {
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.01);
+      user-select: none;
+    }
+
+    .module-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .module-badge {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+    }
+
+    .module-results {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--card-border);
+      display: none;
+    }
+
+    .module-results.open {
+      display: block;
+    }
+
+    .test-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .test-row:last-child {
+      border-bottom: none;
+    }
+
+    .test-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .test-name {
+      font-weight: 500;
+      color: var(--text-main);
+    }
+
+    .test-details {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-family: 'Fira Code', monospace;
+    }
+
+    .test-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 600;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+
+    .status-pass {
+      background: rgba(16, 185, 129, 0.1);
+      color: #34d399;
+    }
+
+    .status-fail {
+      background: rgba(239, 68, 68, 0.1);
+      color: #f87171;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo-area">
+        <h1>PUSH_SWAP</h1>
+        <p>Interactive Test Visualization Dashboard</p>
+      </div>
+      <div class="indicator-pass stat-indicator" id="last-updated">
+        🟢 Live Client View
+      </div>
+    </header>
+
+    <!-- Stats summary cards -->
+    <div class="stats-grid">
+      <div class="stat-card info-border">
+        <span class="stat-label">Total Tests</span>
+        <span class="stat-value" id="stat-total">124</span>
+      </div>
+      <div class="stat-card success-border">
+        <span class="stat-label">Passed</span>
+        <span class="stat-value" id="stat-passed" style="color: #34d399;">124</span>
+      </div>
+      <div class="stat-card error-border">
+        <span class="stat-label">Failed</span>
+        <span class="stat-value" id="stat-failed" style="color: #f87171;">0</span>
+      </div>
+      <div class="stat-card success-border">
+        <span class="stat-label">Success Rate</span>
+        <span class="stat-value" id="stat-rate">100%</span>
+      </div>
+    </div>
+
+    <div class="content-split">
+      <!-- Input Area -->
+      <div class="control-panel">
+        <h2 class="panel-title">Load Test Report</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+          Paste the contents of your Markdown report (from `_reports/`) below to visualize it instantly in details.
+        </p>
+        <textarea id="report-input" placeholder="Paste report markdown here..."></textarea>
+        <div class="btn-group">
+          <button class="btn-primary" onclick="parseReport()">Analyze Report</button>
+          <button class="btn-secondary" onclick="loadDefaultData()">Use Latest Run Data</button>
+        </div>
+      </div>
+
+      <!-- Dashboard modules view -->
+      <div class="dashboard-view">
+        <h2 class="panel-title" style="margin-bottom: 1.5rem;">Report Visualizer</h2>
+        <div id="modules-container">
+          <!-- Dynamically populated module cards go here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Default mock data corresponding to the latest 123/123 pass test
+    const defaultReport = `
+# Push Swap Test Report
+
+- **Result:** 124 passed, 0 failed, 124 total
+
+────────────────────────────────────────────────────────
+  ▸ TESTING: ft_isnumber (acceptance path)
+────────────────────────────────────────────────────────
+  ◆ Test 01 — no arguments (argc < 2)
+     ✓ PASS   argc < 2 detected                 expected: true      got: true
+  ◆ Test 02 — single number argument (argc == 2)
+     ✓ PASS   argc == 2                         expected: 2         got: 2
+     ✓ PASS   argv[1] is a number               expected: true      got: true
+     ✓ PASS   single-number early-exit path     expected: true      got: true
+  ◆ Test 03 — single non-number argument
+     ✓ PASS   argv[1] is NOT a number           expected: false     got: false
+     ✓ PASS   check_errors rejects non-number   expected: false     got: false
+
+────────────────────────────────────────────────────────
+  ▸ TESTING: ft_isnumber
+────────────────────────────────────────────────────────
+  ◆ Test 01 — rejects NULL and empty string
+     ✓ PASS   ft_isnumber(NULL) == false        expected: false     got: false
+     ✓ PASS   ft_isnumber("") == false          expected: false     got: false
+  ◆ Test 02 — accepts valid integers
+     ✓ PASS   "0" is a number                   expected: true      got: true
+     ✓ PASS   "9" is a number                   expected: true      got: true
+     ✓ PASS   "123" is a number                 expected: true      got: true
+     ✓ PASS   INT_MAX string is a number        expected: true      got: true
+     ✓ PASS   INT_MIN string is a number        expected: true      got: true
+     ✓ PASS   negative number is a number       expected: true      got: true
+  ◆ Test 03 — rejects non-numeric input
+     ✓ PASS   "/" rejected (char below '0')     expected: false     got: false
+     ✓ PASS   ":" rejected (char above '9')     expected: false     got: false
+     ✓ PASS   "12a3" rejected (letters mixed in)  expected: false     got: false
+     ✓ PASS   "--123" rejected (double sign)    expected: false     got: false
+     ✓ PASS   "1.5" rejected (decimal)          expected: false     got: false
+     ✓ PASS   " 123" rejected (leading space)   expected: false     got: false
+     ✓ PASS   "123 " rejected (trailing space)  expected: false     got: false
+     ✓ PASS   "12 3" rejected (space in middle)  expected: false     got: false
+     ✓ PASS   + rejected (sign only)            expected: false     got: false
+     ✓ PASS   - rejected (sign only)            expected: false     got: false
+     ✓ PASS   +789 rejected (plus sign prefix)  expected: false     got: false
+
+────────────────────────────────────────────────────────
+  ▸ TESTING: ft_strtol
+────────────────────────────────────────────────────────
+  ◆ Test 01 — parses positive numbers
+     ✓ PASS   ft_strtol("0") == 0               expected: 0         got: 0
+     ✓ PASS   ft_strtol("123") == 123           expected: 123       got: 123
+  ◆ Test 02 — parses negative numbers
+     ✓ PASS   ft_strtol("-456") == -456         expected: -456      got: -456
+  ◆ Test 03 — detects overflow past INT_MAX
+     ✓ PASS   2147483648 > INT_MAX              expected: true      got: true
+  ◆ Test 04 — handles NULL safely
+     ✓ PASS   ft_strtol(NULL) == 0              expected: 0         got: 0
+
+────────────────────────────────────────────────────────
+  ▸ TESTING: check_maxint
+────────────────────────────────────────────────────────
+  ◆ Test 01 — accepts values within int range
+     ✓ PASS   all values within int range       expected: true      got: true
+  ◆ Test 02 — rejects values out of int range
+     ✓ PASS   21352613561253 out of range       expected: false     got: false
+  ◆ Test 03 — rejects negative underflow values
+     ✓ PASS   -2147483649 out of range          expected: false     got: false
+
+────────────────────────────────────────────────────────
+  ▸ TESTING: reps_check
+────────────────────────────────────────────────────────
+  ◆ Test 01 — counts occurrences with no duplicates
+     ✓ PASS   "1234" appears once               expected: 1         got: 1
+     ✓ PASS   "2" appears once                  expected: 1         got: 1
+  ◆ Test 02 — counts occurrences with duplicates
+     ✓ PASS   "1234" appears twice              expected: 2         got: 2
+
+────────────────────────────────────────────────────────
+  ▸ TESTING: check_flags
+────────────────────────────────────────────────────────
+  ◆ Test 01 — recognizes valid strategy flags
+     ✓ PASS   "--simple" is a flag              expected: true      got: true
+     ✓ PASS   "--medium" is a flag              expected: true      got: true
+     ✓ PASS   "--adaptive" is a flag            expected: true      got: true
+     ✓ PASS   "--complex" is a flag             expected: true      got: true
+  ◆ Test 02 — rejects invalid / partial flags
+     ✓ PASS   "--comple" rejected (partial)     expected: false     got: false
+     ✓ PASS   "--complexi" rejected (extra)     expected: false     got: false
+     ✓ PASS   "--invalid" rejected              expected: false     got: false
+     ✓ PASS   "simple" rejected (no --)         expected: false     got: false
+
+────────────────────────────────────────────────────────
+  ▸ TESTING: check_allflags
+────────────────────────────────────────────────────────
+  ◆ Test 01 — counts a single flag
+     ✓ PASS   one flag found                    expected: 1         got: 1
+  ◆ Test 02 — counts multiple flags
+     ✓ PASS   four flags found                  expected: 4         got: 4
+  ◆ Test 03 — handles NULL argv
+     ✓ PASS   NULL argv -> 0 flags              expected: 0         got: 0
+
+────────────────────────────────────────────────────────
+  ▸ TESTING: check_errors (integration)
+────────────────────────────────────────────────────────
+  ◆ Test 01 — accepts valid input
+     ✓ PASS   valid numbers accepted            expected: true      got: true
+  ◆ Test 02 — accepts valid input with a flag
+     ✓ PASS   numbers + one flag accepted       expected: true      got: true
+  ◆ Test 03 — rejects duplicate numbers
+     ✓ PASS   duplicate rejected                expected: false     got: false
+  ◆ Test 04 — rejects integer overflow
+     ✓ PASS   overflow rejected                 expected: false     got: false
+  ◆ Test 11 — rejects integer underflow
+     ✓ PASS   underflow rejected                expected: false     got: false
+  ◆ Test 05 — rejects non-numeric arguments
+     ✓ PASS   non-numeric rejected              expected: false     got: false
+  ◆ Test 06 — rejects multiple flags
+     ✓ PASS   multiple flags rejected           expected: false     got: false
+  ◆ Test 07 — rejects duplicate zeroes (0 and -0)
+     ✓ PASS   duplicate 0 and -0 rejected       expected: false     got: false
+  ◆ Test 08 — rejects duplicate zeroes (00 and 0)
+     ✓ PASS   duplicate 00 and 0 rejected       expected: false     got: false
+  ◆ Test 09 — rejects empty string arguments
+     ✓ PASS   empty string rejected             expected: false     got: false
+  ◆ Test 10 — rejects duplicates with interspersed flags
+     ✓ PASS   duplicates with flags rejected    expected: false     got: false
+
+────────────────────────────────────────────────────────
+  ▸ TESTING: parse_input
+────────────────────────────────────────────────────────
+  ◆ Test 01 — parses a single number
+     ✓ PASS   state allocated                   expected: not-NULL  got: 0x608000000120
+     ✓ PASS   parse_input succeeds              expected: true      got: true
+     ✓ PASS   stack size == 1                   expected: 1         got: 1
+     ✓ PASS   top value == 42                   expected: 42        got: 42
+     ✓ PASS   state->n == 1                     expected: 1         got: 1
+  ◆ Test 02 — parses multiple numbers in order
+     ✓ PASS   state allocated                   expected: not-NULL  got: 0x6080000001a0
+     ✓ PASS   parse_input succeeds              expected: true      got: true
+     ✓ PASS   stack size == 3                   expected: 3         got: 3
+     ✓ PASS   state->n == 3                     expected: 3         got: 3
+     ✓ PASS   node[0] == 3                      expected: 3         got: 3
+     ✓ PASS   node[1] == 1                      expected: 1         got: 1
+     ✓ PASS   node[2] == 2                      expected: 2         got: 2
+  ◆ Test 03 — skips leading flag
+     ✓ PASS   state allocated                   expected: not-NULL  got: 0x608000000220
+     ✓ PASS   parse_input succeeds              expected: true      got: true
+     ✓ PASS   stack size == 2 (flag skipped)    expected: 2         got: 2
+     ✓ PASS   first value == 1                  expected: 1         got: 1
+     ✓ PASS   second value == 2                 expected: 2         got: 2
+     ✓ PASS   state->n == 2                     expected: 2         got: 2
+  ◆ Test 04 — skips interleaved flags
+     ✓ PASS   state allocated                   expected: not-NULL  got: 0x6080000002a0
+     ✓ PASS   parse_input succeeds              expected: true      got: true
+     ✓ PASS   stack size == 3 (flags skipped)   expected: 3         got: 3
+     ✓ PASS   state->n == 3                     expected: 3         got: 3
+     ✓ PASS   node[0] == 1                      expected: 1         got: 1
+     ✓ PASS   node[1] == 2                      expected: 2         got: 2
+     ✓ PASS   node[2] == 3                      expected: 3         got: 3
+  ◆ Test 05 — handles flags-only input (empty stack)
+     ✓ PASS   state allocated                   expected: not-NULL  got: 0x608000000320
+     ✓ PASS   parse_input succeeds              expected: true      got: true
+     ✓ PASS   stack size == 0 (no numbers)      expected: 0         got: 0
+     ✓ PASS   state->n == 0                     expected: 0         got: 0
+     ✓ PASS   top == NULL                       expected: NULL      got: NULL
+
+────────────────────────────────────────────────────────
+  ▸ TESTING: init_stack
+────────────────────────────────────────────────────────
+  ◆ Test 01 — creates an empty stack
+     ✓ PASS   stack allocated                   expected: not-NULL  got: 0x602000000230
+     ✓ PASS   top == NULL                       expected: NULL      got: NULL
+     ✓ PASS   size == 0                         expected: 0         got: 0
+
+────────────────────────────────────────────────────────
+  ▸ TESTING: init_prog_state
+────────────────────────────────────────────────────────
+  ◆ Test 01 — creates a fully initialized state
+     ✓ PASS   state allocated                   expected: not-NULL  got: 0x6080000003a0
+     ✓ PASS   stack a allocated                 expected: not-NULL  got: 0x602000000250
+     ✓ PASS   stack b allocated                 expected: not-NULL  got: 0x602000000270
+     ✓ PASS   stack a top == NULL               expected: NULL      got: NULL
+     ✓ PASS   stack a size == 0                 expected: 0         got: 0
+     ✓ PASS   stack b top == NULL               expected: NULL      got: NULL
+     ✓ PASS   stack b size == 0                 expected: 0         got: 0
+     ✓ PASS   n == 0                            expected: 0         got: 0
+     ✓ PASS   ops_count_total == 0              expected: 0         got: 0
+     ✓ PASS   strat_req == ADAPTIVE             expected: 0         got: 0
+     ✓ PASS   strat_used == ADAPTIVE            expected: 0         got: 0
+     ✓ PASS   bench == 0                        expected: 0         got: 0
+     ✓ PASS   all op counts == 0                expected: true      got: true
+
+────────────────────────────────────────────────────────
+  ▸ TESTING: new_node
+────────────────────────────────────────────────────────
+  ◆ Test 01 — creates a node with the given value
+     ✓ PASS   node allocated                    expected: not-NULL  got: 0x603000001db0
+     ✓ PASS   value == 42                       expected: 42        got: 42
+     ✓ PASS   next == NULL                      expected: NULL      got: NULL
+     ✓ PASS   prev == NULL                      expected: NULL      got: NULL
+
+────────────────────────────────────────────────────────
+  ▸ TESTING: stack_add_back
+────────────────────────────────────────────────────────
+  ◆ Test 01 — adds a single node
+     ✓ PASS   size == 1                         expected: 1         got: 1
+     ✓ PASS   top->value == 42                  expected: 42        got: 42
+  ◆ Test 02 — adds multiple nodes in order
+     ✓ PASS   size == 3                         expected: 3         got: 3
+     ✓ PASS   node[0] == 1                      expected: 1         got: 1
+     ✓ PASS   node[1] == 2                      expected: 2         got: 2
+     ✓ PASS   node[2] == 3                      expected: 3         got: 3
+
+────────────────────────────────────────────────────────
+  ▸ TESTING: circular doubly-linked list integrity
+────────────────────────────────────────────────────────
+  ◆ Test 01 — top->prev is last node, last->next is top
+     ✓ PASS   top->prev is node 3 (last)        expected: 3         got: 3
+     ✓ PASS   last->next == top                 expected: true      got: true
+  ◆ Test 02 — every node's next->prev points back to itself
+     ✓ PASS   n1 next->prev == n1               expected: true      got: true
+     ✓ PASS   n2 next->prev == n2               expected: true      got: true
+     ✓ PASS   n3 next->prev == n3               expected: true      got: true
+
+────────────────────────────────────────────────────────
+  ▸ TESTING: free_stack / free_prog_state (no crash)
+────────────────────────────────────────────────────────
+  ◆ Test 01 — free_stack on empty stack
+     ✓ PASS   did not crash                     expected: true      got: true
+  ◆ Test 02 — free_stack on populated stack
+     ✓ PASS   did not crash                     expected: true      got: true
+  ◆ Test 03 — free_stack on NULL
+     ✓ PASS   did not crash                     expected: true      got: true
+  ◆ Test 04 — free_prog_state on valid state
+     ✓ PASS   did not crash                     expected: true      got: true
+  ◆ Test 05 — free_prog_state on NULL
+     ✓ PASS   did not crash                     expected: true      got: true
+`;
+
+    // Load default visualization on window load
+    window.onload = function() {
+      document.getElementById('report-input').value = defaultReport.trim();
+      parseReport();
+    };
+
+    function loadDefaultData() {
+      document.getElementById('report-input').value = defaultReport.trim();
+      parseReport();
+    }
+
+    function toggleModule(element) {
+      const results = element.nextElementSibling;
+      results.classList.toggle('open');
+    }
+
+    function parseReport() {
+      const text = document.getElementById('report-input').value;
+      const lines = text.split('\n');
+
+      let total = 0;
+      let passed = 0;
+      let failed = 0;
+
+      // Extract results count if present
+      const summaryMatch = text.match(/Result:\s*(\d+)\s*passed,\s*(\d+)\s*failed/i) || 
+                           text.match(/Passed:\s*(\d+)\s*.*Failed:\s*(\d+)/is);
+      if (summaryMatch) {
+        passed = parseInt(summaryMatch[1], 10);
+        failed = parseInt(summaryMatch[2], 10);
+        total = passed + failed;
+      }
+
+      // Populate top stats
+      document.getElementById('stat-total').innerText = total || '-';
+      document.getElementById('stat-passed').innerText = passed || '-';
+      document.getElementById('stat-failed').innerText = failed || '-';
+      document.getElementById('stat-rate').innerText = total > 0 ? Math.round((passed / total) * 100) + '%' : '-';
+
+      const container = document.getElementById('modules-container');
+      container.innerHTML = '';
+
+      let currentModule = null;
+      let currentTests = [];
+
+      lines.forEach(line => {
+        // Match Module Header
+        if (line.includes('▸ TESTING:')) {
+          if (currentModule) {
+            renderModule(currentModule, currentTests, container);
+          }
+          currentModule = line.replace('▸ TESTING:', '').replace(/─/g, '').trim();
+          currentTests = [];
+        } 
+        // Match Test case
+        else if (line.includes('◆ Test') || line.trim().startsWith('◆')) {
+          const testName = line.replace(/◆\s*Test\s*\d+\s*—/g, '').replace('◆', '').trim();
+          currentTests.push({ name: testName, assertions: [] });
+        } 
+        // Match Assertion inside test
+        else if (line.includes('✓ PASS') || line.includes('✗ FAIL')) {
+          if (currentTests.length > 0) {
+            const isPass = line.includes('✓ PASS');
+            // Extract label
+            let label = line.replace(/✓\s*PASS|✗\s*FAIL/g, '').trim();
+            // Extract expected/got if any
+            let details = '';
+            if (label.includes('expected:')) {
+              const parts = label.split('expected:');
+              label = parts[0].trim();
+              details = 'expected: ' + parts[1].trim();
+            }
+            currentTests[currentTests.length - 1].assertions.push({
+              label: label,
+              pass: isPass,
+              details: details
+            });
+          }
+        }
+      });
+
+      // Render the last module
+      if (currentModule) {
+        renderModule(currentModule, currentTests, container);
+      }
+
+      if (container.children.length === 0) {
+        container.innerHTML = '<div style="color: var(--text-muted); text-align: center; padding: 2rem;">No structured modules found. Paste standard push_swap test reports to view.</div>';
+      }
+    }
+
+    function renderModule(name, tests, container) {
+      let modulePass = true;
+      let totalTests = tests.length;
+
+      // Check if any test in module failed
+      tests.forEach(t => {
+        t.assertions.forEach(a => {
+          if (!a.pass) modulePass = false;
+        });
+      });
+
+      const card = document.createElement('div');
+      card.className = 'module-card';
+
+      const header = document.createElement('div');
+      header.className = 'module-header';
+      header.onclick = function() { toggleModule(this); };
+
+      const title = document.createElement('div');
+      title.className = 'module-title';
+      title.innerHTML = (modulePass ? '<span style="color: #34d399;">✓</span>' : '<span style="color: #f87171;">✗</span>') + ` ${name}`;
+
+      const badge = document.createElement('span');
+      badge.className = 'module-badge';
+      badge.innerText = `${totalTests} Test Cases`;
+
+      header.appendChild(title);
+      header.appendChild(badge);
+
+      const results = document.createElement('div');
+      results.className = 'module-results';
+
+      tests.forEach(test => {
+        test.assertions.forEach(assertion => {
+          const row = document.createElement('div');
+          row.className = 'test-row';
+
+          const info = document.createElement('div');
+          info.className = 'test-info';
+
+          const testName = document.createElement('div');
+          testName.className = 'test-name';
+          testName.innerText = `${test.name} — ${assertion.label}`;
+
+          info.appendChild(testName);
+
+          if (assertion.details) {
+            const details = document.createElement('div');
+            details.className = 'test-details';
+            details.innerText = assertion.details;
+            info.appendChild(details);
+          }
+
+          const status = document.createElement('span');
+          status.className = 'test-status ' + (assertion.pass ? 'status-pass' : 'status-fail');
+          status.innerHTML = (assertion.pass ? '✓ PASS' : '✗ FAIL');
+
+          row.appendChild(info);
+          row.appendChild(status);
+          results.appendChild(row);
+        });
+      });
+
+      card.appendChild(header);
+      card.appendChild(results);
+      container.appendChild(card);
+    }
+  </script>
+</body>
+</html>
