@@ -2,7 +2,8 @@
 
 void op_ss(t_prog_state *state)
 {
-	if (!state)
+	if (!state || !state->a || !state->b
+		|| state->a->size < 2 || state->b->size < 2)
 		return ;
 	op_sa(state);
 	op_sb(state);
@@ -14,7 +15,8 @@ void op_ss(t_prog_state *state)
 
 void op_rr(t_prog_state *state)
 {
-	if (!state)
+	if (!state || !state->a || !state->b
+		|| state->a->size < 2 || state->b->size < 2)
 		return ;
 	op_ra(state);
 	op_rb(state);
@@ -26,8 +28,9 @@ void op_rr(t_prog_state *state)
 
 void op_rrr(t_prog_state *state)
 {
-	if (!state)
-		return ;
+	if (!state || !state->a || !state->b
+		|| state->a->size < 2 || state->b->size < 2)
+	return ;
 	op_rra(state);
 	op_rrb(state);
 	state->ops_count_per_type[OP_RRA]--;
