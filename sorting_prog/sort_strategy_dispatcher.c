@@ -32,19 +32,15 @@ void	dispatch_algo_strategy(t_prog_state *state)
 {
 	if (is_sorted_asc(state->a))
  		return ;
- 	if (state->strat_req == SIMPLE)
- 	{
-  		state->strat_used = state->strat_req;
- 		sort_simple(state);
- 		return ;
- 	}
- 	state->strat_used = state->strat_req;
- 	if (state->strat_req == SIMPLE)
- 		sort_simple(state);
- 	else if (state->strat_req == MEDIUM)
- 		sort_simple(state);
- 	else if (state->strat_req == COMPLEX)
- 		sort_simple(state);
+	sort_simple(state);
+//	if (state->strat_req == SIMPLE)
+//		sort_simple(state);
+//	else if (state->strat_req == MEDIUM)
+//		sort_medium(state);
+//	else if (state->strat_req == COMPLEX)
+//		sort_complex(state);
+// else
+//		sort_adaptive(state);
 }
 
 
