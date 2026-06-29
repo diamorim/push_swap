@@ -88,7 +88,7 @@ void	sort_3(t_prog_state *state)
 			op_rra(state);
 		}
 		else
-			op_ra(state)
+			op_ra(state);
 	}
 	else if (a > b)
 		op_sa(state);
