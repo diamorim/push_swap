@@ -54,39 +54,47 @@ void	stack_add_back(t_stack *stack, t_node *new)
 	if (!stack->top)
 	{
 		stack->top = new;
-		new->next = new;
-		new->prev = new;
+		change_next_prev(new, new, new);
 	}
 	else
 	{
 		last = stack->top->prev;
-		last->next = new;
-		new->prev = last;
-		new->next = stack->top;
-		stack->top->prev = new;
+		if(last == stack->top)
+		{
+			change_next_prev(new, stack->top, stack->top);
+			change_next_prev(stack->top, new, new);
+		}
+		else
+		{
+			stack->top->prev->next = new;
+			change_next_prev(new, stack->top->prev ,stack->top);
+			stack->top->prev = new;
+		}
 	}
 	stack->size++;
 }
 void	stack_add_front(t_stack *stack, t_node *new)
 {
-	t_node	*last;
-
 	if (!stack || !new)
 		return ;
 	if (!stack->top)
 	{
 		stack->top = new;
-		new->next = new;
-		new->prev = new;
+		change_next_prev(new, new, new);
 	}
 	else
 	{
-		last = stack->top->prev;
-		new->next = stack->top;
-		new->prev = last;
-		if (last)
-			last->next = new;
-		stack->top->prev = new;
+		if (stack->size == 1)
+		{
+			change_next_prev(stack->top, new, new);
+			change_next_prev(new, stack->top, stack->top);
+		}
+		else
+		{
+			change_next_prev(new, stack->top->prev, stack->top);
+			stack->top->prev->next = new;
+			stack->top->prev = new;
+		}
 		stack->top = new;
 	}
 	stack->size++;
