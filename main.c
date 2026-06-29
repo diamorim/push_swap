@@ -12,6 +12,17 @@
 
 #include "../push_swap.h"
 
+
+void	run_prog(t_prog_state *state)
+{
+	if (!state || !state->a || state->a->size == 0)
+		return ;
+	if (is_sorted_asc(state->a))
+		return ;
+	state->disorder = compute_disorder(state->a);
+	dispatch_algo_strategy(state);
+}
+
 int	main(int argc, char **argv)
 {
 	t_prog_state	*state;
@@ -37,17 +48,7 @@ int	main(int argc, char **argv)
 		write(2, "Error\n", 6);
 		return (1);
 	}
-//	run_prog(state, argc, argv);
+	run_prog(state);
 	free_prog_state(state);
 	return (0);
 }
-
-
-/*
- * Changing '1' in "write(1, "Error\n", 7);" to
- * '2' because '2' is for the stderr
- *
- * Also fixing '6' in "write(2, "Error\n", 6);" to
- * '7' to allow for null terminator
-
- */
