@@ -35,7 +35,7 @@ void	dispatch_algo_strategy(t_prog_state *state)
  	if (state->strat_req == SIMPLE)
  	{
   		state->strat_used = state->strat_req;
- 		sort_adaptive(state);
+ 		sort_simple(state);
  		return ;
  	}
  	state->strat_used = state->strat_req;
