@@ -79,6 +79,8 @@ void	sort_3(t_prog_state *state)
 	int	b;
 	int	c;
 
+	if (!state || !state->a || state->a->size != 3)
+		return ;
 	a = state->a->top->value;
 	b = state->a->top->next->value;
 	c = state->a->top->prev->value;
