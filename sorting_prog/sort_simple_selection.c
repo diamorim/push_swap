@@ -49,6 +49,8 @@ void	sort_simple(t_prog_state *state)
 
 int	handle_small_sort(t_prog_state *state)
 {
+	if (!state || !state->a)
+		return (1);
 	if (state->a->size <= 1)
 		return (1);
 	if (state->a->size == 2)
