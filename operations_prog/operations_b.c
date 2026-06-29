@@ -26,7 +26,6 @@ void op_rb(t_prog_state *state) {
 
 void op_rrb(t_prog_state *state)
 {
-  t_stack *stack_a;
 	if (!state || !state->b)
 		return;
 	reverse_rotate(state->b);
