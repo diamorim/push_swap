@@ -144,6 +144,6 @@ void			smart_rotate(t_prog_state *state, t_stack *s, int pos);
 
 // ___ stack_queries.c
 int				find_pos_min(t_stack *s);
-int				find_pos_max(t_stack *s)
+int				find_pos_max(t_stack *s);
 
 #endif
