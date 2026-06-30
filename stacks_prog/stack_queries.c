@@ -1,16 +1,13 @@
 /*
-	Will insert various queries here in order to
-	analyze  the order of elements within a given
-	stack.
+	____ stack_queries.c ____
+		The purpose of this file is to store functions
+		that are used by algorithms to gather information about
+		a given stack in order to decide what to sort.
+
 
 	___ Used by ___
-		This will be used by sorting algorithms -- at least
-		sort_simple and sort and sort_medium.
-
-	___ Note ___
-		Maybe its better to place these in
-		'stack_utils.c' rather than keep
-		them here.
+		- 'sort_simple' in sort_simple_selection.c
+		- 'sort_medium' in sort_medium_chunk.c
 
 
  */
@@ -25,7 +22,7 @@
 		value stored starting at the 'top'.
 
 		The `top` of the stack is position `0`
-		and the `bottom` of the stack is `size`.
+		and the `bottom` of the stack is `size - 1`.
 */
 
  int	find_pos_min(t_stack *s)
@@ -53,6 +50,18 @@
  	}
  	return (pos_min);
 }
+
+
+/*
+ 	__ find_pos_max() __
+  		Finds, and returns, the position
+		in a given stack for the *largest/highest*
+		value stored starting at the 'top'.
+
+		The `top` of the stack is position `0`
+		and the `bottom` of the stack is `size -1`.
+*/
+
 
 int	find_pos_max(t_stack *s)
 {
