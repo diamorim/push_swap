@@ -15,40 +15,10 @@
 */
 
 /*
- 	__ find_pos_min() __
-  		Finds, and returns, the position
-		in a given stack for the *smallest*
-		value stored starting at the 'top'.
+	___ Important note ___
+	'find_pos_min' is moved to stack_queries.c in stacks_prog folder.
 
-		The `top` of the stack is position `0`
-		and the `bottom` of the stack is `size`.
 */
-
- int	find_pos_min(t_stack *s)
- {
- 	t_node	*curr;
- 	int		i;
- 	int		pos_min;
- 	int		val_min;
-
- 	if (!s || s->size <= 1)
- 		return (0);
- 	curr = s->top;
- 	pos_min = 0;
- 	val_min = curr->value;
- 	i = 0;
- 	while (i < s->size)
- 	{
- 		if (curr->value < val_min)
- 		{
- 			val_min = curr->value;
- 			pos_min = i;
- 		}
- 		curr = curr->next;
- 		i++;
- 	}
- 	return (pos_min);
-}
 
 /*
 	Handle stacks of size 0–3 so algorithm entry points stay DRY.
