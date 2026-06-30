@@ -23,8 +23,6 @@
 */
 
 
-
-
 /*
 	Sorts a 3-element stack in 1-or-2 operations.
 	- Assumes state->a->size is exactly 3.
@@ -72,7 +70,6 @@ void	sort_3(t_prog_state *state)
 }
 
 
-
 /*
 	____ handle_small_sort() ____
 		- This helper fucntion Handles stacks of size 0–3 so algorithm entry points.
@@ -109,8 +106,6 @@ int	handle_small_sort(t_prog_state *state)
 	}
 	return (0);
 }
-
-
 
 
 /*
