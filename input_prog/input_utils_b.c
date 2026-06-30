@@ -102,24 +102,18 @@ int	check_flags(char *str)
 	return 0;
 }
 
-
-
 int	check_allflags(char **argv)
 {
-	int flags_amm;
+	int flags_count;
 
-	flags_amm = 0;
+	flags_count = 0;
 	if (!argv)
 		return 0;
 	while (*argv)
 	{
-		if (ft_strncmp(*argv, "--simple", 9) == 0
-			|| ft_strncmp(*argv, "--medium", 9) == 0
-			 || ft_strncmp(*argv, "--adaptive", 11) == 0
-			|| ft_strncmp(*argv, "--complex", 10) == 0)
-			flags_amm++;
+		if (check_flags(*argv))
+            flags_count++;
 		argv++;
 	}
-
-	return flags_amm;
+	return (flags_count);
 }

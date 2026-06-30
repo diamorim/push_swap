@@ -23,8 +23,6 @@
 # define LONG_MAX_DIV (LONG_MAX / 10)
 # define LONG_MAX_MOD (LONG_MAX % 10)
 
-#include "libft/libft.h"
-
 
 int ft_isnumber(char *str)
 {
