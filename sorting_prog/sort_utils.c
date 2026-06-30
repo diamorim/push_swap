@@ -2,23 +2,68 @@
 #include "../push_swap.h"
 /*
 	__sort_utils.c__ has functions:
+		- sort_3()
 		- handle_small_sort()
 		- smart_rotate()
 
-	These helper funcitons are used by:
+
+		Used by:
 		- sort_simple_selection()
 		- sort_adaptive() - indirectly
 
-
 		May be called in the future by:
 		- sort_medium_chunk()
+
+		___ Important note ____
+			'find_pos_min' nove lives in stack_queries.c in stacks_prog folder.
+
 */
+
+
+
 
 /*
-	___ Important note ___
-	'find_pos_min' is moved to stack_queries.c in stacks_prog folder.
-
+	Sort exactly 3 elements in stack A in at most 2 operations.
+	Precondition: state > a->size == 3 (caller must guard smaller sizes).
+	Reads values as a=top, b=middle, c=bottom.
+	Hardcodes all 5 unsorted permutations with known-optimal sequences.
 */
+void	sort_3(t_prog_state *state)
+{
+	int	a;
+	int	b;
+	int	c;
+
+	if (!state || !state->a || state->a->size != 3)
+		return ;
+	a = state->a->top->value;
+	b = state->a->top->next->value;
+	c = state->a->top->prev->value;
+	if (a > b && a > c)
+	{
+		if (b > c)
+		{
+			op_sa(state);
+			op_rra(state);
+		}
+		else
+			op_ra(state);
+	}
+	else if (a > b)
+		op_sa(state);
+	else if (b > c)
+	{
+		if (a > c)
+			op_rra(state);
+		else
+		{
+			op_sa(state);
+			op_ra(state);
+		}
+	}
+}
+
+
 
 /*
 	Handle stacks of size 0–3 so algorithm entry points stay DRY.
