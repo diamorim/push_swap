@@ -73,4 +73,10 @@ Test(op_ss, basic)
 
 	expect(stack_a, a, 3);
 	expect(stack_b, b, 3);
+
+	op_ss(state);
+	int a1[] = {5, 4, 6};
+	int b1[] = {2,1,3};
+	expect_stack(stack_a, a1, 3);
+	expect_stack(stack_b, b1, 3);
 }
