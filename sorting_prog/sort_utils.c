@@ -2,12 +2,12 @@
 #include "../push_swap.h"
 /*
 	__sort_utils.c__ has functions:
-		- find_pos_min()
+		- handle_small_sort()
 		- smart_rotate()
 
 	These helper funcitons are used by:
-		- sort_simple_simple()
-		- sort_simple_adaptive() - indirectly
+		- sort_simple_selection()
+		- sort_adaptive() - indirectly
 
 
 		May be called in the future by:
