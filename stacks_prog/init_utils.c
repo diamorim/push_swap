@@ -87,15 +87,13 @@ void	free_stack(t_stack *stack)
 		return ;
 	start = stack->top;
 	current = start;
-	next = current->next;
 	i = 0;
-	while (next != start && i < stack->size)
+	while (i < stack->size)
 	{
+		next = current->next;
 		free(current);
 		current = next;
-		next = current->next;
 		i++;
 	}
-	free(current);
 	free(stack);
 }
