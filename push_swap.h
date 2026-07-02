@@ -48,6 +48,7 @@ typedef enum e_op_type
 typedef struct s_node
 {
 	int				value;
+	int				rank;
 	struct s_node	*next;
 	struct s_node	*prev;
 }	t_node;
@@ -94,6 +95,7 @@ void			stack_add_front(t_stack *stack, t_node *new);
 void			stack_add_back(t_stack *stack, t_node *new_node);
 t_node			*stack_last_node(t_stack *stack);
 void 			change_next_prev(t_node *node, t_node *new_prev, t_node *new_next);
+int				*stack_to_arr(t_stack *stack);
 
 
 // ___ parsing ___
@@ -145,6 +147,6 @@ void			smart_rotate(t_prog_state *state, t_stack *s, int pos);
 
 // ___ stack_queries.c
 int				find_pos_min(t_stack *s);
-int				find_pos_max(t_stack *s)
+int				find_pos_max(t_stack *s);
 
 #endif
