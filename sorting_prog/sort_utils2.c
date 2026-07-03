@@ -8,7 +8,7 @@ int		partition(int arr[], int low, int high)
 
 	if (!arr)
 		return -1;
-	
+
 	i = low - 1;
 	j = low;
 	pivot = arr[high];
@@ -29,7 +29,7 @@ void	quick_sort(int arr[], int low, int high)
 {
 	if (!arr)
 		return ;
-	
+
 	if (low < high)
 	{
 		int	pi;
@@ -43,10 +43,10 @@ int		binary_search(int arr[], int n, int x)
 {
 	int	low;
 	int	high;
-	
+
 	if (!arr)
 		return -1;
-	
+
 	low = 0;
 	high = n-1;
 	while (low < high)
@@ -93,4 +93,5 @@ void	rank(t_prog_state *state)
 		current_node = current_node->next;
 		i++;
 	}
+	free(arr)
 }
