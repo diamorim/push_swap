@@ -7,16 +7,11 @@ int check_errors(int argc, char **argv)
 	i = 0;
 	if (argc < 2)
 		return 0;
-	//adding 1 to arguments so that it is out of the first argument, that is the programs name
 	argv++;
-	//checking if there are any flags in the arguments
 	if (check_allflags(argv) > 1)
 		return 0;
-	//loops tghrought the arguments and checks if theres any repetiton of numbers
-	//checks if every argument is a number
 	while (argv[i])
 	{
-		//skipping the flags for no interference
 		if (check_flags(argv[i]))
 		{
 			i++;
@@ -29,7 +24,6 @@ int check_errors(int argc, char **argv)
 	i = 0;
 	if (!check_maxint(argv))
 		return 0;
-	//looping throught argv and checking if theres any repeated number
 	while (argv[i])
 	{
 		if (check_flags(argv[i]))

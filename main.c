@@ -45,6 +45,7 @@ int	main(int argc, char **argv)
 		return (error_exit(NULL));
 	if (!parse_input(state, argv + 1))
 		return (error_exit(state));
+	state->strat_req = strategy_from_argv(argv + 1);
 	run_prog(state);
 	free_prog_state(state);
 	return (0);

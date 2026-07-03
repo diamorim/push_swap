@@ -64,3 +64,25 @@ long	ft_strtol(char *str)
 	}
 	return (result * sign);
 }
+
+t_strategy   strategy_from_argv(char **argv)
+{
+	int   i;
+
+	if (!argv)
+		return (ADAPTIVE);
+	i = 0;
+	while (argv[i])
+	{
+		if (ft_strncmp(argv[i], "--simple", 9) == 0)
+			return (SIMPLE);
+		if (ft_strncmp(argv[i], "--complex", 10) == 0)
+			return (COMPLEX);
+		if (ft_strncmp(argv[i], "--medium", 9) == 0)
+			return (MEDIUM);
+		if (ft_strncmp(argv[i], "--adaptive", 11) == 0)
+			return (ADAPTIVE);
+		i++;
+	}
+	return (ADAPTIVE);
+}
