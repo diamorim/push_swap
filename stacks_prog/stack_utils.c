@@ -104,6 +104,7 @@ void	stack_add_back(t_stack *stack, t_node *new)
 	stack->size++;
 }
 
+
 t_node	*stack_last_node(t_stack *stack)
 {
 	if (!stack || !stack->top)
@@ -119,6 +120,8 @@ void change_next_prev(t_node *node, t_node *new_prev, t_node *new_next)
 	node->next = new_next;
 	node->prev = new_prev;
 }
+
+
 int	*stack_to_arr(t_stack *stack)
 {
 	int	i;
@@ -131,7 +134,7 @@ int	*stack_to_arr(t_stack *stack)
 	arr = malloc(stack->size * sizeof(int));
 	if (!arr)
 		return malloc(0);
-	
+
 	current_node = stack->top;
 
 	while (i < stack->size)
