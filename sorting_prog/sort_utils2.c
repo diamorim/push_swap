@@ -93,5 +93,5 @@ void	rank(t_prog_state *state)
 		current_node = current_node->next;
 		i++;
 	}
-	free(arr)
+	free(arr);
 }
