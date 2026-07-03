@@ -31,6 +31,7 @@ t_node	*new_node(int value)
 	if (!node)
 		return (NULL);
 	node->value = value;
+	node->rank = -1
 	node->next = NULL;
 	node->prev = NULL;
 	return (node);
