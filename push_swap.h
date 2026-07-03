@@ -142,8 +142,14 @@ void			sort_complex(t_prog_state *state);
 
 
 //	___ sort_utils.c __
+int				count_bits(int n);
 int				handle_small_sort(t_prog_state *state);
 void			smart_rotate(t_prog_state *state, t_stack *s, int pos);
+void			quick_sort(int arr[], int low, int high);
+int				partition(int arr[], int low, int high);
+int				binary_search(int arr[], int n, int x);
+void			rank(t_prog_state *state);
+void			radix_sort(t_prog_state *state);
 
 
 // ___ stack_queries.c

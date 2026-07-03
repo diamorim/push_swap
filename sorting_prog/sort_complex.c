@@ -18,11 +18,11 @@ int		partition(int arr[], int low, int high)
 		if (arr[j] < pivot)
 		{
 			i++;
-			swop(arr[i], arr[j]);	
+			ft_swop(arr[i], arr[j]);
 		}
 		j++;
 	}
-	swop(arr[i + 1], pivot);
+	ft_swop(arr[i + 1], pivot);
 	return i + 1;
 }
 void	quick_sort(int arr[], int low, int high)
@@ -61,7 +61,7 @@ int		binary_search(int arr[], int n, int x)
 		else
 			high = mid - 1;
 	}
-	return 0;
+	return low;
 }
 void	rank(t_prog_state *state)
 {
@@ -85,44 +85,28 @@ void	rank(t_prog_state *state)
 }
 void	radix_sort(t_prog_state *state)
 {
-	int		stack_size;
-	int		bit;
-	int		i;
-	t_node	*current_node;
+	int	stack_size;
+	int	bit;
+	int	biggest_bit;
+	int	i;
 	
 	rank(state);
 	stack_size = state->a->size;
 	bit = 0;
 	i = 0;
-	current_node = state->a->top;
-	while (bit < stack_size)
+	biggest_bit = count_bits(stack_size - 1);
+	while (bit < biggest_bit)
 	{
 		while (i < stack_size)
 		{
-			if ((current_node->rank >> bit) & 0)
-				op_pb(state);
-			else
+			if ((state->a->top->rank >> bit) & 1)
 				op_ra(state);
+			else
+				op_pb(state);
 			i++;
 		}
 		i = 0;
-		push_all_a(state->b->size);
+		push_all_a(state);
 		bit++;
-	}
-	
-	//int stack_size
-	//int bit = 0
-	//int i = 0
-	//tnode current_node
-
-	//while bit > stacksize
-		//while i < stacksize
-			//if current_node bit == 0
-				//pb
-			//else
-				//ra
-			//i++
-		//push all to a
-		//bit++
-		
+	}	
 }

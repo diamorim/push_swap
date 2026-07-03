@@ -99,3 +99,15 @@ int	handle_small_sort(t_prog_state *state)
 			}
 		}
 	}
+int	count_bits(int n)
+{
+	int bits;
+
+	bits = 0;
+	while (n > 0)
+	{
+		n = n >> 1;
+		bits++;
+	}
+	return bits;
+}
