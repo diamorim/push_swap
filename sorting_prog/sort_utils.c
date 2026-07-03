@@ -140,7 +140,7 @@ static void	execute_rotation(t_prog_state *state, t_stack *s, int steps, int rev
 		}
 		i++;
 	}
-<<<<<<< HEAD
+}
 int	count_bits(int n)
 {
 	int bits;
@@ -179,8 +179,6 @@ void	rank(t_prog_state *state)
 		current_node = current_node->next;
 		i++;
 	}
-}
-=======
 }
 
 
@@ -221,4 +219,3 @@ void	smart_rotate(t_prog_state *state, t_stack *s, int pos)
 		execute_rotation(state, s, s->size - pos, reverse_flag);
 	}
 }
->>>>>>> origin/main
