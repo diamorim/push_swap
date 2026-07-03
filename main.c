@@ -23,6 +23,13 @@ void	run_prog(t_prog_state *state)
 	dispatch_algo_strategy(state);
 }
 
+static int   error_exit(t_prog_state *state)
+{
+   free_prog_state(state);
+   write(2, "Error\n", 6);
+   return (1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_prog_state	*state;
@@ -32,22 +39,12 @@ int	main(int argc, char **argv)
 	if (argc == 2 && ft_isnumber(argv[1]))
 		return (0);
 	if (!check_errors(argc, argv))
-	{
-		write(2, "Error\n", 6);
-		return (1);
-	}
+		return (error_exit(NULL));
 	state = init_prog_state();
 	if (!state)
-	{
-		write(2, "Error\n", 6);
-		return (1);
-	}
+		return (error_exit(NULL));
 	if (!parse_input(state, argv + 1))
-	{
-		free_prog_state(state);
-		write(2, "Error\n", 6);
-		return (1);
-	}
+		return (error_exit(state));
 	run_prog(state);
 	free_prog_state(state);
 	return (0);
