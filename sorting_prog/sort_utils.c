@@ -2,29 +2,89 @@
 #include "../push_swap.h"
 /*
 	__sort_utils.c__ has functions:
-		- find_pos_min()
+		- sort_3()
+		- handle_small_sort()
 		- smart_rotate()
 
-	These helper funcitons are used by:
-		- sort_simple_simple()
-		- sort_simple_adaptive() - indirectly
+		Calls
+			- sort_3()
+			- All the operations (e.g. op_sa, op_rb, etc.)
 
+		Used by:
+		- sort_simple_selection()
+		- sort_adaptive() - indirectly
 
 		May be called in the future by:
 		- sort_medium_chunk()
-*/
 
-/*
-	___ Important note ___
-	'find_pos_min' is moved to stack_queries.c in stacks_prog folder.
+		___ Important note ____
+			'find_pos_min' nove lives in stack_queries.c in stacks_prog folder.
 
 */
 
+
 /*
-	Handle stacks of size 0–3 so algorithm entry points stay DRY.
-	Returns 1 if the caller should return immediately (small stack fully
-	sorted), 0 if the caller should proceed with its main algorithm.
-	Size 2: wastate only if the top element is greater than the second.
+	Sorts a 3-element stack in 1-or-2 operations.
+	- Assumes state->a->size is exactly 3.
+	- Guards against smaller sizes
+	- 'a'= top, 'b' = middle, 'c'= bottom
+
+	This is the most efficient algorithm when there
+	are only 3 elements to be sorted (5 possible unsorted
+	permutations).
+*/
+
+void	sort_3(t_prog_state *state)
+{
+	int	a;
+	int	b;
+	int	c;
+
+	if (!state || !state->a || state->a->size != 3)
+		return ;
+	a = state->a->top->value;
+	b = state->a->top->next->value;
+	c = state->a->top->prev->value;
+	if (a > b && a > c)
+	{
+		if (b > c)
+		{
+			op_sa(state);
+			op_rra(state);
+		}
+		else
+			op_ra(state);
+	}
+	else if (a > b)
+		op_sa(state);
+	else if (b > c)
+	{
+		if (a > c)
+			op_rra(state);
+		else
+		{
+			op_sa(state);
+			op_ra(state);
+		}
+	}
+}
+
+
+/*
+	____ handle_small_sort() ____
+		- This helper fucntion Handles stacks of size 0–3 so algorithm entry points.
+		- if there are 0 or 1 element(s)
+			- no sorting possible -- caller must deal with this
+			- return (1);
+		- if there are 2 elements
+			- sorts them as needed
+			- return (1);
+		- if there are exactly 3 elements
+			- sorts them with sort3()
+			- return(1);
+		- if there are 4+ elements
+			- caller must handle sorting job
+			- return (0);
 */
 
 int	handle_small_sort(t_prog_state *state)
@@ -49,56 +109,38 @@ int	handle_small_sort(t_prog_state *state)
 
 
 /*
- 	__ smart_rotate() __
- 		Attempts to rotate nodes in a given stack with
- 		the least number of operations possible using
- 		the allowed operations in _op() function.
-
- 		First, smart_rotate() identifies whether pos is in
- 		the first half of the stack or the second half of the stack.
-
- 		If it's in the first half, smart_rotate() rotates
- 		the nodes forward..
-
- 		If the 'pos' is in the second half, smart_rotate*( ) will
- 		reverse rotate the nodes backwards.
+ 	__ execute_rotation() __
+  - Executes 'rotate' on a given stack based on instructions
+  from the caller
+  - Caller instructs:
+  	- stack -- which stack to modify
+    - direction - whether to rotate forwards or backwards
 */
 
- 	void	smart_rotate(t_prog_state *state, t_stack *s, int pos)
- 	{
- 		int			steps;
-		int			i;
+static void	execute_rotation(t_prog_state *state, t_stack *s, int steps, int reverse_flag)
+{
+	int	i;
 
-		if (!state || !s)
- 			return ;
- 		if (pos == 0 || pos >= s->size)
- 			return ;
- 	 	i = 0;
- 		if (pos <= s->size / 2)
- 		{
- 			steps = pos;
-			while (i < steps )
-			{
-				if (s == state->a)
-					op_ra(state);
-				else
-					op_rb(state);
-				i++;
-			}
+	i = 0;
+	while (i < steps)
+	{
+		if (s == state->a)
+		{
+			if (reverse_flag)
+				op_rra(state);
+			else
+				op_ra(state);
 		}
- 		else
- 		{
- 	 		steps = s->size - pos;
-	 		while (i <steps)
-			{
-				if (s == state->a)
-					op_rra(state);
-				else
-					op_rrb(state);
-				i++;
-			}
+		else
+		{
+			if (reverse_flag)
+				op_rrb(state);
+			else
+				op_rb(state);
 		}
+		i++;
 	}
+<<<<<<< HEAD
 int	count_bits(int n)
 {
 	int bits;
@@ -138,3 +180,45 @@ void	rank(t_prog_state *state)
 		i++;
 	}
 }
+=======
+}
+
+
+
+/*
+ 	__ smart_rotate() __
+		- Attempts to rotate nodes in a given stack with
+		the least number of ops possible.
+		- Brings a node at a specific position to the top
+		of a given stack.
+
+		- Calculates if the position of an element is closer
+		to the top or the bottom of the stack.
+
+		- If the position of the element in the stack is in the:
+			- first half ----->   rotates forward
+			- second half ------> reverse rotates
+*/
+
+
+
+void	smart_rotate(t_prog_state *state, t_stack *s, int pos)
+{
+	int	reverse_flag;
+
+	if (!state || !s)
+		return ;
+	if (pos == 0 || pos >= s->size)
+		return ;
+	if (pos <= s->size / 2)
+	{
+		reverse_flag = 0;
+		execute_rotation(state, s, pos, reverse_flag);
+	}
+	else
+	{
+		reverse_flag = 1;
+		execute_rotation(state, s, s->size - pos, reverse_flag);
+	}
+}
+>>>>>>> origin/main

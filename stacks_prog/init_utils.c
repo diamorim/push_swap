@@ -78,23 +78,22 @@ void	free_prog_state(t_prog_state *state)
 
 void	free_stack(t_stack *stack)
 {
+	t_node	*start;
 	t_node	*current;
 	t_node	*next;
 	int i;
 
-	if (!stack)
+	if (!stack || !stack->top)
 		return ;
-	if (stack->top)
+	start = stack->top;
+	current = start;
+	i = 0;
+	while (i < stack->size)
 	{
-		current = stack->top;
-		i = 0;
-		while (i < stack->size)
-		{
-			next = current->next;
-			free(current);
-			current = next;
-			i++;
-		}
+		next = current->next;
+		free(current);
+		current = next;
+		i++;
 	}
 	free(stack);
 }
