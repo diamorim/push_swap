@@ -30,6 +30,8 @@ im just		- sort_simple()
 
 void	dispatch_algo_strategy(t_prog_state *state)
 {
+	if (!state || !state->a)
+		return ;
 	if (is_sorted_asc(state->a))
  		return ;
 	state->strat_used = SIMPLE;
