@@ -13,7 +13,6 @@ int				ft_isnumber(char *str);
 int				check_flags(char *str);
 int				check_errors(int argc, char **argv);
 int				reps_check(char **argv, int occ);
-t_strategy		strategy_from_argv(char **argv)
 
 typedef enum e_strategy
 {
@@ -83,6 +82,12 @@ t_stack			*init_stack(void);
 t_prog_state	*init_prog_state(void);
 void			free_stack(t_stack *stack);
 void			free_prog_state(t_prog_state *state);
+
+
+// _____ input_utils  _____
+t_strategy		strategy_from_argv(char **argv);
+
+
 
 // _____ stack_utils.c  _____
 // used by sort_simple & sort_medium
