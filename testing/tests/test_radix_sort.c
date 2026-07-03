@@ -10,7 +10,7 @@ Test(radix_sort, sorts_five_elements)
 	radix_sort(state);
 
 	cr_expect(is_sorted_asc(state->a), "stack a should be sorted ascending");
-	cr_expect_eq(state->b->size, 0, "stack b should be empty after radix_sort");
+	cr_expect_eq(state->b->size, 0, "stack b should be empty after radix_sort but it has size %d and value %d", state->b->size, state->b->top->value);
 	expect_stack(state->a, expected, 5);
 }
 

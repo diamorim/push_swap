@@ -150,6 +150,7 @@ int				partition(int arr[], int low, int high);
 int				binary_search(int arr[], int n, int x);
 void			rank(t_prog_state *state);
 void			radix_sort(t_prog_state *state);
+void			ft_swop(int *a, int *b);
 
 
 // ___ stack_queries.c

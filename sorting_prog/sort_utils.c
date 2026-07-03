@@ -111,3 +111,30 @@ int	count_bits(int n)
 	}
 	return bits;
 }
+void	ft_swop(int *a, int *b)
+{
+	int	temp;
+
+	temp = *a;
+	*a = *b;
+	*b = temp;
+}
+void	rank(t_prog_state *state)
+{
+	int 	*arr;
+	t_node	*current_node;
+	int		i;
+
+	if (!state || !state->a || state->a->size == 0 || !state->a->top)
+		return ;
+	i = 0;
+	arr = stack_to_arr(state->a);
+	quick_sort(arr, 0, state->a->size - 1);
+	current_node = state->a->top;
+	while (i < state->a->size)
+	{
+		current_node->rank = binary_search(arr, state->a->size, current_node->value);
+		current_node = current_node->next;
+		i++;
+	}
+}
