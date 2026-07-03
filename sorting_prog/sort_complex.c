@@ -1,12 +1,19 @@
 #include "../push_swap.h"
 
+void	radix_sort(t_prog_state *state);
+
+void sort_complex(t_prog_state *state)
+{
+	radix_sort(state);
+}
+
 void	radix_sort(t_prog_state *state)
 {
 	int	stack_size;
 	int	bit;
 	int	biggest_bit;
 	int	i;
-	
+
 	rank(state);
 	stack_size = state->a->size;
 	bit = 0;
@@ -25,5 +32,5 @@ void	radix_sort(t_prog_state *state)
 		i = 0;
 		push_all_a(state);
 		bit++;
-	}	
+	}
 }
