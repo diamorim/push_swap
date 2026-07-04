@@ -48,15 +48,19 @@ static void	pull_band_elements(t_prog_state *state, int min,
 	int	pulled;
 	int	rev;
 	int	val;
+	int	mid;
 
 	pulled = 0;
 	rev = 0;
+	mid = (min + max) / 2;
 	while (pulled < width && state->a->size > 0 && rev <= state->a->size)
 	{
 		val = state->a->top->rank;
 		if (val >= min && val < max)
 		{
 			op_pb(state);
+			if (val <= mid && state->b->size > 1)
+				op_rb(state);
 			pulled++;
 			rev = 0;
 		}

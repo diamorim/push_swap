@@ -4,6 +4,7 @@
 
 static int	compute_chunk_size(int n);
 static void	restore_to_a(t_prog_state *state);
+
 void	distribute_to_b(t_prog_state *state, int chunk_size,
 			int num_chunks, int n);
 
@@ -14,8 +15,6 @@ void	distribute_to_b(t_prog_state *state, int chunk_size,
 
 	We determind the # of chunks based on the approximate
 	square root of the # of elements in the stack.
-
-	...
 */
 
 void	sort_medium(t_prog_state *state)
@@ -55,7 +54,7 @@ static int	compute_chunk_size(int n)
 	guess = 1;
 	while (guess * guess <= n)
 		guess++;
-	c = guess - 1;
+	c = (guess - 1) * 3;
 	if (c < MIN_CHUNK_SIZE)
 		c = MIN_CHUNK_SIZE;
 	if (c > n)
@@ -64,9 +63,7 @@ static int	compute_chunk_size(int n)
 }
 
 /*
-	Phase 3: repeat until B is empty -- find B's max, smart_rotate it
-	to the top (cheapest direction, <= |B|/2), pa it.  Pa-ing in
-	strictly descending rank order builds a sorted A for free.
+
 */
 static void	restore_to_a(t_prog_state *state)
 {
