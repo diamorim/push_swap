@@ -39,12 +39,10 @@ void	dispatch_algo_strategy(t_prog_state *state)
 		state->strat_used = SIMPLE;
 		sort_simple(state);
 	}
-//	____ This is just a temp placeholder  ---
-// needs to be adapted to MEDIUM still ___
 	else if (state->strat_req == MEDIUM)
 	{
-		state->strat_used = SIMPLE;
-		sort_simple(state);
+		state->strat_used = MEDIUM;
+		sort_medium(state);
  	}
 	else if (state->strat_req == COMPLEX)
 	{

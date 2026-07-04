@@ -150,9 +150,11 @@ void			quick_sort(int arr[], int low, int high);
 int				partition(int arr[], int low, int high);
 int				binary_search(int arr[], int n, int x);
 void			rank(t_prog_state *state);
+void			rank_stack(t_stack *s);
 void			radix_sort(t_prog_state *state);
 void			ft_swop(int *a, int *b);
-
+void			distribute_to_b(t_prog_state *state, int chunk_size,
+					int num_chunks, int n);
 
 // ___ stack_queries.c
 int				find_pos_min(t_stack *s);

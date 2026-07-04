@@ -1,21 +1,28 @@
 NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SRCS = 	main.c \
-		init_utils.c \
-		input_parser.c \
-		input_utils_a.c \
-		input_utils_b.c \
-		sor_compute_disorder.c \
-		sort_strategy_dispatcher.c \
-		sort_adaptive.c \
-		sort_simple_selection.c \
-		sort_medium_chunk.c \
-		sort_complex.c \
-		sort_utils.c \
-		stack_utils.c
-
-
+SRCS =	main.c \
+		stacks_prog/init_utils.c \
+		stacks_prog/stack_queries.c \
+		stacks_prog/stack_utils.c \
+		stacks_prog/stack_utils2.c \
+		input_prog/input_parser.c \
+		input_prog/input_utils_a.c \
+		input_prog/input_utils_b.c \
+		operations_prog/operations_a.c \
+		operations_prog/operations_b.c \
+		operations_prog/operations_double.c \
+		operations_prog/operations_utils.c \
+		sorting_prog/sor_compute_disorder.c \
+		sorting_prog/sort_strategy_dispatcher.c \
+		sorting_prog/sort_adaptive.c \
+		sorting_prog/sort_simple.c \
+		sorting_prog/sort_medium_01.c \
+		sorting_prog/sort_medium_02.c \
+		sorting_prog/sort_medium_03.c \
+		sorting_prog/sort_complex.c \
+		sorting_prog/sort_utils.c \
+		sorting_prog/sort_utils2.c
 
 OBJS = $(SRCS:.c=.o)
 

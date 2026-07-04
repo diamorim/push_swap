@@ -9,8 +9,8 @@ void	sort_adaptive(t_prog_state *state)
 	disorder = state->disorder;
 	if (disorder < 0.2)
 		sort_simple(state);
-	// else if (disorder >= 0.2 && disorder < 0.5)
-	// 	sort_medium(state);
+	else if (disorder >= 0.2 && disorder < 0.5)
+	 	sort_medium(state);
 	else
 		sort_complex(state);
 }
