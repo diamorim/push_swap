@@ -37,7 +37,7 @@ void	dispatch_algo_strategy(t_prog_state *state)
 	if (state->strat_req == SIMPLE)
 	{
 		state->strat_used = SIMPLE;
-		sort_simple(state);
+		sort_insertion(state);
 	}
 	else if (state->strat_req == MEDIUM)
 	{
