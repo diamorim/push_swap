@@ -178,6 +178,13 @@ void	smart_rotate(t_prog_state *state, t_stack *s, int pos)
 		execute_rotation(state, s, s->size - pos, reverse_flag);
 	}
 }
+
+
+//
+//
+//
+
+
 void	ft_swop(int *a, int *b)
 {
 	int	temp;
