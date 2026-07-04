@@ -25,6 +25,8 @@ int		partition(int arr[], int low, int high)
 	ft_swop(&arr[i + 1], &arr[high]);
 	return i + 1;
 }
+
+
 void	quick_sort(int arr[], int low, int high)
 {
 	if (!arr)
@@ -39,6 +41,8 @@ void	quick_sort(int arr[], int low, int high)
 		quick_sort(arr, pi + 1, high);
 	}
 }
+
+
 int		binary_search(int arr[], int n, int x)
 {
 	int	low;
@@ -63,6 +67,8 @@ int		binary_search(int arr[], int n, int x)
 	}
 	return low;
 }
+
+
 int	count_bits(int n)
 {
 	int bits;
@@ -75,6 +81,8 @@ int	count_bits(int n)
 	}
 	return bits;
 }
+
+
 void	rank(t_prog_state *state)
 {
 	int 	*arr;
