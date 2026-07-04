@@ -35,9 +35,7 @@ int	main(int argc, char **argv)
 	t_prog_state	*state;
 
 	if (argc < 2)
-		return (0);
-	if (argc == 2 && ft_isnumber(argv[1]))
-		return (0);
+		return (error_exit(NULL));
 	if (!check_errors(argc, argv))
 		return (error_exit(NULL));
 	state = init_prog_state();
