@@ -129,7 +129,6 @@ void	smart_rotate(t_prog_state *state, t_stack *s, int pos)
 
 //
 //
-//
 
 
 /*
@@ -166,9 +165,9 @@ static void	execute_rotation(t_prog_state *state, t_stack *s, int steps, int rev
 	}
 }
 
-//
-//
-//
+///
+///
+///
 
 void	ft_swop(int *a, int *b)
 {
