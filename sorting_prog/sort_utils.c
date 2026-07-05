@@ -1,26 +1,8 @@
 
 #include "../push_swap.h"
-/*
-	__sort_utils.c__ has functions:
-		- sort_3()
-		- handle_small_sort()
-		- smart_rotate()
 
-		Calls
-			- sort_3()
-			- All the operations (e.g. op_sa, op_rb, etc.)
 
-		Used by:
-		- sort_simple_selection()
-		- sort_adaptive() - indirectly
 
-		May be called in the future by:
-		- sort_medium_chunk()
-
-		___ Important note ____
-			'find_pos_min' nove lives in stack_queries.c in stacks_prog folder.
-
-*/
 
 
 /*
@@ -109,40 +91,6 @@ int	handle_small_sort(t_prog_state *state)
 
 
 /*
- 	__ execute_rotation() __
-  - Executes 'rotate' on a given stack based on instructions
-  from the caller
-  - Caller instructs:
-  	- stack -- which stack to modify
-    - direction - whether to rotate forwards or backwards
-*/
-
-static void	execute_rotation(t_prog_state *state, t_stack *s, int steps, int reverse_flag)
-{
-	int	i;
-
-	i = 0;
-	while (i < steps)
-	{
-		if (s == state->a)
-		{
-			if (reverse_flag)
-				op_rra(state);
-			else
-				op_ra(state);
-		}
-		else
-		{
-			if (reverse_flag)
-				op_rrb(state);
-			else
-				op_rb(state);
-		}
-		i++;
-	}
-}
-
-/*
  	__ smart_rotate() __
 		- Attempts to rotate nodes in a given stack with
 		the least number of ops possible.
@@ -179,11 +127,48 @@ void	smart_rotate(t_prog_state *state, t_stack *s, int pos)
 	}
 }
 
-
 //
 //
 //
 
+
+/*
+ 	__ execute_rotation() __
+  - Executes 'rotate' on a given stack based on instructions
+  from the caller
+  - Caller instructs:
+  	- stack -- which stack to modify
+    - direction - whether to rotate forwards or backwards
+*/
+
+static void	execute_rotation(t_prog_state *state, t_stack *s, int steps, int reverse_flag)
+{
+	int	i;
+
+	i = 0;
+	while (i < steps)
+	{
+		if (s == state->a)
+		{
+			if (reverse_flag)
+				op_rra(state);
+			else
+				op_ra(state);
+		}
+		else
+		{
+			if (reverse_flag)
+				op_rrb(state);
+			else
+				op_rb(state);
+		}
+		i++;
+	}
+}
+
+//
+//
+//
 
 void	ft_swop(int *a, int *b)
 {
