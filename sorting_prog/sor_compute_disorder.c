@@ -19,6 +19,7 @@
 	Every time there a larger number precedes a smaller number,
 	the amount of disorder increases.
 
+	-  0%  disorder looks like [1 2 3 4 5]
 	- 10%  disorder looks like [2 1 3 4 5]
 	- 30%  disorder looks like [3 2 1 4 5]
 	- 100% disorder looks like [5 4 3 2 1]
