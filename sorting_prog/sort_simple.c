@@ -24,7 +24,7 @@
 	if there are 3 or less, then handle_small_sort takes
 	care of the sorting and returns to the caller.
 
-	othewise extract_min_to_three will push everything
+	othewise extract_lowest_to_b will push everything
 	but the three elements with the smallest values to
 	stack b and then sort stack a.
 
@@ -39,7 +39,7 @@ void	sort_simple(t_prog_state *state)
 {
  	if (handle_small_sort(state))
 		return;
-	extract_min_to_three(state);
+	extract_lowest_to_b(state);
 	sort_3(state);
 	while (state->b->size > 0)
 		op_pa(state);
