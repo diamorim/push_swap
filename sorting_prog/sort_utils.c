@@ -6,19 +6,11 @@ static void	execute_rotation(t_prog_state *state, t_stack *s, int steps, int rev
 
 /*
 	____ handle_small_sort() ____
-		- This helper fucntion Handles stacks of size 0–3 so algorithm entry points.
-		- if there are 0 or 1 element(s)
-			- no sorting possible -- caller must deal with this
-			- return (1);
-		- if there are 2 elements
-			- sorts them as needed
-			- return (1);
-		- if there are exactly 3 elements
-			- sorts them with sort3()
-			- return(1);
-		- if there are 4+ elements
-			- caller must handle sorting job
-			- return (0);
+		- 	This helper function acts as a disapatcher that
+		sorts anything less than or equal to 3 elements in a
+		stack (and returns a '1') or otherwise returns to
+		caller so that it knows to perforn a sorting job
+		on 4+ elements.
 */
 
 int	handle_small_sort(t_prog_state *state)
@@ -54,18 +46,18 @@ int	handle_small_sort(t_prog_state *state)
 
 void	sort_3(t_prog_state *state)
 {
-	int	a;
-	int	b;
-	int	c;
+	int	top;
+	int	middle;
+	int	bottom;
 
 	if (!state || !state->a || state->a->size != 3)
 		return ;
-	a = state->a->top->value;
-	b = state->a->top->next->value;
-	c = state->a->top->prev->value;
-	if (a > b && a > c)
+	top = state->a->top->value;
+	middle = state->a->top->next->value;
+	bottom = state->a->top->prev->value;
+	if (top > middle && top > bottom)
 	{
-		if (b > c)
+		if (middle > bottom)
 		{
 			op_sa(state);
 			op_rra(state);
@@ -73,11 +65,11 @@ void	sort_3(t_prog_state *state)
 		else
 			op_ra(state);
 	}
-	else if (a > b)
+	else if (top > middle)
 		op_sa(state);
-	else if (b > c)
+	else if (middle > bottom)
 	{
-		if (a > c)
+		if (top > bottom)
 			op_rra(state);
 		else
 		{
