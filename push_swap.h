@@ -136,7 +136,6 @@ void			dispatch_algo_strategy(t_prog_state *state);
 int				is_sorted_asc(t_stack *s);
 
 void			sort_simple(t_prog_state *state);
-void			sort_insertion(t_prog_state *state);
 
 void			sort_medium(t_prog_state *state);
 void			sort_complex(t_prog_state *state);

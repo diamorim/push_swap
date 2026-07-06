@@ -2,7 +2,7 @@
 #include "../push_swap.h"
 
 
-
+static void	execute_rotation(t_prog_state *state, t_stack *s, int steps, int reverse_flag);
 
 /*
 	____ handle_small_sort() ____
@@ -102,7 +102,7 @@ void	sort_3(t_prog_state *state)
 
 void	extract_min_to_three(t_prog_state *state)
 {
-	int = min_pos;
+	int	min_pos;
 
 	while (state->a->size > 3)
 	{
