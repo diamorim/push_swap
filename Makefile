@@ -17,7 +17,6 @@ SRCS =	main.c \
 		sorting_prog/sort_strategy_dispatcher.c \
 		sorting_prog/sort_adaptive.c \
 		sorting_prog/sort_simple.c \
-		sorting_prog/sort_insertion.c \
 		sorting_prog/sort_medium_01.c \
 		sorting_prog/sort_medium_02.c \
 		sorting_prog/sort_medium_03.c \

@@ -92,8 +92,12 @@ void	sort_3(t_prog_state *state)
 //		____ extract_min_to_three ____
 //		One by one, extract_min_to_three pushes
 //		everything from stack a to stack b
-//		except for the three smallest values in
+//		except for the three largest values in
 //		ascending order.
+//
+//		we use smart_rotate to figure out what is the
+//		most efficient direction to get the element
+//		with the smallest value to the top.
 //
 
 void	extract_min_to_three(t_prog_state *state)

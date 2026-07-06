@@ -20,6 +20,17 @@
 	with worst case efficiency of O(n^2) as chosen by
 	the user or the adaptive algorithm based on the disorder
 	metric (decided per adaptive algorithm).
+
+	if there are 3 or less, then handle_small_sort takes
+	care of the sorting and returns to the caller.
+
+	othewise extract_min_to_three will push everything
+	but the three elements with the smallest values to
+	stack b and then sort stack a.
+
+	then element by element, each element in stack b
+	will be pushed back to stack a.
+
 */
 
 #include "../push_swap.h"
