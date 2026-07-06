@@ -27,13 +27,9 @@
 void	sort_simple(t_prog_state *state)
 {
  	if (handle_small_sort(state))
- 		return ;
- 	while (state->a->size > 3)
- 	{
- 		smart_rotate(state, state->a, find_pos_min(state->a));
- 		op_pb(state);
- 	}
- 	sort_3(state);
- 	while (state->b->size > 0)
+		return;
+	extract_min_to_three(state);
+	sort_3(state);
+	while (state->b->size > 0)
 		op_pa(state);
 }

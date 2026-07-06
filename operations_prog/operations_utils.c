@@ -4,6 +4,7 @@
 void push(t_stack *stack_1, t_stack *stack_2)
 {
 	t_node *top_1;
+
 	if (!stack_1 || !stack_2 || stack_1->size == 0)
 		return;
 	top_1 = stack_1->top;

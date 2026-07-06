@@ -146,6 +146,7 @@ void			sort_complex(t_prog_state *state);
 int				count_bits(int n);
 void			sort_3(t_prog_state *state);
 int				handle_small_sort(t_prog_state *state);
+void			extract_min_to_three(t_prog_state *state);
 void			smart_rotate(t_prog_state *state, t_stack *s, int pos);
 void			quick_sort(int arr[], int low, int high);
 int				partition(int arr[], int low, int high);

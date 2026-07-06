@@ -17,7 +17,7 @@
 	__ Uses __
 		- is_sorted_asc()
 		- sort_adaptive()
-im just		- sort_simple()
+		- sort_simple()
 		- sort_medium()
 		- sort_complex()
 
@@ -37,7 +37,7 @@ void	dispatch_algo_strategy(t_prog_state *state)
 	if (state->strat_req == SIMPLE)
 	{
 		state->strat_used = SIMPLE;
-		sort_insertion(state);
+		sort_simple(state);
 	}
 	else if (state->strat_req == MEDIUM)
 	{

@@ -4,6 +4,42 @@
 
 
 
+/*
+	____ handle_small_sort() ____
+		- This helper fucntion Handles stacks of size 0–3 so algorithm entry points.
+		- if there are 0 or 1 element(s)
+			- no sorting possible -- caller must deal with this
+			- return (1);
+		- if there are 2 elements
+			- sorts them as needed
+			- return (1);
+		- if there are exactly 3 elements
+			- sorts them with sort3()
+			- return(1);
+		- if there are 4+ elements
+			- caller must handle sorting job
+			- return (0);
+*/
+
+int	handle_small_sort(t_prog_state *state)
+{
+	if (!state || !state->a)
+		return (1);
+	if (state->a->size <= 1)
+		return (1);
+	if (state->a->size == 2)
+	{
+		op_sa(state);
+		return (1);
+	}
+	if (state->a->size == 3)
+	{
+		sort_3(state);
+		return (1);
+	}
+	return (0);
+}
+
 
 /*
 	Sorts a 3-element stack in 1-or-2 operations.
@@ -52,46 +88,29 @@ void	sort_3(t_prog_state *state)
 }
 
 
-/*
-	____ handle_small_sort() ____
-		- This helper fucntion Handles stacks of size 0–3 so algorithm entry points.
-		- if there are 0 or 1 element(s)
-			- no sorting possible -- caller must deal with this
-			- return (1);
-		- if there are 2 elements
-			- sorts them as needed
-			- return (1);
-		- if there are exactly 3 elements
-			- sorts them with sort3()
-			- return(1);
-		- if there are 4+ elements
-			- caller must handle sorting job
-			- return (0);
-*/
 
-int	handle_small_sort(t_prog_state *state)
+//		____ extract_min_to_three ____
+//		One by one, extract_min_to_three pushes
+//		everything from stack a to stack b
+//		except for the three smallest values in
+//		ascending order.
+//
+
+void	extract_min_to_three(t_prog_state *state)
 {
-	if (!state || !state->a)
-		return (1);
-	if (state->a->size <= 1)
-		return (1);
-	if (state->a->size == 2)
+	int = min_pos;
+
+	while (state->a->size > 3)
 	{
-		if (state->a->top->value > state->a->top->next->value)
-			op_sa(state);
-		return (1);
+		min_pos = find_pos_min(state->a);
+		smart_rotate(state, state->a, min_pos);
+		op_pb(state);
 	}
-	if (state->a->size == 3)
-	{
-		sort_3(state);
-		return (1);
-	}
-	return (0);
 }
 
 
 /*
- 	__ smart_rotate() __
+	__ smart_rotate() __
 		- Attempts to rotate nodes in a given stack with
 		the least number of ops possible.
 		- Brings a node at a specific position to the top
@@ -99,6 +118,17 @@ int	handle_small_sort(t_prog_state *state)
 
 		- Calculates if the position of an element is closer
 		to the top or the bottom of the stack.
+
+		pos 0  ← top
+		pos 1
+		pos 2
+		pos 3
+		pos 4   ← midpoint (size/2 = 5)
+		pos 5
+		pos 6
+		pos 7
+		pos 8
+		pos 9  ← bottom
 
 		- If the position of the element in the stack is in the:
 			- first half ----->   rotates forward
@@ -129,12 +159,14 @@ void	smart_rotate(t_prog_state *state, t_stack *s, int pos)
 
 //
 //
+//
 
 
 /*
  	__ execute_rotation() __
   - Executes 'rotate' on a given stack based on instructions
-  from the caller
+  from the caller -- smart_rotate()
+
   - Caller instructs:
   	- stack -- which stack to modify
     - direction - whether to rotate forwards or backwards
