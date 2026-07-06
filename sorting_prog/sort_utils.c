@@ -91,7 +91,7 @@ void	sort_3(t_prog_state *state)
 //		to get the element with the smallest value to the top.
 //
 
-void	extract_lowest_to_b(t_prog_state *state)
+void	extract_move_lowest_to_b(t_prog_state *state)
 {
 	int	min_pos;
 

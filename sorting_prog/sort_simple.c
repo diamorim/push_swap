@@ -39,7 +39,7 @@ void	sort_simple(t_prog_state *state)
 {
  	if (handle_small_sort(state))
 		return;
-	extract_lowest_to_b(state);
+	extract_move_lowest_to_b(state);
 	sort_3(state);
 	while (state->b->size > 0)
 		op_pa(state);
