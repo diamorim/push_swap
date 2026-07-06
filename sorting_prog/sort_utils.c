@@ -46,18 +46,18 @@ int	handle_small_sort(t_prog_state *state)
 
 void	sort_3(t_prog_state *state)
 {
-	int	top;
-	int	middle;
-	int	bottom;
+	int	val_top;
+	int	val_middle;
+	int	val_bottom;
 
 	if (!state || !state->a || state->a->size != 3)
 		return ;
-	top = state->a->top->value;
-	middle = state->a->top->next->value;
-	bottom = state->a->top->prev->value;
-	if (top > middle && top > bottom)
+	val_top = state->a->top->value;
+	val_middle = state->a->top->next->value;
+	val_bottom = state->a->top->prev->value;
+	if (val_top > val_middle && val_top > val_bottom)
 	{
-		if (middle > bottom)
+		if (val_middle > val_bottom)
 		{
 			op_sa(state);
 			op_rra(state);
@@ -65,11 +65,11 @@ void	sort_3(t_prog_state *state)
 		else
 			op_ra(state);
 	}
-	else if (top > middle)
+	else if (val_top > val_middle)
 		op_sa(state);
-	else if (middle > bottom)
+	else if (val_middle > val_bottom)
 	{
-		if (top > bottom)
+		if (val_top > val_bottom)
 			op_rra(state);
 		else
 		{
