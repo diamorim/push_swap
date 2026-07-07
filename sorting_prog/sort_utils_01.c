@@ -67,6 +67,8 @@ static void	rotate_largest_to_bottom(t_prog_state *state, int val_top,
 {
 	if (val_top > val_middle && val_top > val_bottom)
 		op_ra(state);
+		// 3, 2, 1
+		// 
 	else if (val_middle > val_top && val_middle > val_bottom)
 		op_rra(state);
 }

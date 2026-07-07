@@ -1,4 +1,4 @@
-
+#include "../push_swap.h"
 /*
 	__sort_simple_selection.c__ includes:
 		- sort_simple()

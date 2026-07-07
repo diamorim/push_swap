@@ -5,7 +5,6 @@ SRCS =	main.c \
 		stacks_prog/init_utils.c \
 		stacks_prog/stack_queries.c \
 		stacks_prog/stack_utils.c \
-		stacks_prog/stack_utils2.c \
 		input_prog/input_parser.c \
 		input_prog/input_utils_a.c \
 		input_prog/input_utils_b.c \
@@ -20,10 +19,10 @@ SRCS =	main.c \
 		sorting_prog/sort_medium_01.c \
 		sorting_prog/sort_medium_02.c \
 		sorting_prog/sort_medium_03.c \
-		sorting_prog/sort_complex.c \
+		sorting_prog/sort_complex_01.c \
+		sorting_prog/sort_complex_02.c \
 		sorting_prog/sort_utils_01.c \
 		sorting_prog/sort_utils_02.c \
-		sorting_prog/sort_utils_03.c
 
 OBJS = $(SRCS:.c=.o)
 
