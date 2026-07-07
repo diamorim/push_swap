@@ -17,9 +17,8 @@ SRCS =	main.c \
 		sorting_prog/sort_adaptive.c \
 		sorting_prog/sort_simple.c \
 		sorting_prog/sort_medium_01_primary.c \
-		sorting_prog/sort_medium_02_rank.c \
-		sorting_prog/sort_medium_03_compute_chunk.c \
-		sorting_prog/sort_medium_04.c \
+		sorting_prog/sort_medium_02_compute_chunk.c \
+		sorting_prog/sort_medium_03.c \
 		sorting_prog/sort_complex_01.c \
 		sorting_prog/sort_utils_01.c \
 		sorting_prog/sort_utils_02.c \
