@@ -4,6 +4,14 @@ void	rank(t_prog_state *state);
 int		count_bits(int n);
 void	push_all_a(t_prog_state *state);
 
+
+///
+// ---- sort_complex ____
+// Function calculates and assigns a rank to all of
+// the values inside of a given stack.
+//
+//
+//
 void	sort_complex(t_prog_state *state)
 {
 	int	stack_size;
@@ -32,6 +40,14 @@ void	sort_complex(t_prog_state *state)
 	}
 }
 
+//
+// ____ count_bits ____
+// Function counts how many bits are neede to
+// represent a given number, `n`.
+//
+// I (Noah) don't get this yet....
+//
+
 int	count_bits(int n)
 {
 	int bits;
@@ -42,8 +58,16 @@ int	count_bits(int n)
 		n = n >> 1;
 		bits++;
 	}
-	return bits;
+	return (bits);
 }
+
+//
+// ____ push_all_to_stack_a ____
+// Function pushes nodes from stack b to
+// stack a from top to bottom (??)
+//
+// I, Noah, need to visualize this some more times.
+//
 
 void	push_all_to_stack_a(t_prog_state *state)
 {
