@@ -5,14 +5,25 @@ int	compute_chunk_size(int n);
 void	distribute_to_stack_b(t_prog_state *state, int chunk_size,
 			int num_chunks, int n);
 
-/*
-	The idea of this function is first split the stack
-	into evenly sized chunks -- we do this to minimize the
-	number of operations.
+//
+	//	The idea of this function is first split the stack
+//	into evenly sized chunks -- we do this to minimize the
+//	number of operations.
+//
+//	We determind the # of chunks based on the approximate
+//	square root of the # of elements in the stack.
+//
+//	sort_medium will go through every element in stack `a` at
+//	least once and push 1 chunk worth of elements into stack 'b'
+// 	on each pass and on successive journeys examine fewer &
+// fewer elements.
+//
+// The number of chunks is detemined by the approximate sq. root
+// of the number of elements (i.e. compute_chunk()).
+//
+//
+//
 
-	We determind the # of chunks based on the approximate
-	square root of the # of elements in the stack.
-*/
 
 void	sort_medium(t_prog_state *state)
 {
@@ -31,5 +42,3 @@ void	sort_medium(t_prog_state *state)
 	distribute_to_stack_b(state, chunk_size, num_chunks, n);
 	restore_to_stack_a(state);
 }
-
-
