@@ -21,9 +21,9 @@ SRCS =	main.c \
 		sorting_prog/sort_medium_03_compute_chunk.c \
 		sorting_prog/sort_medium_04.c \
 		sorting_prog/sort_complex_01.c \
-		sorting_prog/sort_complex_02.c \
 		sorting_prog/sort_utils_01.c \
 		sorting_prog/sort_utils_02.c \
+		sorting_prog/sort_utils_03.c
 
 OBJS = $(SRCS:.c=.o)
 

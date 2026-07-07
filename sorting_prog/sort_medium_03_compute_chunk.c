@@ -14,17 +14,17 @@
 				n = 15	c = 3
 				n = 15	c = 3)
 */
-static int	compute_chunk_size(int n)
+int	compute_chunk_size(int n)
 {
 	int	guess;
 	int	c;
-	//n = 4
+	//n = 9
 	guess = 1;
 	while (guess * guess <= n)
 		guess++;
-	//
+	// guess = 0
 	c = (guess - 1);
-	//c = 9
+	//c = 2
 	if (c < MIN_CHUNK_SIZE)
 		c = MIN_CHUNK_SIZE;
 	if (c > n)

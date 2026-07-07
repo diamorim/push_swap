@@ -1,7 +1,6 @@
 #include "../push_swap.h"
 
-static int	compute_chunk_size(int n);
-static void	restore_to_a(t_prog_state *state);
+int	compute_chunk_size(int n);
 
 void	distribute_to_stack_b(t_prog_state *state, int chunk_size,
 			int num_chunks, int n);
