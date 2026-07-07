@@ -1,5 +1,20 @@
 #include "../push_swap.h"
-
+//
+// ____ rank() ____
+//
+// Function inherits a stack (via state) and
+// create and migrates the values to an array.
+//
+// Next it sorts the values in the array using
+// quick_sort.
+//
+// Then, the function assigns inside of the stack a rank
+// for each of the values stored in array/stack kusing binary
+// search inside of the array.
+//
+// Lastly, the function frees up memory allocated to the array
+// as it is no longer needed.
+//
 void	rank(t_prog_state *state)
 {
 	int 	*arr;
