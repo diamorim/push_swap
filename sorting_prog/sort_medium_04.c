@@ -4,7 +4,7 @@ static void	pull_band_elements(t_prog_state *state, int min,
 				int max, int width);
 static void	scan_one_band(t_prog_state *state, int band, int chunk_size,
 				int n);
-static void	restore_to_stack_a(t_prog_state *state)
+static void	restore_to_stack_a(t_prog_state *state);
 
 /*
 	...
