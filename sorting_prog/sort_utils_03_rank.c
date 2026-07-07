@@ -10,6 +10,8 @@ void	rank(t_prog_state *state)
 		return ;
 	i = 0;
 	arr = stack_to_arr(state->a);
+	if (!arr)
+		return;
 	quick_sort(arr, 0, state->a->size - 1);
 	current_node = state->a->top;
 	while (i < state->a->size)
@@ -21,6 +23,18 @@ void	rank(t_prog_state *state)
 	free(arr);
 }
 
+//
+// ____ stack_to_arr() ____
+//
+// Function creates and allocates memory for an
+// array and populates the array based on values
+// from a given stack.
+//
+// Function loops through the entire stack from
+// beginning to end and returns the array, `arr`
+// to the caller.
+//
+
 int	*stack_to_arr(t_stack *stack)
 {
 	int	i;
@@ -28,11 +42,11 @@ int	*stack_to_arr(t_stack *stack)
 	t_node *current_node;
 
 	if (!stack || !stack->size || !stack->top)
-		return NULL;
+		return (NULL);
 	i = 0;
-	arr = malloc(stack->size * sizeof(int));
+	arr = malloc(stack->size * sizeof(*arr));
 	if (!arr)
-		return malloc(0);
+		return (NULL);
 
 	current_node = stack->top;
 
@@ -42,21 +56,25 @@ int	*stack_to_arr(t_stack *stack)
 		current_node = current_node->next;
 		i++;
 	}
-	return arr;
+	return (arr);
 }
+
+
+
+
 
 void	quick_sort(int arr[], int low, int high)
 {
 	if (!arr)
-		return ;
+		return;
 
 	if (low < high)
 	{
-		int	pi;
+		int	pivot_idx;
 
-		pi = partition(arr, low, high);
-		quick_sort(arr, low, pi - 1);
-		quick_sort(arr, pi + 1, high);
+		pivot_idx = partition(arr, low, high);
+		quick_sort(arr, low, pivot_idx - 1);
+		quick_sort(arr, pivot_idx + 1, high);
 	}
 }
 
@@ -86,7 +104,28 @@ int		partition(int arr[], int low, int high)
 	return i + 1;
 }
 
-int		binary_search(int arr[], int n, int x)
+
+// ____ binary_search() ____
+// Use of this function assumes that the array it
+// is searching through is presorted.
+//
+// Function assigns an index, 'mid', which begins initially
+// between the beginning ('0') & end ('n') positions of the array.
+//
+// If the arr[mid] == target, function returns that position,
+// mid.
+//
+// If arr[mid] < target, then process repeats at the second half
+// of the array.
+//
+// If arr[mid] > target, then process repeats in the first half
+// of the array.
+//
+// Function continues to loop through a divide-and-conquer strategy
+// until, ultimatealy, it finds the target, at which point:
+// arr[mid] == target.
+//
+int		binary_search(int arr[], int n, int target)
 {
 	int	low;
 	int	high;
@@ -101,12 +140,12 @@ int		binary_search(int arr[], int n, int x)
 		int	mid;
 
 		mid = low + (high - low) / 2;
-		if (x == arr[mid])
+		if (arr[mid] == target)
 			return mid;
-		if (arr[mid] < x)
+		if (arr[mid] < target)
 			low = mid + 1;
 		else
 			high = mid - 1;
 	}
-	return low;
+	return (low);
 }

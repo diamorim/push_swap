@@ -45,7 +45,7 @@ int	count_bits(int n)
 	return bits;
 }
 
-void	push_all_a(t_prog_state *state)
+void	push_all_to_stack_a(t_prog_state *state)
 {
 	int i;
 	int	target;
