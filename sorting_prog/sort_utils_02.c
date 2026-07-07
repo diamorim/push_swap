@@ -13,7 +13,7 @@ static void	execute_rotation(t_prog_state *state, t_stack *s, int steps, int rev
 //		to get the element with the smallest value to the top.
 //
 
-void	extract_move_lowest_to_b(t_prog_state *state)
+void	extract_move_lowest_to_stack_b(t_prog_state *state)
 {
 	int	min_pos;
 
