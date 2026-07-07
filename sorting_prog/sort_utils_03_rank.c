@@ -9,7 +9,7 @@
 // quick_sort.
 //
 // Then, the function assigns inside of the stack a rank
-// for each of the values stored in array/stack kusing binary
+// for each of the values stored in array/stack using binary
 // search inside of the array.
 //
 // Lastly, the function frees up memory allocated to the array
@@ -22,7 +22,7 @@ void	rank(t_prog_state *state)
 	int		i;
 
 	if (!state || !state->a || state->a->size == 0 || !state->a->top)
-		return ;
+		return;
 	i = 0;
 	arr = stack_to_arr(state->a);
 	if (!arr)
@@ -74,19 +74,25 @@ int	*stack_to_arr(t_stack *stack)
 	return (arr);
 }
 
-
-
-
-
+//
+// ____ quick_sort ____
+// Function sorts an array ---> the very first time, and
+// only time, the low is `0` and the high is the `size - 1`.
+//
+// The partition, as we will see in the partition() function
+// is always set to 'high' for whichever section is being
+// sorted.
+//
+//
 void	quick_sort(int arr[], int low, int high)
 {
+	int	pivot_idx;
+
 	if (!arr)
 		return;
 
 	if (low < high)
 	{
-		int	pivot_idx;
-
 		pivot_idx = partition(arr, low, high);
 		quick_sort(arr, low, pivot_idx - 1);
 		quick_sort(arr, pivot_idx + 1, high);
@@ -116,7 +122,7 @@ int		partition(int arr[], int low, int high)
 		j++;
 	}
 	ft_swop(&arr[i + 1], &arr[high]);
-	return i + 1;
+	return (i + 1);
 }
 
 
@@ -144,19 +150,18 @@ int		binary_search(int arr[], int n, int target)
 {
 	int	low;
 	int	high;
+	int	mid;
 
 	if (!arr)
-		return -1;
+		return (-1);
 
 	low = 0;
 	high = n-1;
 	while (low < high)
 	{
-		int	mid;
-
 		mid = low + (high - low) / 2;
 		if (arr[mid] == target)
-			return mid;
+			return (mid);
 		if (arr[mid] < target)
 			low = mid + 1;
 		else
