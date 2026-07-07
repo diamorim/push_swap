@@ -1,4 +1,6 @@
 
+#include "../push_swap.h"
+
 static void	execute_rotation(t_prog_state *state, t_stack *s, int steps, int reverse_flag);
 
 
@@ -112,14 +114,4 @@ static void	execute_rotation(t_prog_state *state, t_stack *s, int steps, int rev
 		}
 		i++;
 	}
-}
-
-
-void	ft_swop(int *a, int *b)
-{
-	int	temp;
-
-	temp = *a;
-	*a = *b;
-	*b = temp;
 }
