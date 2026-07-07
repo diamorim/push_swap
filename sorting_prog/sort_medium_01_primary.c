@@ -5,7 +5,7 @@
 static int	compute_chunk_size(int n);
 static void	restore_to_a(t_prog_state *state);
 
-void	distribute_to_b(t_prog_state *state, int chunk_size,
+void	distribute_to_stack_b(t_prog_state *state, int chunk_size,
 			int num_chunks, int n);
 
 /*
@@ -31,46 +31,8 @@ void	sort_medium(t_prog_state *state)
 	rank_stack(state->a);
 	chunk_size = compute_chunk_size(n);
 	num_chunks = (n + chunk_size - 1) / chunk_size;
-	distribute_to_b(state, chunk_size, num_chunks, n);
-	restore_to_a(state);
+	distribute_to_stack_b(state, chunk_size, num_chunks, n);
+	restore_to_stack_a(state);
 }
 
 /*
-	n is the number of elements in the stack.
-
-	Function returns approximately the square root
-	of the number of elements in the stack.
-
-	(e.g. if	n = 100 c = 10,
-				n = 17	c = 4
-				n = 16	c = 4
-				n = 15	c = 3
-				n = 15	c = 3)
-*/
-static int	compute_chunk_size(int n)
-{
-	int	guess;
-	int	c;
-
-	guess = 1;
-	while (guess * guess <= n)
-		guess++;
-	c = (guess - 1);
-	if (c < MIN_CHUNK_SIZE)
-		c = MIN_CHUNK_SIZE;
-	if (c > n)
-		c = n;
-	return (c);
-}
-
-/*
-
-*/
-static void	restore_to_a(t_prog_state *state)
-{
-	while (state->b->size > 0)
-	{
-		smart_rotate(state, state->b, find_pos_max(state->b));
-		op_pa(state);
-	}
-}
