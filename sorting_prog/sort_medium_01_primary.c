@@ -25,7 +25,7 @@ void	sort_medium(t_prog_state *state)
 	if (handle_small_sort(state))
 		return ;
 	n = state->a->size;
-	rank_stack(state->a);
+	rank(state);
 	chunk_size = compute_chunk_size(n);
 	num_chunks = (n + chunk_size - 1) / chunk_size;
 	distribute_to_stack_b(state, chunk_size, num_chunks, n);
