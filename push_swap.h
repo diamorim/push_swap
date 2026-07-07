@@ -156,6 +156,7 @@ void			radix_sort(t_prog_state *state);
 void			ft_swop(int *a, int *b);
 void			distribute_to_b(t_prog_state *state, int chunk_size,
 					int num_chunks, int n);
+static int		compute_chunk_size(int n);
 
 // ___ stack_queries.c
 int				find_pos_min(t_stack *s);

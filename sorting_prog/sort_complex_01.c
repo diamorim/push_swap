@@ -3,6 +3,7 @@
 void	rank(t_prog_state *state);
 int		count_bits(int n);
 void	push_all_a(t_prog_state *state);
+
 void	sort_complex(t_prog_state *state)
 {
 	int	stack_size;

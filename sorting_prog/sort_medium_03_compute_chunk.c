@@ -1,3 +1,6 @@
+#include "../push_swap.h"
+
+#define MIN_CHUNK_SIZE 2
 
 /*
 	n is the number of elements in the stack.
@@ -15,11 +18,13 @@ static int	compute_chunk_size(int n)
 {
 	int	guess;
 	int	c;
-
+	//n = 4
 	guess = 1;
 	while (guess * guess <= n)
 		guess++;
+	//
 	c = (guess - 1);
+	//c = 9
 	if (c < MIN_CHUNK_SIZE)
 		c = MIN_CHUNK_SIZE;
 	if (c > n)

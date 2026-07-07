@@ -1,7 +1,5 @@
 #include "../push_swap.h"
 
-#define MIN_CHUNK_SIZE 2
-
 static int	compute_chunk_size(int n);
 static void	restore_to_a(t_prog_state *state);
 
@@ -35,4 +33,4 @@ void	sort_medium(t_prog_state *state)
 	restore_to_stack_a(state);
 }
 
-/*
+
