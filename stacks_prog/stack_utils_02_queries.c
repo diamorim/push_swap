@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_utils_02_queries.c                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/08 13:56:43 by diamo             #+#    #+#             */
+/*   Updated: 2026/07/08 13:57:10 by diamo            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 /*
 	____ stack_queries.c ____
 		The purpose of this file is to store functions
@@ -60,7 +72,7 @@ int	find_pos_min(t_stack *s)
 		and the `bottom` of the stack is `size -1`.
 */
 
-int		find_pos_max(t_stack *s)
+int	find_pos_max(t_stack *s)
 {
 	t_node	*curr;
 	int		pos_max;

@@ -6,7 +6,7 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 13:43:55 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/08 13:45:35 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/08 13:57:46 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	stack_add_back(t_stack *stack, t_node *new)
 		else
 		{
 			stack->top->prev->next = new;
-			change_next_prev(new, stack->top->prev ,stack->top);
+			change_next_prev(new, stack->top->prev, stack->top);
 			stack->top->prev = new;
 		}
 	}
