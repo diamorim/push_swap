@@ -1,36 +1,48 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   operations_b.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/08 18:31:48 by diamo             #+#    #+#             */
+/*   Updated: 2026/07/08 18:32:29 by diamo            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-void op_sb(t_prog_state *state)
+void	op_sb(t_prog_state *state)
 {
 	if (!state || !state->b || state->b->size < 2)
-		return;
+		return ;
 	swap(state->b);
 	record_ops(state, OP_SB);
 	ft_putstr_fd("sb\n", 1);
 }
 
-void op_pb(t_prog_state *state)
+void	op_pb(t_prog_state *state)
 {
- 	if (!state || !state->a || state->a->size == 0)
-		return;
+	if (!state || !state->a || state->a->size == 0)
+		return ;
 	push(state->a, state->b);
 	record_ops(state, OP_PB);
 	ft_putstr_fd("pb\n", 1);
 }
 
-void op_rb(t_prog_state *state)
+void	op_rb(t_prog_state *state)
 {
 	if (!state || !state->b || state->b->size < 2)
-		return;
+		return ;
 	rotate(state->b);
 	record_ops(state, OP_RB);
 	ft_putstr_fd("rb\n", 1);
 }
 
-void op_rrb(t_prog_state *state)
+void	op_rrb(t_prog_state *state)
 {
 	if (!state || !state->b || state->b->size < 2)
-		return;
+		return ;
 	reverse_rotate(state->b);
 	record_ops(state, OP_RRB);
 	ft_putstr_fd("rrb\n", 1);

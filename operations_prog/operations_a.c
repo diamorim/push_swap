@@ -6,43 +6,43 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 09:26:05 by diamo             #+#    #+#             */
-/*   Updated: 2026/06/29 17:13:41 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/08 18:31:39 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void op_sa(t_prog_state *state)
+void	op_sa(t_prog_state *state)
 {
 	if (!state || !state->a || state->a->size < 2)
-		return;
+		return ;
 	swap(state->a);
 	record_ops(state, OP_SA);
 	ft_putstr_fd("sa\n", 1);
 }
 
-void op_pa(t_prog_state *state)
+void	op_pa(t_prog_state *state)
 {
 	if (!state || !state->b || state->b->size == 0)
-		return;
+		return ;
 	push(state->b, state->a);
 	record_ops(state, OP_PA);
 	ft_putstr_fd("pa\n", 1);
 }
 
-void op_ra(t_prog_state *state)
+void	op_ra(t_prog_state *state)
 {
 	if (!state || !state->a || state->a->size < 2)
-		return;
+		return ;
 	rotate(state->a);
 	record_ops(state, OP_RA);
 	ft_putstr_fd("ra\n", 1);
 }
 
-void op_rra(t_prog_state *state)
+void	op_rra(t_prog_state *state)
 {
 	if (!state || !state->a || state->a->size < 2)
-		return;
+		return ;
 	reverse_rotate(state->a);
 	record_ops(state, OP_RRA);
 	ft_putstr_fd("rra\n", 1);
