@@ -6,12 +6,11 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 16:21:03 by diamo             #+#    #+#             */
-/*   Updated: 2026/06/26 15:03:38 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/08 19:15:40 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
 
 void	run_prog(t_prog_state *state)
 {
@@ -23,11 +22,11 @@ void	run_prog(t_prog_state *state)
 	dispatch_algo_strategy(state);
 }
 
-static int   error_exit(t_prog_state *state)
+static int	error_exit(t_prog_state *state)
 {
-   free_prog_state(state);
-   write(2, "Error\n", 6);
-   return (1);
+	free_prog_state(state);
+	write(2, "Error\n", 6);
+	return (1);
 }
 
 int	main(int argc, char **argv)
