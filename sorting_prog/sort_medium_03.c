@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_medium_03.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/08 14:38:08 by diamo             #+#    #+#             */
+/*   Updated: 2026/07/08 15:19:40 by diamo            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-static void	pull_band_elements(t_prog_state *state, int min,
-				int max, int width);
-static void	scan_one_band(t_prog_state *state, int band, int chunk_size,
+static void	pull_chuncks_to_b(t_prog_state *state, int chunck_start,
+				int chunck_end, int chunck_width);
+static void	scan_one_chunck(t_prog_state *state, int band, int chunk_size,
 				int n);
 
 /*
@@ -16,52 +28,53 @@ void	distribute_to_stack_b(t_prog_state *state, int chunk_size,
 	i = 0;
 	while (i < num_chunks)
 	{
-		scan_one_band(state, i, chunk_size, n);
+		scan_one_chunck(state, i, chunk_size, n);
 		i++;
 	}
 }
 
 /*
-
+	
 */
-static void	scan_one_band(t_prog_state *state, int band, int chunk_size,
+static void	scan_one_chunck(t_prog_state *state, int band, int chunk_size,
 				int n)
 {
-	int	min;
-	int	max;
-	int	width;
+	int	chunck_start;
+	int	chunck_end;
+	int	chunck_width;
 
-	min = band * chunk_size;
-	max = min + chunk_size;
-	if (max > n)
-		max = n;
-	width = max - min;
-	pull_band_elements(state, min, max, width);
+	chunck_start = band * chunk_size;
+	chunck_end = chunck_start + chunk_size;
+	if (chunck_end > n)
+		chunck_end = n;
+	chunck_width = chunck_end - chunck_start;
+	pull_chuncks_to_b(state, chunck_start, chunck_end, chunck_width);
 }
 
 /*
 
 */
-static void	pull_band_elements(t_prog_state *state, int min,
-				int max, int width)
+static void	pull_chuncks_to_b(t_prog_state *state, int chunck_start,
+				int chunck_end, int chunck_width)
 {
-	int	pulled;
+	int	pulled_nodes_amount;
 	int	rev;
-	int	val;
-	int	mid;
+	int	a_top_node_val;
+	int	chunck_mid;
 
-	pulled = 0;
+	pulled_nodes_amount = 0;
 	rev = 0;
-	mid = (min + max) / 2;
-	while (pulled < width && state->a->size > 0 && rev <= state->a->size)
+	chunck_mid = (chunck_start + chunck_end) / 2;
+	while (pulled_nodes_amount < chunck_width && state->a->size > 0
+		&& rev <= state->a->size)
 	{
-		val = state->a->top->rank;
-		if (val >= min && val < max)
+		a_top_node_val = state->a->top->rank;
+		if (a_top_node_val >= chunck_start && a_top_node_val < chunck_end)
 		{
 			op_pb(state);
-			if (val <= mid && state->b->size > 1)
+			if (a_top_node_val <= chunck_mid && state->b->size > 1)
 				op_rb(state);
-			pulled++;
+			pulled_nodes_amount++;
 			rev = 0;
 		}
 		else
