@@ -121,28 +121,3 @@ void change_next_prev(t_node *node, t_node *new_prev, t_node *new_next)
 	node->next = new_next;
 	node->prev = new_prev;
 }
-
-
-int	*stack_to_arr(t_stack *stack)
-{
-	int	i;
-	int	*arr;
-	t_node *current_node;
-
-	if (!stack || !stack->size || !stack->top)
-		return NULL;
-	i = 0;
-	arr = malloc(stack->size * sizeof(int));
-	if (!arr)
-		return NULL;
-
-	current_node = stack->top;
-
-	while (i < stack->size)
-	{
-		arr[i] = current_node->value;
-		current_node = current_node->next;
-		i++;
-	}
-	return arr;
-}
