@@ -40,5 +40,5 @@ void	sort_medium(t_prog_state *state)
 	chunk_size = compute_chunk_size(n);
 	num_chunks = (n + chunk_size - 1) / chunk_size;
 	distribute_to_stack_b(state, chunk_size, num_chunks, n);
-	restore_to_stack_a(state);
+	push_elements_back_to_stack_a(state);
 }
