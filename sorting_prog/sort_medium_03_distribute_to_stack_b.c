@@ -83,11 +83,10 @@ static void	process_one_band(t_prog_state *state, int band_idx, int chunk_size,
 //_____ pull_elements_from_band() _____
 // Each "band" is simply a chunk (a grouping of elements)
 //
-// pulled	=	# of elements pulled from stack 'a' to stack 'b'
+// moved	=	# of elements pulled from stack 'a' to stack 'b'
 // 				in a given round (using this function)
 // rev		=	# of rotations since last match
 // r		= 	the rank of a given element being examined in stack 'a'
-// mid		=	the mid-way point between 'min' and 'max' which are
 //
 // The idea of the function is to push elements from stack 'a' to stack 'b'
 // such that elements with a higher rank (they hold larger values relative to
@@ -105,36 +104,7 @@ static void	process_one_band(t_prog_state *state, int band_idx, int chunk_size,
 // 		If the rank of the element fits within the current
 // 		chunk's [min, max) range, push that element to stack 'b'.
 //
-// 			Then, if the rank, 'r', of an element is in the lower half of
-// 				the given band range, rotate stack 'b' (op_rb) so that the higher
-// 				ranked elements (larger numbers) stay on top.
-//
-// 				So imagine that we are processing:
-// 							band range:		101 - 200
-// 				 we have a new element:		148
-// 						  in the stack:		171
-// 											125
-// 											128
-// 											103
-//				in this case, the function will take
-// 				element 148 and move it from 'a' to 'b' and then
-// 											148
-// 											171
-// 											125
-// 											128
-// 											103
-//
-//				and then it will rotate stack 'b'
-// 				so that now 				171
-// 											125
-// 											128
-// 											103
-// 											148
-//
-// 				This slightly pre-sorts stack 'b' so that, later on,
-// 				restore_to_stack_a() performs fewer operations.
-//
-//		Otherwise, rotate past it in stack 'a' via op_ra().
+//		Otherwise, rotate to next element in stack 'a' via op_ra().
 //
 // 		Repeat this process until all relevant elements in the current chunk
 //		have been moved to stack 'b'.
@@ -143,18 +113,18 @@ static void	process_one_band(t_prog_state *state, int band_idx, int chunk_size,
 // 		so the sorting process moves more quickly over time.
 //
 
-static void	pull_elements_from_band(t_prog_state *state, int min,
+static void	move_elements_to_stack_b(t_prog_state *state, int min,
 				int max, int width)
 {
-	int	pulled;
+	int	moved;
 	int	rev;
 	int	r;
 //	int	mid;
 
-	pulled = 0;
+	moved = 0;
 	rev = 0;
 //	mid = (min + max) / 2;
-	while (pulled < width && state->a->size > 0 && rev <= state->a->size)
+	while (moved < width && state->a->size > 0 && rev <= state->a->size)
 	{
 		r = state->a->top->rank;
 		if (r >= min && r < max)
@@ -162,7 +132,7 @@ static void	pull_elements_from_band(t_prog_state *state, int min,
 			op_pb(state);
 //			if (r <= mid && state->b->size > 1)
 //				op_rb(state);
-			pulled++;
+			moved++;
 			rev = 0;
 		}
 		else
