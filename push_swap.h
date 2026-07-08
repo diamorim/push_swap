@@ -155,7 +155,7 @@ void			rank_stack(t_stack *s);
 void			radix_sort(t_prog_state *state);
 void			ft_swop(int *a, int *b);
 void			distribute_to_stack_b(t_prog_state *state, int chunk_size,
-					int num_chunks, int n)
+					int num_chunks, int n);
 int				compute_chunk_size(int n);
 void			push_elements_back_to_stack_a(t_prog_state *state);
 

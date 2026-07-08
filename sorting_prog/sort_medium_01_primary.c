@@ -6,14 +6,14 @@ void	distribute_to_stack_b(t_prog_state *state, int chunk_size,
 			int num_chunks, int n);
 
 //
-	//	The idea of this function is first split the stack
+//	The idea of this function is first split the stack
 //	into evenly sized chunks -- we do this to minimize the
 //	number of operations.
 //
 //	We determind the # of chunks based on the approximate
-//	square root of the # of elements in the stack.
+//	square root of the # of elements in the stack (rounding down).
 //
-//	sort_medium will go through every element in stack `a` at
+//	sort_medium() will go through every element in stack `a` at
 //	least once and push 1 chunk worth of elements into stack 'b'
 // 	on each pass and on successive journeys examine fewer &
 // fewer elements.
