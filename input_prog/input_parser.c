@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   input_parser.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/08 18:34:59 by diamo             #+#    #+#             */
+/*   Updated: 2026/07/08 18:35:06 by diamo            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
 /*
@@ -25,7 +37,7 @@ int	parse_input(t_prog_state *state, char **argv)
 		if (check_flags(argv[i]))
 		{
 			i++;
-			continue;
+			continue ;
 		}
 		node = new_node(ft_atoi(argv[i]));
 		if (!node)

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_medium_01_primary.c                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/08 18:10:57 by diamo             #+#    #+#             */
+/*   Updated: 2026/07/08 18:25:52 by diamo            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-int	compute_chunk_size(int n);
+int		compute_chunk_size(int n);
 
 void	distribute_to_stack_b(t_prog_state *state, int chunk_size,
 			int num_chunks, int n);
@@ -31,5 +43,3 @@ void	sort_medium(t_prog_state *state)
 	distribute_to_stack_b(state, chunk_size, num_chunks, n);
 	restore_to_stack_a(state);
 }
-
-

@@ -1,4 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_utils_00_init.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/08 13:28:50 by diamo             #+#    #+#             */
+/*   Updated: 2026/07/08 13:40:32 by diamo            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
+
+static int	init_guards(t_prog_state *state)
+{
+	if (!state->a || !state->b)
+	{
+		if (state->a)
+			free(state->a);
+		if (state->b)
+			free(state->b);
+		free(state);
+		return (0);
+	}
+	return (1);
+}
 
 /*
 	__ init.c __
@@ -30,15 +56,8 @@ t_prog_state	*init_prog_state(void)
 		return (NULL);
 	state->a = init_stack();
 	state->b = init_stack();
-	if (!state->a || !state->b)
-	{
-		if (state->a)
-			free(state->a);
-		if (state->b)
-			free(state->b);
-		free(state);
+	if (!init_guards(state))
 		return (NULL);
-	}
 	state->n = 0;
 	state->ops_count_total = 0;
 	i = 0;
@@ -63,7 +82,6 @@ t_stack	*init_stack(void)
 	return (stack);
 }
 
-
 void	free_prog_state(t_prog_state *state)
 {
 	if (!state)
@@ -75,13 +93,12 @@ void	free_prog_state(t_prog_state *state)
 	free(state);
 }
 
-
 void	free_stack(t_stack *stack)
 {
 	t_node	*start;
 	t_node	*current;
 	t_node	*next;
-	int i;
+	int		i;
 
 	if (!stack)
 		return ;
@@ -90,7 +107,6 @@ void	free_stack(t_stack *stack)
 		free(stack);
 		return ;
 	}
-	
 	start = stack->top;
 	current = start;
 	i = 0;

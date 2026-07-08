@@ -1,12 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   operations_utils.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/08 18:33:09 by diamo             #+#    #+#             */
+/*   Updated: 2026/07/08 18:33:57 by diamo            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-
-void push(t_stack *stack_1, t_stack *stack_2)
+void	push(t_stack *stack_1, t_stack *stack_2)
 {
-	t_node *top_1;
+	t_node	*top_1;
 
 	if (!stack_1 || !stack_2 || stack_1->size == 0)
-		return;
+		return ;
 	top_1 = stack_1->top;
 	if (stack_1->size > 1)
 	{
@@ -20,14 +31,13 @@ void push(t_stack *stack_1, t_stack *stack_2)
 	stack_1->size--;
 }
 
-
-void swap(t_stack *stack)
+void	swap(t_stack *stack)
 {
-	t_node *new_top;
-	t_node *old_top;
+	t_node	*new_top;
+	t_node	*old_top;
 
 	if (!stack || stack->size < 2)
-		return;
+		return ;
 	old_top = stack->top;
 	new_top = old_top->next;
 	if (stack->size > 2)
@@ -42,24 +52,24 @@ void swap(t_stack *stack)
 	stack->top = new_top;
 }
 
-void rotate(t_stack *stack)
+void	rotate(t_stack *stack)
 {
 	if (!stack || stack->size < 2)
-		return;
+		return ;
 	stack->top = stack->top->next;
 }
 
-void reverse_rotate(t_stack *stack)
+void	reverse_rotate(t_stack *stack)
 {
 	if (!stack || stack->size < 2)
-		return;
+		return ;
 	stack->top = stack->top->prev;
 }
 
-void record_ops(t_prog_state *state, t_op_type op)
+void	record_ops(t_prog_state *state, t_op_type op)
 {
 	if (!state || op < 0 || op >= OP_TYPES_TOTAL)
-		return;
+		return ;
 	state->ops_count_per_type[op]++;
 	state->ops_count_total++;
 }
