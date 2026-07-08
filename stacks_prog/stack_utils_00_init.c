@@ -83,8 +83,14 @@ void	free_stack(t_stack *stack)
 	t_node	*next;
 	int i;
 
-	if (!stack || !stack->top)
+	if (!stack)
 		return ;
+	if (!stack->top)
+	{
+		free(stack);
+		return ;
+	}
+	
 	start = stack->top;
 	current = start;
 	i = 0;

@@ -134,7 +134,7 @@ int	*stack_to_arr(t_stack *stack)
 	i = 0;
 	arr = malloc(stack->size * sizeof(int));
 	if (!arr)
-		return malloc(0);
+		return NULL;
 
 	current_node = stack->top;
 
