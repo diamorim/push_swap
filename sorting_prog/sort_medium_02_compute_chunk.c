@@ -3,8 +3,8 @@
 #define MIN_CHUNK_SIZE 2
 
 /*
-	n  = 	the number of elements in the stack
-	c = 	the approximate sq. root (rounding down)
+	n	= 	the number of elements in the stack
+	c 	= 	the approximate sq. root (rounding down)
 
 	The minimum number of chunks is always 2
 
