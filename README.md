@@ -55,3 +55,9 @@ We are allowed to be more efficient than O(n2)
 -- the task for the 'simple' algorithm is to be
 worst case O (n2) meaning if n scales towards
 infinity, the algorithms worst case is O (n2).
+
+## Files
+
+### Stacks
+
+- [stack_utils_00_init.c](stacks_prog/stack_utils_00_init.c)

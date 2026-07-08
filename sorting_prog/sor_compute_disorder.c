@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sor_compute_disorder.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/08 18:01:31 by diamo             #+#    #+#             */
+/*   Updated: 2026/07/08 18:01:46 by diamo            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
 /*
@@ -67,8 +79,6 @@ double	compute_disorder(t_stack *s)
 	return ((double)mistakes / (double)total_pairs);
 }
 
-
-
 static int	check_node(t_node *start, int remaining)
 {
 	int		disorder_count;
@@ -77,7 +87,6 @@ static int	check_node(t_node *start, int remaining)
 
 	if (!start)
 		return (0);
-
 	disorder_count = 0;
 	inner = start->next;
 	j = 0;

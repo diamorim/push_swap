@@ -1,9 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_utils_02.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/08 18:19:45 by diamo             #+#    #+#             */
+/*   Updated: 2026/07/08 18:21:05 by diamo            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static void	execute_rotation(t_prog_state *state, t_stack *s, int steps, int reverse_flag);
-
-
+static void	execute_rotation(t_prog_state *state, t_stack *s, int steps,
+				int reverse_flag);
 
 //		____ extract_lowest_to_b ____
 //		One by one, this function pushes
@@ -26,7 +36,6 @@ void	extract_move_lowest_to_stack_b(t_prog_state *state)
 		op_pb(state);
 	}
 }
-
 
 /*
 	__ smart_rotate() __
@@ -54,8 +63,6 @@ void	extract_move_lowest_to_stack_b(t_prog_state *state)
 			- second half ------> reverse rotates
 */
 
-
-
 void	smart_rotate(t_prog_state *state, t_stack *s, int pos)
 {
 	int	reverse_flag;
@@ -80,7 +87,6 @@ void	smart_rotate(t_prog_state *state, t_stack *s, int pos)
 //
 //
 
-
 /*
  	__ execute_rotation() __
   - Executes 'rotate' on a given stack based on instructions
@@ -91,7 +97,8 @@ void	smart_rotate(t_prog_state *state, t_stack *s, int pos)
     - direction - whether to rotate forwards or backwards
 */
 
-static void	execute_rotation(t_prog_state *state, t_stack *s, int steps, int reverse_flag)
+static void	execute_rotation(t_prog_state *state, t_stack *s, int steps,
+				int reverse_flag)
 {
 	int	i;
 
@@ -115,6 +122,7 @@ static void	execute_rotation(t_prog_state *state, t_stack *s, int steps, int rev
 		i++;
 	}
 }
+
 void	ft_swop(int *a, int *b)
 {
 	int	temp;
@@ -123,4 +131,3 @@ void	ft_swop(int *a, int *b)
 	*a = *b;
 	*b = temp;
 }
-

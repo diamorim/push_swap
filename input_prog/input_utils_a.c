@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   input_utils_a.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/08 18:35:16 by diamo             #+#    #+#             */
+/*   Updated: 2026/07/08 18:55:38 by diamo            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 /*
 	I (Noah :-) would propose to put some of the utilities
 	related to input here:
@@ -20,25 +32,24 @@
 */
 #include "../push_swap.h"
 
-# define LONG_MAX_DIV (LONG_MAX / 10)
-# define LONG_MAX_MOD (LONG_MAX % 10)
+#define LONG_MAX_DIV (LONG_MAX / 10)
+#define LONG_MAX_MOD (LONG_MAX % 10)
 
-
-int ft_isnumber(char *str)
+int	ft_isnumber(char *str)
 {
 	if (!str || !*str)
-		return 0;
+		return (0);
 	if (*str == '-')
 		str++;
 	if (!*str)
-		return 0;
+		return (0);
 	while (*str)
 	{
 		if (!ft_isdigit(*str))
-			return 0;
+			return (0);
 		str++;
 	}
-	return 1;
+	return (1);
 }
 
 long	ft_strtol(char *str)
@@ -57,7 +68,8 @@ long	ft_strtol(char *str)
 	}
 	while (*str >= '0' && *str <= '9')
 	{
-		if (result > LONG_MAX_DIV || (result == LONG_MAX_DIV && (*str - '0') > LONG_MAX_MOD))
+		if (result > LONG_MAX_DIV || (result == LONG_MAX_DIV
+				&& (*str - '0') > LONG_MAX_MOD))
 			return (sign == 1 ? LONG_MAX : LONG_MIN);
 		result = result * 10 + (*str - '0');
 		str++;
@@ -65,9 +77,9 @@ long	ft_strtol(char *str)
 	return (result * sign);
 }
 
-t_strategy   strategy_from_argv(char **argv)
+t_strategy	strategy_from_argv(char **argv)
 {
-	int   i;
+	int	i;
 
 	if (!argv)
 		return (ADAPTIVE);

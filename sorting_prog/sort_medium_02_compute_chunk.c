@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_medium_02_compute_chunk.c                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/08 18:16:23 by diamo             #+#    #+#             */
+/*   Updated: 2026/07/08 18:17:12 by diamo            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
 #define MIN_CHUNK_SIZE 2
@@ -18,13 +30,11 @@ int	compute_chunk_size(int n)
 {
 	int	guess;
 	int	c;
-	//n = 9
+
 	guess = 1;
 	while (guess * guess <= n)
 		guess++;
-	// guess = 0
 	c = (guess - 1);
-	//c = 2
 	if (c < MIN_CHUNK_SIZE)
 		c = MIN_CHUNK_SIZE;
 	if (c > n)

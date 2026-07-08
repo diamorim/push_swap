@@ -1,9 +1,19 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_utils_01.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/08 18:18:48 by diamo             #+#    #+#             */
+/*   Updated: 2026/07/08 18:19:33 by diamo            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../push_swap.h"
 
 static void	rotate_largest_to_bottom(t_prog_state *state, int val_top,
-		int val_middle, int val_bottom);
+				int val_middle, int val_bottom);
 /*
 	____ handle_small_sort() ____
 		- 	This helper function acts as a disapatcher that
@@ -31,7 +41,6 @@ int	handle_small_sort(t_prog_state *state)
 	}
 	return (0);
 }
-
 
 /*
 	Sorts a 3-element stack in 1-or-2 operations.
@@ -67,8 +76,6 @@ static void	rotate_largest_to_bottom(t_prog_state *state, int val_top,
 {
 	if (val_top > val_middle && val_top > val_bottom)
 		op_ra(state);
-		// 3, 2, 1
-		// 
 	else if (val_middle > val_top && val_middle > val_bottom)
 		op_rra(state);
 }
