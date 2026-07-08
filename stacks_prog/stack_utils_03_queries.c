@@ -16,13 +16,23 @@
 
 
 /*
- 	__ find_pos_min() __
+	__ find_pos_min() __
   		Finds, and returns, the position
 		in a given stack for the *smallest*
 		value stored starting at the 'top'.
 
 		The `top` of the stack is position `0`
 		and the `bottom` of the stack is `size - 1`.
+
+	Say we have a given stack with:
+		position:	0		value	201
+					1				132
+					2				49
+					3				98
+
+					the pos_min would be 2 since
+					49 has the position of the
+					lowest value int the stack
 */
 
  int	find_pos_min(t_stack *s)
@@ -60,6 +70,25 @@
 
 		The `top` of the stack is position `0`
 		and the `bottom` of the stack is `size -1`.
+
+/*
+	____ find_pos_max() ____
+  		Finds, and returns, the position
+		in a given stack for the *largest*
+		value stored starting at the 'top'.
+
+		The `top` of the stack is position `0`
+		and the `bottom` of the stack is `size - 1`.
+
+		Say we have a given stack with:
+			position:	0		value	201
+						1				132
+						2				49
+						3				98
+
+					the pos_max would be 0 since
+					201 has the position of the
+					highest value int the stack
 */
 
 

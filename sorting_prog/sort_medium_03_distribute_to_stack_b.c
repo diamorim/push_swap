@@ -6,13 +6,26 @@ static void	process_one_band(t_prog_state *state, int band, int chunk_size,
 				int n);
 
 //_____ distribute_to_stack_b _____
-//	i is an index for each band
-// chunk_size is the number of elements per band
-// num_chunks -s the number of of chunks in the entire stack
-//	n is the number of elements in the entire stack
+//	band_idx 	= an index for each band
+//	chunk_size	= the number of elements per band
+//	num_chunks	= the number of of chunks in the entire stack
+//	n 			= the number of elements in stack 'a'
 //
-// This function scans each chunk (aka band) one at a time and
-// stores them into stack_b
+// Each chunk is a band. Each band is a chunk.
+//
+//	Before this function has been called, the program calculates
+//	how much to divide the total number of elements of stack into smaller
+//	chunks using compute_chunk
+// 					(e.g.
+// 					000 - 100 (band 0)
+// 					101	- 200 (band 1)
+// 					201	- 300 (band 2)
+// 					301	- 400 (band 3)
+// 					etc.)
+//
+//	This function scans the entire stack to identify each element that fits
+//	within a specific range of a given band and then moves those elements
+//	from stack 'a' to stack 'b'.
 //
 void	distribute_to_stack_b(t_prog_state *state, int chunk_size,
 			int num_chunks, int n)
@@ -28,6 +41,27 @@ void	distribute_to_stack_b(t_prog_state *state, int chunk_size,
 }
 
 //_____ scan_one_band() _____
+//	min		=	the lowest range of a given band being processed
+//	max		=	the highest range of a given band being processed
+//	width 	= 	the number of elements to process in a given band
+//
+//	Going back to this example of bands:
+// 					(e.g.
+// 					000 - 100 (band 0)
+// 					101	- 200 (band 1)
+// 					201	- 300 (band 2)
+// 					301	- 400 (band 3)
+// 					etc.)
+//
+// In the first band:
+// 		 			min		= 0
+// 					max		= 100
+// 					width	= 101
+//
+// In the second band
+// 					min		= 101
+// 					max 	= 200
+// 					width	= 100
 //
 //
 static void	process_one_band(t_prog_state *state, int band_idx, int chunk_size,
@@ -49,21 +83,64 @@ static void	process_one_band(t_prog_state *state, int band_idx, int chunk_size,
 //_____ pull_elements_from_band() _____
 // Each "band" is simply a chunk (a grouping of elements)
 //
+// pulled	=	# of elements pulled from stack 'a' to stack 'b'
+// 				in a given round (using this function)
+// rev		=	# of rotations since last match
+// r		= 	the rank of a given element being examined in stack 'a'
+// mid		=	the mid-way point between 'min' and 'max' which are
+//
+// The idea of the function is to push elements from stack 'a' to stack 'b'
+// such that elements with a higher rank (they hold larger values relative to
+// elements with a lower rank) are at the top of stack 'b'.
+// e.g. 8 		7		7
+// 		7		8		8
+// 		3		3		2
+// 		2		2		3
+//
+// The function does not perfectly sort the elements.
+//
+// Rather, it's more like a pre-sort -- which decreases future operations.
+//
 // Function examines each element in stack `a`:
 // 		If the rank of the element fits within the current
 // 		chunk's [min, max) range, push that element to stack 'b'.
 //
-// 			Then, if the rank of the element is in the lower half of
-// 				the band, rotate it to the bottom of stack 'b' (op_rb)
-// 				so that higher ranked elements (larger numbers) stay on top.
+// 			Then, if the rank, 'r', of an element is in the lower half of
+// 				the given band range, rotate stack 'b' (op_rb) so that the higher
+// 				ranked elements (larger numbers) stay on top.
 //
-// 				This pre-sorts stack 'b' so that restore_to_stack_a()
-// 					performs fewer operations.
+// 				So imagine that we are processing:
+// 							band range:		101 - 200
+// 				 we have a new element:		148
+// 						  in the stack:		171
+// 											125
+// 											128
+// 											103
+//				in this case, the function will take
+// 				element 148 and move it from 'a' to 'b' and then
+// 											148
+// 											171
+// 											125
+// 											128
+// 											103
+//
+//				and then it will rotate stack 'b'
+// 				so that now 				171
+// 											125
+// 											128
+// 											103
+// 											148
+//
+// 				This slightly pre-sorts stack 'b' so that, later on,
+// 				restore_to_stack_a() performs fewer operations.
 //
 //		Otherwise, rotate past it in stack 'a' via op_ra().
 //
-// 	Repeat this process until all relevant elements in the current chunk
-//	have been moved to stack 'b'.
+// 		Repeat this process until all relevant elements in the current chunk
+//		have been moved to stack 'b'.
+//
+//		The more bands that have been sorted, the fewer elements in stack 'a' to process
+// 		so the sorting process moves more quickly over time.
 //
 
 static void	pull_elements_from_band(t_prog_state *state, int min,
@@ -71,7 +148,7 @@ static void	pull_elements_from_band(t_prog_state *state, int min,
 {
 	int	pulled;
 	int	rev;
-	int	val;
+	int	r;
 	int	mid;
 
 	pulled = 0;
@@ -79,11 +156,11 @@ static void	pull_elements_from_band(t_prog_state *state, int min,
 	mid = (min + max) / 2;
 	while (pulled < width && state->a->size > 0 && rev <= state->a->size)
 	{
-		val = state->a->top->rank;
-		if (val >= min && val < max)
+		r = state->a->top->rank;
+		if (r >= min && r < max)
 		{
 			op_pb(state);
-			if (val <= mid && state->b->size > 1)
+			if (r <= mid && state->b->size > 1)
 				op_rb(state);
 			pulled++;
 			rev = 0;
@@ -97,11 +174,12 @@ static void	pull_elements_from_band(t_prog_state *state, int min,
 }
 
 //_____ push_elements_back_to_stack_a()_____
-//	Function searches for the biggest element first and pushes
-// this back to stack `a` in descdending order.
+//	Function searches for the position of the element with the highest value
+// and rotates the stack so that this element is at the top of stack 'b' and
+// then pushes that element over to stack 'a'
 //
-// It aims to do this as efficiently as possible via smart_rotate()
-// by looking at whether its faster to rotate in one direction or
+// We use smart_rotate() to minimize the number of rotations required
+// by first looking at whether its faster to rotate in one direction or
 // the other.
 //
 void	push_elements_back_to_stack_a(t_prog_state *state)
