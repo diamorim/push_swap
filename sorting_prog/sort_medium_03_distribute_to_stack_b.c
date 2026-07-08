@@ -160,8 +160,8 @@ static void	pull_elements_from_band(t_prog_state *state, int min,
 		if (r >= min && r < max)
 		{
 			op_pb(state);
-			if (r <= mid && state->b->size > 1)
-				op_rb(state);
+//			if (r <= mid && state->b->size > 1)
+//				op_rb(state);
 			pulled++;
 			rev = 0;
 		}
