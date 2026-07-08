@@ -40,7 +40,7 @@ void	distribute_to_stack_b(t_prog_state *state, int chunk_size,
 	}
 }
 
-//_____ scan_one_band() _____
+//_____ process_one_band() _____
 //	min		=	the lowest range of a given band being processed
 //	max		=	the highest range of a given band being processed
 //	width 	= 	the number of elements to process in a given band
@@ -76,11 +76,11 @@ static void	process_one_band(t_prog_state *state, int band_idx, int chunk_size,
 	if (max > n)
 		max = n;
 	width = max - min;
-	pull_elements_from_band(state, min, max, width);
+	move_elements_to_stack_b(state, min, max, width);
 }
 
 
-//_____ pull_elements_from_band() _____
+//_____ move_elements_to_stack_b() _____
 // Each "band" is simply a chunk (a grouping of elements)
 //
 // moved	=	# of elements pulled from stack 'a' to stack 'b'
