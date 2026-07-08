@@ -11,6 +11,9 @@ void	sort_complex(t_prog_state *state)
 	int	biggest_bit;
 	int	i;
 
+	if (state->a->size <= 3)
+		handle_small_sort(state);
+	
 	rank(state);
 	stack_size = state->a->size;
 	bit = 0;
@@ -58,3 +61,9 @@ void	push_all_a(t_prog_state *state)
 		i++;
 	}
 }
+
+//4, 3, 2, 1
+//0100  0011   0010    0001
+//stack a: 3, 1
+//stack b: 4, 2
+//stack a: 2, 4, 3, 1
