@@ -85,7 +85,8 @@ static void	process_one_band(t_prog_state *state, int band_idx, int chunk_size,
 //
 // moved	=	# of elements pulled from stack 'a' to stack 'b'
 // 				in a given round (using this function)
-// rev		=	# of rotations since last match
+// rev		=	# of rotations ("revolutions") since last time an element
+// 				was pushed from stack 'a' to stack 'b'
 // r		= 	the rank of a given element being examined in stack 'a'
 //
 // The idea of the function is to push elements from stack 'a' to stack 'b'
