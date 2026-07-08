@@ -6,11 +6,25 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 13:28:50 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/08 13:32:22 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/08 13:40:32 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+
+static int	init_guards(t_prog_state *state)
+{
+	if (!state->a || !state->b)
+	{
+		if (state->a)
+			free(state->a);
+		if (state->b)
+			free(state->b);
+		free(state);
+		return (0);
+	}
+	return (1);
+}
 
 /*
 	__ init.c __
@@ -42,15 +56,8 @@ t_prog_state	*init_prog_state(void)
 		return (NULL);
 	state->a = init_stack();
 	state->b = init_stack();
-	if (!state->a || !state->b)
-	{
-		if (state->a)
-			free(state->a);
-		if (state->b)
-			free(state->b);
-		free(state);
+	if (!init_guards(state))
 		return (NULL);
-	}
 	state->n = 0;
 	state->ops_count_total = 0;
 	i = 0;
