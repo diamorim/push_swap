@@ -149,11 +149,11 @@ static void	pull_elements_from_band(t_prog_state *state, int min,
 	int	pulled;
 	int	rev;
 	int	r;
-	int	mid;
+//	int	mid;
 
 	pulled = 0;
 	rev = 0;
-	mid = (min + max) / 2;
+//	mid = (min + max) / 2;
 	while (pulled < width && state->a->size > 0 && rev <= state->a->size)
 	{
 		r = state->a->top->rank;
