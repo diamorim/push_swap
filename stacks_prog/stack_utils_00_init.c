@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_utils_00_init.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/08 13:28:50 by diamo             #+#    #+#             */
+/*   Updated: 2026/07/08 13:32:22 by diamo            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
 /*
@@ -63,7 +75,6 @@ t_stack	*init_stack(void)
 	return (stack);
 }
 
-
 void	free_prog_state(t_prog_state *state)
 {
 	if (!state)
@@ -75,13 +86,12 @@ void	free_prog_state(t_prog_state *state)
 	free(state);
 }
 
-
 void	free_stack(t_stack *stack)
 {
 	t_node	*start;
 	t_node	*current;
 	t_node	*next;
-	int i;
+	int		i;
 
 	if (!stack)
 		return ;
@@ -90,7 +100,6 @@ void	free_stack(t_stack *stack)
 		free(stack);
 		return ;
 	}
-	
 	start = stack->top;
 	current = start;
 	i = 0;
