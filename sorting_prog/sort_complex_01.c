@@ -2,7 +2,7 @@
 
 void	rank(t_prog_state *state);
 int		count_bits(int n);
-void	push_all_a(t_prog_state *state);
+void	push_all_to_stack_a(t_prog_state *state);
 
 
 ///
@@ -35,7 +35,7 @@ void	sort_complex(t_prog_state *state)
 			i++;
 		}
 		i = 0;
-		push_all_a(state);
+		push_all_to_stack_a(state);
 		bit++;
 	}
 }
