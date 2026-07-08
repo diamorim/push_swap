@@ -12,7 +12,10 @@ void	sort_complex(t_prog_state *state)
 	int	i;
 
 	if (state->a->size <= 3)
+	{
 		handle_small_sort(state);
+		return ;
+	}
 	
 	rank(state);
 	stack_size = state->a->size;
