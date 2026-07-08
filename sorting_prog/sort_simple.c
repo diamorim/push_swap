@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_simple.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/08 18:17:43 by diamo             #+#    #+#             */
+/*   Updated: 2026/07/08 18:18:08 by diamo            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 /*
 	__sort_simple_selection.c__ includes:
@@ -37,8 +49,8 @@
 
 void	sort_simple(t_prog_state *state)
 {
- 	if (handle_small_sort(state))
-		return;
+	if (handle_small_sort(state))
+		return ;
 	extract_move_lowest_to_stack_b(state);
 	sort_3(state);
 	while (state->b->size > 0)

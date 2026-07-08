@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_strategy_dispatcher.c                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/08 18:18:35 by diamo             #+#    #+#             */
+/*   Updated: 2026/07/08 18:18:37 by diamo            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 /*
 	__dispatch_algo_strategy()__
@@ -33,7 +44,7 @@ void	dispatch_algo_strategy(t_prog_state *state)
 	if (!state || !state->a)
 		return ;
 	if (is_sorted_asc(state->a))
- 		return ;
+		return ;
 	if (state->strat_req == SIMPLE)
 	{
 		state->strat_used = SIMPLE;
@@ -43,7 +54,7 @@ void	dispatch_algo_strategy(t_prog_state *state)
 	{
 		state->strat_used = MEDIUM;
 		sort_medium(state);
- 	}
+	}
 	else if (state->strat_req == COMPLEX)
 	{
 		state->strat_used = COMPLEX;
@@ -55,12 +66,6 @@ void	dispatch_algo_strategy(t_prog_state *state)
 		sort_adaptive(state);
 	}
 }
-
-
-
-
-
-
 
 /*
 	__ is_sorted_asc() __ is used by

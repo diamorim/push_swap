@@ -1,38 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_complex_01.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/08 18:02:17 by diamo             #+#    #+#             */
+/*   Updated: 2026/07/08 18:27:34 by diamo            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-void	rank(t_prog_state *state);
-int		count_bits(int n);
-void	push_all_a(t_prog_state *state);
+void		rank(t_prog_state *state);
+int			count_bits(int n);
+void		push_all_a(t_prog_state *state);
+static void	iterate_bits(t_prog_state *state, int bit, int stack_size);
 
 void	sort_complex(t_prog_state *state)
 {
-	int	stack_size;
 	int	bit;
 	int	biggest_bit;
-	int	i;
+	int	stack_size;
 
 	if (state->a->size <= 3)
 	{
 		handle_small_sort(state);
 		return ;
 	}
-	
-	rank(state);
 	stack_size = state->a->size;
+	rank(state);
 	bit = 0;
-	i = 0;
 	biggest_bit = count_bits(stack_size - 1);
 	while (bit < biggest_bit)
 	{
-		while (i < stack_size)
-		{
-			if ((state->a->top->rank >> bit) & 1)
-				op_ra(state);
-			else
-				op_pb(state);
-			i++;
-		}
-		i = 0;
+		iterate_bits(state, bit, stack_size);
 		push_all_a(state);
 		bit++;
 	}
@@ -40,7 +42,7 @@ void	sort_complex(t_prog_state *state)
 
 int	count_bits(int n)
 {
-	int bits;
+	int	bits;
 
 	bits = 0;
 	while (n > 0)
@@ -48,12 +50,27 @@ int	count_bits(int n)
 		n = n >> 1;
 		bits++;
 	}
-	return bits;
+	return (bits);
+}
+
+static void	iterate_bits(t_prog_state *state, int bit, int stack_size)
+{
+	int	i;
+
+	i = 0;
+	while (i < stack_size)
+	{
+		if ((state->a->top->rank >> bit) & 1)
+			op_ra(state);
+		else
+			op_pb(state);
+		i++;
+	}
 }
 
 void	push_all_a(t_prog_state *state)
 {
-	int i;
+	int	i;
 	int	target;
 
 	target = state->b->size;
