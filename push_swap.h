@@ -98,7 +98,7 @@ void			stack_add_back(t_stack *stack, t_node *new_node);
 t_node			*stack_last_node(t_stack *stack);
 void 			change_next_prev(t_node *node, t_node *new_prev, t_node *new_next);
 int				*stack_to_arr(t_stack *stack);
-void			push_all_a(t_prog_state *state);
+void			push_all_to_stack_a(t_prog_state *state);
 
 
 // ___ parsing ___
