@@ -6,7 +6,7 @@
 // create and migrates the values to an array.
 //
 // Next it sorts the values in the array using
-// quick_sort.
+// quick_sort().
 //
 // Then, the function assigns inside of the stack a rank
 // for each of the values stored in array/stack using binary
@@ -81,8 +81,8 @@ int	*stack_to_arr(t_stack *stack)
 //
 // The partition, as we will see in the partition() function
 // is always set to 'high' for whichever section is being
-// sorted.
-//
+// sorted. The choice if 'high' position as the pivot is known
+//	as Lomuto partition.
 //
 //
 //
