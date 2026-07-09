@@ -6,7 +6,7 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 18:16:23 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/08 18:17:12 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/09 15:18:24 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,25 @@
 #define MIN_CHUNK_SIZE 2
 
 /*
-	n is the number of elements in the stack.
+	n	= 	the number of elements in the stack
+	c 	= 	the approximate sq. root (rounding down)
 
-	Function returns approximately the square root
+	The minimum number of chunks is always 2
+
+	Function returns *approximately* the square root
 	of the number of elements in the stack.
 
-	(e.g. if	n = 100 c = 10,
-				n = 17	c = 4
-				n = 16	c = 4
-				n = 15	c = 3
-				n = 15	c = 3)
+	(e.g. if	n = 100 c = 10,		sq. root = 10.00000
+				n = 17	c = 4		sq. root =  4.12310
+				n = 16	c = 4		sq. root =  4.00000
+				n = 15	c = 3		sq. root =  3.87298
+				n = 14	c = 3		sq. root =  3.74165)
 */
 int	compute_chunk_size(int n)
 {
 	int	guess;
 	int	c;
-
+	
 	guess = 1;
 	while (guess * guess <= n)
 		guess++;

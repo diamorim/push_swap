@@ -6,7 +6,7 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 19:16:09 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/09 12:30:16 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/09 15:23:53 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ t_node			*stack_last_node(t_stack *stack);
 void			change_next_prev(t_node *node, t_node *new_prev,
 					t_node *new_next);
 int				*stack_to_arr(t_stack *stack);
-void			push_all_a(t_prog_state *state);
+void			push_all_to_stack_a(t_prog_state *state);
 
 // ___ parsing ___
 int				parse_input(t_prog_state *state, char **argv);
@@ -157,10 +157,12 @@ void			rank(t_prog_state *state);
 void			rank_stack(t_stack *s);
 void			radix_sort(t_prog_state *state);
 void			ft_swop(int *a, int *b);
-void			distribute_to_b(t_prog_state *state, int chunk_size,
+void			distribute_to_stack_b(t_prog_state *state, int chunk_size,
 					int num_chunks, int n);
 int				compute_chunk_size(int n);
-void			restore_to_stack_a(t_prog_state *state);
+void			push_elements_back_to_stack_a(t_prog_state *state);
+
+
 
 // ___ stack_queries.c
 int				find_pos_min(t_stack *s);
