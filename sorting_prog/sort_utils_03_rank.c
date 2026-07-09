@@ -84,6 +84,9 @@ int	*stack_to_arr(t_stack *stack)
 // sorted.
 //
 //
+//
+//
+//
 void	quick_sort(int arr[], int low, int high)
 {
 	int	pivot_idx;
@@ -99,22 +102,51 @@ void	quick_sort(int arr[], int low, int high)
 	}
 }
 
+
+/*
+	_____ partition() _____
+	Function always starts by assigning:
+
+	pivot	=	the value stored in the array at the high position
+	i		=	the position just before low
+	j		=	low
+
+	We then move through the partition from low to high
+	using j to move through it.
+
+	As we do so, we compare the value stored at arr[j]
+	to the value stored as the pivot value (the original
+	value stored at arr[high]).
+
+	If the value of arr[j] is less than the pivot value:
+	- increment i (advance the 'boundary' of smaller elements)
+	- swap the values stored within arr[i] and arr[j]
+
+	We do this until j == high position.
+
+	Lastly we swap the values in the array at i+1 (arr[i+1])
+	and high positions (arr[high]).
+
+	Function returns (i + 1) which becomes the next pivot index
+	for the caller.
+
+ */
+
 int		partition(int arr[], int low, int high)
 {
 	int	i;
 	int	j;
-	int	pivot;
+	int	pivot_val;
 
 	if (!arr)
 		return -1;
-
 	i = low - 1;
 	j = low;
-	pivot = arr[high];
+	pivot_val = arr[high];
 
 	while (j < high)
 	{
-		if (arr[j] < pivot)
+		if (arr[j] < pivot_val)
 		{
 			i++;
 			ft_swop(&arr[i], &arr[j]);
