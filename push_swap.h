@@ -6,7 +6,7 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 19:16:09 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/08 19:18:38 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/09 12:30:16 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ typedef struct s_prog_state
 	t_stack		*b;
 	int			n;
 	int			ops_count_total;
-	int			ops_count_per_type[OP_TYPES_TOTAL];
+	int			ops_count_per_type[11];
 	t_strategy	strat_req;
 	t_strategy	strat_used;
 	int			bench;
@@ -115,6 +115,7 @@ void			push(t_stack *stack_1, t_stack *stack_2);
 void			rotate(t_stack *stack);
 void			reverse_rotate(t_stack *stack);
 void			record_ops(t_prog_state *state, t_op_type op);
+void			print_ops(char *str);
 
 void			op_sa(t_prog_state *state);
 void			op_pa(t_prog_state *state);

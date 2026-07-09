@@ -51,9 +51,9 @@ Typical 0 (n2) algorithm patterns are:
 - Selection sort
 - Insertion sort
 
-We are allowed to be more efficient than O(n2)
+We are allowed to be more efficient than O(n²)
 -- the task for the 'simple' algorithm is to be
-worst case O (n2) meaning if n scales towards
+worst case O (n²) meaning if n scales towards
 infinity, the algorithms worst case is O (n2).
 
 ## Files
