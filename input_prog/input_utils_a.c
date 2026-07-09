@@ -6,7 +6,7 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 18:35:16 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/08 18:55:38 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/09 16:22:04 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,13 @@ long	ft_strtol(char *str)
 	}
 	while (*str >= '0' && *str <= '9')
 	{
-		if (result > LONG_MAX_DIV || (result == LONG_MAX_DIV
-				&& (*str - '0') > LONG_MAX_MOD))
-			return (sign == 1 ? LONG_MAX : LONG_MIN);
+		if (result > LONG_MAX / 10 || (result == LONG_MAX / 10
+				&& (*str - '0') > LONG_MAX % 10))
+		{
+			if (sign == 1)
+				return (LONG_MAX);
+			return (LONG_MIN);
+		}
 		result = result * 10 + (*str - '0');
 		str++;
 	}

@@ -6,7 +6,7 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 18:19:45 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/09 15:21:43 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/09 15:37:21 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	extract_move_lowest_to_stack_b(t_prog_state *state)
 		op_pb(state);
 	}
 }
-
 
 //
 //	____ smart_rotate() ____
@@ -83,7 +82,6 @@ void	smart_rotate(t_prog_state *state, t_stack *s, int pos)
 		execute_rotation(state, s, s->size - pos, reverse_flag);
 	}
 }
-
 
 //
 //	____ execute_rotation() ____

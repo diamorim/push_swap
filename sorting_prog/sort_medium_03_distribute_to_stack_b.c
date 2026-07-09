@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_medium_03_distribute_to_stack_b.c             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/09 15:43:35 by diamo             #+#    #+#             */
+/*   Updated: 2026/07/09 15:44:30 by diamo            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
 static void	pull_elements_from_band(t_prog_state *state, int min,
@@ -79,7 +91,6 @@ static void	process_one_band(t_prog_state *state, int band_idx, int chunk_size,
 	move_elements_to_stack_b(state, min, max, width);
 }
 
-
 //_____ move_elements_to_stack_b() _____
 // Each "band" is simply a chunk (a grouping of elements)
 //
@@ -110,7 +121,8 @@ static void	process_one_band(t_prog_state *state, int band_idx, int chunk_size,
 // 		Repeat this process until all relevant elements in the current chunk
 //		have been moved to stack 'b'.
 //
-//		The more bands that have been sorted, the fewer elements in stack 'a' to process
+//		The more bands that have been sorted, the fewer elements
+//		in stack 'a' to process
 // 		so the sorting process moves more quickly over time.
 //
 
@@ -120,19 +132,15 @@ static void	move_elements_to_stack_b(t_prog_state *state, int min,
 	int	moved;
 	int	rev;
 	int	r;
-//	int	mid;
 
 	moved = 0;
 	rev = 0;
-//	mid = (min + max) / 2;
 	while (moved < width && state->a->size > 0 && rev <= state->a->size)
 	{
 		r = state->a->top->rank;
 		if (r >= min && r < max)
 		{
 			op_pb(state);
-//			if (r <= mid && state->b->size > 1)
-//				op_rb(state);
 			moved++;
 			rev = 0;
 		}

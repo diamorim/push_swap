@@ -6,7 +6,7 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 18:10:57 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/08 18:25:52 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/09 15:37:46 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	distribute_to_stack_b(t_prog_state *state, int chunk_size,
 //
 //
 //
-
 
 void	sort_medium(t_prog_state *state)
 {

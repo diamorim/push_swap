@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_utils_03_rank.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/09 15:35:44 by diamo             #+#    #+#             */
+/*   Updated: 2026/07/09 15:42:17 by diamo            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 //
 // ____ rank() ____
@@ -17,21 +29,22 @@
 //
 void	rank(t_prog_state *state)
 {
-	int 	*arr;
+	int		*arr;
 	t_node	*current_node;
 	int		i;
 
 	if (!state || !state->a || state->a->size == 0 || !state->a->top)
-		return;
+		return ;
 	i = 0;
 	arr = stack_to_arr(state->a);
 	if (!arr)
-		return;
+		return ;
 	quick_sort(arr, 0, state->a->size - 1);
 	current_node = state->a->top;
 	while (i < state->a->size)
 	{
-		current_node->rank = binary_search(arr, state->a->size, current_node->value);
+		current_node->rank = binary_search(arr, state->a->size,
+				current_node->value);
 		current_node = current_node->next;
 		i++;
 	}
@@ -52,9 +65,9 @@ void	rank(t_prog_state *state)
 
 int	*stack_to_arr(t_stack *stack)
 {
-	int	i;
-	int	*arr;
-	t_node *current_node;
+	int		i;
+	int		*arr;
+	t_node	*current_node;
 
 	if (!stack || !stack->size || !stack->top)
 		return (NULL);
@@ -62,9 +75,7 @@ int	*stack_to_arr(t_stack *stack)
 	arr = malloc(stack->size * sizeof(*arr));
 	if (!arr)
 		return (NULL);
-
 	current_node = stack->top;
-
 	while (i < stack->size)
 	{
 		arr[i] = current_node->value;
@@ -92,8 +103,7 @@ void	quick_sort(int arr[], int low, int high)
 	int	pivot_idx;
 
 	if (!arr)
-		return;
-
+		return ;
 	if (low < high)
 	{
 		pivot_idx = partition(arr, low, high);
@@ -101,7 +111,6 @@ void	quick_sort(int arr[], int low, int high)
 		quick_sort(arr, pivot_idx + 1, high);
 	}
 }
-
 
 /*
 	_____ partition() _____
@@ -132,18 +141,17 @@ void	quick_sort(int arr[], int low, int high)
 
  */
 
-int		partition(int arr[], int low, int high)
+int	partition(int arr[], int low, int high)
 {
 	int	i;
 	int	j;
 	int	pivot_val;
 
 	if (!arr)
-		return -1;
+		return (-1);
 	i = low - 1;
 	j = low;
 	pivot_val = arr[high];
-
 	while (j < high)
 	{
 		if (arr[j] < pivot_val)
@@ -156,7 +164,6 @@ int		partition(int arr[], int low, int high)
 	ft_swop(&arr[i + 1], &arr[high]);
 	return (i + 1);
 }
-
 
 // ____ binary_search() ____
 // Use of this function assumes that the array it
@@ -178,7 +185,7 @@ int		partition(int arr[], int low, int high)
 // until, ultimatealy, it finds the target, at which point:
 // arr[mid] == target.
 //
-int		binary_search(int arr[], int n, int target)
+int	binary_search(int arr[], int n, int target)
 {
 	int	low;
 	int	high;
@@ -186,9 +193,8 @@ int		binary_search(int arr[], int n, int target)
 
 	if (!arr)
 		return (-1);
-
 	low = 0;
-	high = n-1;
+	high = (n - 1);
 	while (low < high)
 	{
 		mid = low + (high - low) / 2;

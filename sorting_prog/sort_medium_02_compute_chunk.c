@@ -6,7 +6,7 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 18:16:23 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/09 15:18:24 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/09 15:46:19 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	compute_chunk_size(int n)
 {
 	int	guess;
 	int	c;
-	
+
 	guess = 1;
 	while (guess * guess <= n)
 		guess++;

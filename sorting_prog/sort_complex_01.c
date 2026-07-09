@@ -6,17 +6,16 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 18:02:17 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/09 15:20:43 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/09 15:45:54 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	rank(t_prog_state *state);
-int		count_bits(int n);
-void	push_all_to_stack_a(t_prog_state *state);
+void		rank(t_prog_state *state);
+int			count_bits(int n);
+void		push_all_to_stack_a(t_prog_state *state);
 static void	iterate_bits(t_prog_state *state, int bit, int stack_size);
-
 
 ///
 // ---- sort_complex ____
@@ -51,8 +50,8 @@ static void	iterate_bits(t_prog_state *state, int bit, int stack_size);
 //
 // We do this for every element in the stack that still residing in stack 'a'
 //
-// Once that round is finished, we use push_all_to_stack_a() to push those back to
-// stack `a` in linear order.
+// Once that round is finished, we use push_all_to_stack_a()
+// to push those back to stack `a` in linear order.
 //
 // After finishing that examination/sorting round, we increment to
 // the next bit position.
@@ -132,7 +131,7 @@ void	sort_complex(t_prog_state *state)
 //
 int	count_bits(int n)
 {
-	int bit_count;
+	int	bit_count;
 
 	bit_count = 0;
 	while (n > 0)
@@ -142,7 +141,6 @@ int	count_bits(int n)
 	}
 	return (bit_count);
 }
-
 
 //
 // ____ push_all_to_stack_a ____
