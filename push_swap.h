@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/08 19:16:09 by diamo             #+#    #+#             */
+/*   Updated: 2026/07/09 15:23:53 by diamo            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -22,7 +34,6 @@ typedef enum e_strategy
 	COMPLEX
 }	t_strategy;
 
-
 typedef enum e_op_type
 {
 	OP_SA,
@@ -39,8 +50,6 @@ typedef enum e_op_type
 	OP_TYPES_TOTAL
 }	t_op_type;
 
-
-
 typedef struct s_node
 {
 	int				value;
@@ -54,7 +63,6 @@ typedef struct s_stack
 	t_node	*top;
 	int		size;
 }	t_stack;
-
 
 // bench is just boolean for the --bench benchmarking flag
 // strat_req is the strategy requested by the user in CLI
@@ -70,7 +78,7 @@ typedef struct s_prog_state
 	t_stack		*b;
 	int			n;
 	int			ops_count_total;
-	int			ops_count_per_type[OP_TYPES_TOTAL];
+	int			ops_count_per_type[11];
 	t_strategy	strat_req;
 	t_strategy	strat_used;
 	int			bench;
@@ -83,11 +91,8 @@ t_prog_state	*init_prog_state(void);
 void			free_stack(t_stack *stack);
 void			free_prog_state(t_prog_state *state);
 
-
 // _____ input_utils  _____
 t_strategy		strategy_from_argv(char **argv);
-
-
 
 // _____ stack_utils.c  _____
 // used by sort_simple & sort_medium
@@ -96,34 +101,33 @@ t_node			*new_node(int value);
 void			stack_add_front(t_stack *stack, t_node *new);
 void			stack_add_back(t_stack *stack, t_node *new_node);
 t_node			*stack_last_node(t_stack *stack);
-void 			change_next_prev(t_node *node, t_node *new_prev, t_node *new_next);
+void			change_next_prev(t_node *node, t_node *new_prev,
+					t_node *new_next);
 int				*stack_to_arr(t_stack *stack);
-void			push_all_a(t_prog_state *state);
-
+void			push_all_to_stack_a(t_prog_state *state);
 
 // ___ parsing ___
 int				parse_input(t_prog_state *state, char **argv);
 
-
 // ___ operations engine ___
-void	swap(t_stack *stack);
-void	push(t_stack *stack_1, t_stack *stack_2);
-void	rotate(t_stack *stack);
-void	reverse_rotate(t_stack *stack);
-void	record_ops(t_prog_state *state, t_op_type op);
+void			swap(t_stack *stack);
+void			push(t_stack *stack_1, t_stack *stack_2);
+void			rotate(t_stack *stack);
+void			reverse_rotate(t_stack *stack);
+void			record_ops(t_prog_state *state, t_op_type op);
+void			print_ops(char *str);
 
-void	op_sa(t_prog_state *state);
-void	op_pa(t_prog_state *state);
-void	op_ra(t_prog_state *state);
-void	op_rra(t_prog_state *state);
-void	op_sb(t_prog_state *state);
-void	op_pb(t_prog_state *state);
-void	op_rb(t_prog_state *state);
-void	op_rrb(t_prog_state *state);
-void	op_ss(t_prog_state *state);
-void	op_rr(t_prog_state *state);
-void	op_rrr(t_prog_state *state);
-
+void			op_sa(t_prog_state *state);
+void			op_pa(t_prog_state *state);
+void			op_ra(t_prog_state *state);
+void			op_rra(t_prog_state *state);
+void			op_sb(t_prog_state *state);
+void			op_pb(t_prog_state *state);
+void			op_rb(t_prog_state *state);
+void			op_rrb(t_prog_state *state);
+void			op_ss(t_prog_state *state);
+void			op_rr(t_prog_state *state);
+void			op_rrr(t_prog_state *state);
 
 //	___	algorithm-sorting - sorting_prog` ___
 // Not including check_node here as functions with
@@ -140,7 +144,6 @@ void			sort_simple(t_prog_state *state);
 void			sort_medium(t_prog_state *state);
 void			sort_complex(t_prog_state *state);
 
-
 //	___ sort_utils.c __
 int				count_bits(int n);
 void			sort_3(t_prog_state *state);
@@ -154,10 +157,12 @@ void			rank(t_prog_state *state);
 void			rank_stack(t_stack *s);
 void			radix_sort(t_prog_state *state);
 void			ft_swop(int *a, int *b);
-void			distribute_to_b(t_prog_state *state, int chunk_size,
+void			distribute_to_stack_b(t_prog_state *state, int chunk_size,
 					int num_chunks, int n);
-int			compute_chunk_size(int n);
-void	restore_to_stack_a(t_prog_state *state);
+int				compute_chunk_size(int n);
+void			push_elements_back_to_stack_a(t_prog_state *state);
+
+
 
 // ___ stack_queries.c
 int				find_pos_min(t_stack *s);

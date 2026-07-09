@@ -18,11 +18,11 @@ SRCS =	main.c \
 		sorting_prog/sort_simple.c \
 		sorting_prog/sort_medium_01_primary.c \
 		sorting_prog/sort_medium_02_compute_chunk.c \
-		sorting_prog/sort_medium_03.c \
+		sorting_prog/sort_medium_03_distribute_to_stack_b.c \
 		sorting_prog/sort_complex_01.c \
-		sorting_prog/sort_utils_01.c \
-		sorting_prog/sort_utils_02.c \
-		sorting_prog/sort_utils_03.c
+		sorting_prog/sort_utils_01_handle_small_sort.c \
+		sorting_prog/sort_utils_02_extract_and_move_smart_rotate.c \
+		sorting_prog/sort_utils_03_rank.c
 
 OBJS = $(SRCS:.c=.o)
 

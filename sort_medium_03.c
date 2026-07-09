@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_medium_03.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/08 18:17:28 by diamo             #+#    #+#             */
+/*   Updated: 2026/07/08 18:17:34 by diamo            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
 static void	pull_band_elements(t_prog_state *state, int min,
@@ -71,7 +83,6 @@ static void	pull_band_elements(t_prog_state *state, int min,
 		}
 	}
 }
-
 
 /*
 
