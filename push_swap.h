@@ -6,7 +6,7 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 19:16:09 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/09 12:30:16 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/09 15:23:53 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,13 +160,9 @@ void			ft_swop(int *a, int *b);
 void			distribute_to_stack_b(t_prog_state *state, int chunk_size,
 					int num_chunks, int n);
 int				compute_chunk_size(int n);
-<<<<<<< HEAD
 void			push_elements_back_to_stack_a(t_prog_state *state);
 
 
-=======
-void			restore_to_stack_a(t_prog_state *state);
->>>>>>> main
 
 // ___ stack_queries.c
 int				find_pos_min(t_stack *s);
