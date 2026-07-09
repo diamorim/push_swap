@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_insertion.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/08 18:29:28 by diamo             #+#    #+#             */
+/*   Updated: 2026/07/08 18:29:47 by diamo            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
 static int	get_insertion_rank(t_stack *s, int value);
-
 
 //	____ sort_insertion() ____
 //
@@ -17,9 +28,6 @@ static int	get_insertion_rank(t_stack *s, int value);
 //
 //
 //
-
-
-
 
 void	sort_insertion(t_prog_state *state)
 {
@@ -44,7 +52,6 @@ void	sort_insertion(t_prog_state *state)
 	}
 	smart_rotate(state, state->a, find_pos_min(state->a));
 }
-
 
 // ____ get_insertion_rank ____
 //	Counts how many elements in a given stack

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_utils_01.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/08 13:43:55 by diamo             #+#    #+#             */
+/*   Updated: 2026/07/08 20:18:08 by diamo            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
 /*
@@ -37,8 +49,6 @@ t_node	*new_node(int value)
 	return (node);
 }
 
-
-
 void	stack_add_front(t_stack *stack, t_node *new)
 {
 	if (!stack || !new)
@@ -66,8 +76,6 @@ void	stack_add_front(t_stack *stack, t_node *new)
 	stack->size++;
 }
 
-
-
 /*
 	__stack_add_back()__
 		This function receives a pointer
@@ -90,7 +98,7 @@ void	stack_add_back(t_stack *stack, t_node *new)
 	else
 	{
 		last = stack->top->prev;
-		if(last == stack->top)
+		if (last == stack->top)
 		{
 			change_next_prev(new, stack->top, stack->top);
 			change_next_prev(stack->top, new, new);
@@ -98,13 +106,12 @@ void	stack_add_back(t_stack *stack, t_node *new)
 		else
 		{
 			stack->top->prev->next = new;
-			change_next_prev(new, stack->top->prev ,stack->top);
+			change_next_prev(new, stack->top->prev, stack->top);
 			stack->top->prev = new;
 		}
 	}
 	stack->size++;
 }
-
 
 t_node	*stack_last_node(t_stack *stack)
 {
@@ -113,36 +120,10 @@ t_node	*stack_last_node(t_stack *stack)
 	return (stack->top->prev);
 }
 
-
-void change_next_prev(t_node *node, t_node *new_prev, t_node *new_next)
+void	change_next_prev(t_node *node, t_node *new_prev, t_node *new_next)
 {
 	if (!node || !new_next || !new_prev)
-		return;
+		return ;
 	node->next = new_next;
 	node->prev = new_prev;
-}
-
-
-int	*stack_to_arr(t_stack *stack)
-{
-	int	i;
-	int	*arr;
-	t_node *current_node;
-
-	if (!stack || !stack->size || !stack->top)
-		return NULL;
-	i = 0;
-	arr = malloc(stack->size * sizeof(int));
-	if (!arr)
-		return malloc(0);
-
-	current_node = stack->top;
-
-	while (i < stack->size)
-	{
-		arr[i] = current_node->value;
-		current_node = current_node->next;
-		i++;
-	}
-	return arr;
 }

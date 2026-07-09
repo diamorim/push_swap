@@ -1,9 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_utils_02_extract_and_move_smart_rotate        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/08 18:19:45 by diamo             #+#    #+#             */
+/*   Updated: 2026/07/09 15:21:43 by diamo            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static void	execute_rotation(t_prog_state *state, t_stack *s, int steps, int reverse_flag);
-
-
+static void	execute_rotation(t_prog_state *state, t_stack *s, int steps,
+				int reverse_flag);
 
 //	____ extract_move_lowest_to_stack_b() ____
 //		One by one, this function pushes
@@ -85,7 +95,8 @@ void	smart_rotate(t_prog_state *state, t_stack *s, int pos)
 //	- whether to rotate forwards or backwards
 //
 
-static void	execute_rotation(t_prog_state *state, t_stack *s, int steps, int reverse_flag)
+static void	execute_rotation(t_prog_state *state, t_stack *s, int steps,
+				int reverse_flag)
 {
 	int	i;
 

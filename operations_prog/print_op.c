@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_adaptive.c                                    :+:      :+:    :+:   */
+/*   print_ops.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/08 18:01:54 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/08 18:02:08 by diamo            ###   ########.fr       */
+/*   Created: 2026/07/09 12:15:50 by diamo             #+#    #+#             */
+/*   Updated: 2026/07/09 12:17:01 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../printf.h"
 
-void	sort_adaptive(t_prog_state *state)
+void	print_op(char *str)
 {
-	double	disorder;
-
-	if (!state || !state->a)
-		return ;
-	disorder = state->disorder;
-	if (disorder < 0.2)
-		sort_simple(state);
-	else if (disorder >= 0.2 && disorder < 0.5)
-		sort_medium(state);
-	else
-		sort_complex(state);
+	ft_putstr_fd(str, 1);
 }
