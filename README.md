@@ -1,16 +1,13 @@
-This project has been created as part of the 42 curriculum by <dammori-m>, <norobins>.
+This project has been created as part of the 42 curriculum by <damorim- >, <norobins>.
 
-#Description#
+## Description
 In this project, our program recieves instructions from a user 
 
 Program accepts a series of numbers and stores these into a stack 
-structure, 'stack a'.
+structure, stack 'a'.
 
 The goal of our program is to sort these numbers in ascending order
-using an additional  stack structure, 'stack b' and a limited set of 
-operations.
-
-Here is the formatted Markdown table for your operations and descriptions.
+using an additional stack, stack 'b', and a limited # of operations.
 
 | Operation | Description |
 | --- | --- |
@@ -33,7 +30,44 @@ Our program uses 'pa', 'pb', 'ra', 'rb', 'rra' and 'rrb' to sort the elements
 inside and between the stacks.
 
 
-__ Disorder metric __
+## Instructions
+
+### How to launch the program
+
+1. open your terminal in the root of the project and use the command `make`
+2. launch the program with `./push_swap <arguments>`
+e.g `./push_swap 3 2 1`
+
+
+### Restrictions
+There are some arguments that are not valid, such as:
+	- any non-number character (apart from flags)
+	- numbers bigger than the maximum integer
+	- numbers lower than the minimum integer
+	- floating-point numbers e.g 1.5
+	- 2 or more flags
+	- 1 or less arguments
+
+
+### Flags
+Flags are used to force one specific [sorting algorithm](#__Algorithm_requirements__)
+
+The flags available are:
+- `--simple`
+- `--medium`
+- `--complex`
+- `--adaptive`
+
+You should add the flags as arguments to the program, the order does not matter so you can choose where to put it.
+e.g:
+	- ./push_swap 1 --simple 3 2
+
+if no flags are used the program will run with the `adaptive` flag by default.
+
+
+
+
+### Disorder metric
 In terms of recieved input, our program considers any time a 
 larger number appears before a smaller number to be a 'mistake' aka 
 an instance of disorder.
@@ -56,7 +90,7 @@ default algorithm for the program and can also be proactively selected by
 the user to sort the input.
 
 
-__ Algorithm requirements __
+## Algorithm requirements
 The program implements four distinct sorting strategies -- in order to sort the
 elements and deliver a completely sorted stack 'a'.
 
@@ -64,13 +98,14 @@ elements and deliver a completely sorted stack 'a'.
 - 2. Medium algorithm (O(n√n))
 - 3. Complex algorithm  (O(n log n))
 - 4. Adaptive algorithm
-	-  < 0.2        -- simple algorithm
-	-    0.2 <= 0.5 -- medium algorithm
-	- >= 0.5        -- complex algorithm
+			 < 0.2  -- simple algorithm
+   0.2 <= x <= 0.5  -- medium algorithm
+			>= 0.5  -- complex algorithm
 
 
-_____ Very small # of inputs _____
-For all algorithims:
+## For very small # of inputs: we use `handle_small_sort*()`
+For all algorithims we call `handle_small_sort()` to handle cases where there are <= 3
+elements to sort.
 
 If there are only 2 inputted elements (& they are not sorted in ascending order), the program:
 	-- swaps those two elements
@@ -80,176 +115,164 @@ If there are only 3 inputted elements (& they are not sorted in ascending order)
 	-- swaps the top two elements (if appropriate)
 
 
-_____ Simple algorithm (O(n²)) ____
-We chose a selection sort style algorithm to meet the O(n²) requirement.
+### Simple algorithm (O(n²))
+We use a selection sort style algorithm to meet the O(n²) requirement for operations.
 
-A classic selection sort repeatedly finds the smallest element and places it in its final position. Our version instead extracts each smallest element to stack 'b' and relies on the LIFO nature of the stacks to place them correctly when they are pushed back to 'a'.
+A classic selection sort repeatedly finds the smallest element and places it in its final position in sorted order. 
 
-The algorithm proceeds as follows:
+If there are more than 3 elements, our implementation repeatedly (until there are only 3 elements left in stack 'a'):
+	- scans stack 'a' for the smallest element;
+	- rotates stack 'a' so that the smallest element is located at the 
+	top of the stack
+	- pushes that element over to stack 'b'
 
-- While stack 'a' has more than 3 elements, repeatedly scans 'a' to find the minimum value, rotates the smallest element to the top of the stack 'a', and pushes it to stack 'b'.
-- When 3 elements remain in stack 'a', sorts them with sort_3(). 
-- Push every element from 'b' to 'a', one-by-one.
+Next, our algorithm sorts these remaining three elements in stack 'a' with `sort_3()`.
 
-Because each of the ~n extraction passes scans up to n elements, the comparison count is O(n²). 
-
-As input size grows, this is outperformed by O(n√n) and O(n log n) strategies.
+After this process, our program pushes each element in stack 'b' -- one-by-one -- back to stack 'a' until stack 'b' is completely empty.
 
 
+#### O(n²) & simple algorithm
+	- Across ~n extractions this algorithm delivers O(n²) operations in the worst case scenario.
 
-_____ Medium algorithm (O(n√n)) _____
+	- Each extraction from a stack of size k -- costs at most ⌊k/2⌋ rotations (smart_rotate picks the shorter direction) plus one push. 
+
+	- Summed over n − 3 extractions, the rotations are bounded by (n + (n-1) + ... + 4)/2 ≈ n²/4, so the total operation count is O(n²).
+
+	- O(n√n) and O(n log n) strategies will outperform O(n²) as input grows.
+
+
+
+### Medium algorithm (O(n√n)) 
 We use a chunk-based sorting strategy that divides the input into chunks of approximately √n consecutive ranks.
 
-1. If there are ≤3 elements, sort them with handle_small_sort() and return
+1. If there are ≤3 elements, sort them with `handle_small_sort()` and return.
 
-2. Rank every element: copy all values into an array, quick-sort it, and assign each node its index in the sorted array as its rank.
+#### 2. Rank every element:####
+	Copy all values into an array, `quick_sort()` it, and assign each node its index in the sorted array as its rank.
 
-3. Compute a chunk size of ⌊√n⌋ (the largest c with c² ≤ n), with a minimum of 2
-	Compute the number of chunks as ceil(n / chunk_size)
+#### 3. Compute chunks#### 
+	- chunk_size        = ⌊√n⌋ (the largest c with c² ≤ n), with a minimum of 2
+	- Number of chunks  = ceil(n / chunk_size)
 
-4. Distribute to stack 'b', chunk-by-chunk. Process the chunks in ascending rank order.
+#### 4. Distribute to stack 'b', chunk-by-chunk
+	Process chunks in ascending rank order.
 
 	For each chunk [min, max):
-		-- Rotate stack 'a' until an element whose rank falls within the targeted chunk reaches the top
- 		-- Push the element to stack 'b'
-		-- Repeat until the whole chunk has been processed
+		- Scan stack 'a' from the top (forward rotation only - `op_ra`)
+		-  When an element whose rank, is within [min, max), reaches the top, push it to stack 'b'
+		- Repeat until the whole chunk has been moved
+			- A safety guard stops the pass if a full revolution completes without a match
+			(defensive, should not trigger in normal use)
 
-5. At the end of phase 1, stack 'b' holds all elements with larger ranks generally nearer the top (loosely grouped, not yet strictly sorted).
+5. At the end of phase 1, stack 'b' holds all elements -- with larger ranks generally closer to the top. They are grouped by chunk but not yet completely sorted.
 
-6. Rotate to identify the largest elements, and push back to stack 'a' 
-	-- Repeatedly find the maximum rank in stack 'b'
-	-- Smart_rotate it to the top (shortest direction)
-	-- Push it to stack 'a'
-	-- Repeat until stack 'b' is completely empty
+#### 6. Push back to stack 'a'
+	- Repeatedly find the element with maximum rank in stack 'b' (find_pos_max)
+	- `smart_rotate` it to the top along the shortest direction 
+	- Push the element to stack 'a' (`op_pa`)
+	- Repeat until stack 'b' is completely empty
 
-The end result is stack 'a' sorted in ascending order. Correctness comes from phase 2's per-element max-scan; phase 1's chunk-only reduces how far the max can be from the top of b.
-
-For details on our quick sort implementation, see "_____ Quick sort algorithm _____".
-
-
-
-What makes medium_sort() perform at  O(n√n):
-- ~√n chunks -- each potentially scanning the whole remaining stack once -----> O(n) per chunk x √n chunks = O(n√n for phase 1.
-- Moving elements from stack 'b' to stack 'a' performs a max-scan per element over a shrinkingstack ----> also roughly O(n√n).
+The end result is stack 'a' sorted in ascending order. 
 
 
 
+#### (O(n√n)) & medium algorithm
+
+- ##### Phase 1: chunking and pushing to stack 'b' 
+	- During each chunk pass, the loop rotates forward through a (`op_ra`) and never completes a full revolution without a match — the safety guard stops it first — so each surviving element is rotated past at most once per pass.
+	- One `op_pb` per element moved.
+	- Across ~√n passes the stack shrinks each time, so total rotations are bounded by n + (n − √n) + (n − 2√n) + … ≈ O(n√n).
+
+- ##### Phase 2: pushing back to stack 'a'
+	- n pushes (`op_pa`), each preceded by a smart_rotate to bring stack 'b's max to the top. 
+	- Because chunks are pushed in ascending rank order, the current max is always within the top ~√n region of b, so each rotation costs ≤ √n/2 operations → O(n√n) operations.
+
+- ##### Total (worst-case): 
+	- O(n√n) operations
+
+
+For details on our quick sort implementation, see `Quick sort algorithm` section.
 
 
 
-_____ Complex algorithm (O(n log n)) _____
-We implemented an adaptation of LSD (least-significant digit) radix sort to sort using O(n log n).
+### Complex algorithm (O(n log n))
+We use an adaptation of LSD (least-significant digit) radix sort to achieve worst-case O(n log n).
+
+1. Rank every element (same rank() as `medium sort()` — `quick_sort()` the values, assign each node its sorted index).
+
+ 2. Count the bits needed to represent the largest rank (count_bits(stack_size - 1)
+	— e.g.  100 elements → ranks 0–99  → 7 bits;
+ 			500 elements → ranks 0–499 → 9 bits).
+
+ 3. For each bit position, starting from the least-significant (bit 0):
+	- Walk through every element currently in stack 'a'.
+	- If that bit of the rank is 1 → `op_ra` (leave it in stack 'a').
+	- If that bit is 0 → `op_pb` (push to stack 'b').
+	- After one full pass, push everything from stack 'b' back to stack 'a' (`push_all_to_stack_a`).
+	- Early-exit if a is already fully sorted (`is_stack_a_sorted`).
+
+4. Repeat for the next bit position until all bits are processed.
+
+The end result is stack 'a' is sorted in ascending order.
 
 
 
+#### O(n log n) & complex algorithm
 
-_____ Quick sort algorithm _____
-Quick sort is a 'divide-and-conquer' sorting algorithm that we use with both medium sort and complex sort. 
+- *Bit passes:* `count_bits(n − 1)` ≈ log₂(n) passes (7 for n=100, 9 for n=500).
+ - *Per pass:* walks all n elements once — each element costs one operation (op_ra or op_pb) — then pushes them back with ~n op_pa. So each pass ≈ 2n
+   operations.
+ - *Total:* 2n × log₂(n) = O(n log n) operations.
 
-Quick sort works by selecting one element as a pivot and partitioning the rest of the array into two groups — elements smaller than the pivot and elements larger than the pivot — then
-recursively sorting each group.
 
-Our implementation uses the Lomuto partition scheme, which works as follows:
+
+### `quick_sort` algorithm
+We use quick sort with both `medium_sort()` and `complex_sort()` to rank the values relative to each other within an array. We do not use for operations within or between stacks.
+
+Quick sort works by selecting one element as a pivot and partitioning the rest of the array into two groups — elements smaller than the pivot and elements larger than the pivot — then recursively sorting each group.
+
+Our implementation works as follows:
 
 1. Choose a pivot.
-	-- We always pick the last element of the current range (arr[high]) as the pivot.
+	- We always pick the last element of the current range (`arr[high]`) as the pivot -- this is the archtypeal Lomuto partition scheme.
 
 2. Partition. Scan through the range with two indices:
- 	-- i tracks the boundary between the "smaller than pivot" group and the rest (starts one before low).
-	-- j scans every element from low to high - 1.
-	-- Whenever arr[j] < pivot, we increment i and swap arr[i] with arr[j] — growing the "smaller" group by one.
+ 	- `i` tracks the boundary between the "smaller than pivot" group and the rest (starts one before low).
+	- `j` scans every element from `low` to `high - 1`.
+	- Whenever `arr[j] < pivot`, we increment `i` and swap `arr[i]` with `arr[j]` — growing the "smaller" group by one.
 
 3. Place the pivot. 
-	-- After the scan, swap the pivot (arr[high]) into position i + 1. 
-	-- The pivot is now in its final sorted position, with everything smaller to its left and everything larger to its right.
+	- After the scan, swap the pivot (`arr[high]`) into position i + 1. 
+	- The pivot is now in its final sorted position, with everything smaller to its left and everything larger to its right.
 
 4. Recurse.
-	-- The partition step returns the pivot's index pivot_idx
-	-- Recursively quick-sort the sub-ranges [low, pivot_idx-1] and [pivot_idx +1, high].
+	- The partition step returns the pivot's index `pivot_idx`
+	- Recursively quick-sort the sub-ranges `[low, pivot_idx-1]` and `[pivot_idx +1, high]`.
 
 5. Base case. 
-	-- When low >= high, the range has zero or one element and is already sorted — return.
+	- When `low >= high`, the range has zero or one element and is already sorted — `return`.
 
-After the sort completes, binary_search is used to look up each node's value in the sorted array; its index becomes that node's rank.
-
-Complexity: average and best case O(n log n); worst case O(n²) when the pivot consistently lands at an extreme (e.g. already-sorted input with a last-element pivot — the Lomuto weakness). This is acceptable here because the sort runs once during setup, not per-operation.
+After the sort completes, `binary_search` is used to look up each node's value in the sorted array; its index becomes that node's rank.
 
 
 
-_____ Performance Benchmarks _____
+### Performance Benchmarks
 
-For 100 random numbers, our program ust use:
+For 100 random numbers, our program must use:
 	- Less than 2,000 operations to pass (minimum requirement)
 	- Less than 1,500 operations for good performance
 	- Less than 700 operations for excellent performance
 
 
-For 500 random numbers, our program ust use:
+For 500 random numbers, our program must use:
 	- Less than 12,000 operations to pass (minimum requirement)
 	- Less than 8,000 operations for good performance
 	- Less than 5,500 operations for excellent performance
 
 
-Instructions
-
-
-
-Resources
-
-
-
-
-
-
-
-___ Big $O$ notation ___
-
-Big $O$ describes the "worst case" or "slowest"
-an algorithm will be over time as the number of elements
-grows.
-
-
-----------------------------------------------------------
-----------------------------------------------------------
-																		Speed in 
-																		worst-case
-Big O				- type									(as n increases)
-----------------------------------------------------------
-O(1)				- constant time				- 'Fastest'
-O(log n)		- logarithmic time		- 'Fast'
-O(n)				- linear time					- 'OK'
-O(n log n)	- linearithmic				- 'OK-slow'
-O(n 1.5)		- semi-quadratic			- 'Slow'
-O(n2)				- quadratic						- 'Slower'
-O(2n)				- exponential					- 'Slowest'
-
-Our assignment requires that we use
-
-							algorithm						type
-------------------------------------------------
--- simple			O(n2) algorithm			quadratic
--- medium			O((n√n) algorithm		semi-quadratic
--- complex		O (n log n) 				linearithmic
--- adaptive		(one of the above depending on 
-							'disorder' metric)
-
-
-The complexity of a given algorithim can 
-typically guestimated by looking at:
-- number of loops; and
-- how data is split
-
-That is not a definitive statement :-). I'm
-not sure I'mn describing perfectly. Just some
-notes.
-
-
-Typical 0 (n2) algorithm patterns are:
-- Bubble sort
-- Selection sort
-- Insertion sort
-
-We are allowed to be more efficient than O(n2)
--- the task for the 'simple' algorithm is to be
-worst case O (n2) meaning if n scales towards
-infinity, the algorithms worst case is O (n2).
+## Resources
+- Youtube
+- GeekForGeeks
+- ChatGPT
+- Claude LLM
+- Gemini
