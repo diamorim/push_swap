@@ -6,9 +6,10 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 18:35:16 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/10 12:09:42 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/10 13:29:30 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 /*
 	I (Noah :-) would propose to put some of the utilities
