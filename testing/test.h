@@ -1,7 +1,7 @@
 #ifndef	TEST_H
 #define	TEST_H
 
-#include "../push_swap.h"
+#include "push_swap.h"
 #include <criterion/criterion.h>
 #include <stdlib.h>
 

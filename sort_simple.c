@@ -6,11 +6,11 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 18:17:43 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/08 18:18:08 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/10 12:09:42 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 /*
 	__sort_simple_selection.c__ includes:
 		- sort_simple()
@@ -45,7 +45,7 @@
 
 */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 void	sort_simple(t_prog_state *state)
 {

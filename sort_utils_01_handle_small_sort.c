@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_utils_01.c                                    :+:      :+:    :+:   */
+/*   sort_utils_01_handle_small_sort.c                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 18:18:48 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/08 18:19:33 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/10 12:09:42 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 static void	rotate_largest_to_bottom(t_prog_state *state, int val_top,
 				int val_middle, int val_bottom);

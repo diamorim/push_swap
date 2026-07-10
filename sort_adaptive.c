@@ -6,11 +6,11 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 18:01:54 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/08 18:02:08 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/10 12:09:42 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 void	sort_adaptive(t_prog_state *state)
 {

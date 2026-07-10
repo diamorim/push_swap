@@ -6,7 +6,7 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 18:18:35 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/08 18:18:37 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/10 12:09:42 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 	__ Note about parameter(s) __
  */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 void	dispatch_algo_strategy(t_prog_state *state)
 {

@@ -6,11 +6,11 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 18:16:23 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/09 15:46:19 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/10 12:09:42 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 #define MIN_CHUNK_SIZE 2
 
