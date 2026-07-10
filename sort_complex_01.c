@@ -6,7 +6,7 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 18:02:17 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/10 12:53:04 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/10 13:10:34 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void		rank(t_prog_state *state);
 int			count_bits(int n);
 void		push_all_to_stack_a(t_prog_state *state);
 static void	iterate_bits(t_prog_state *state, int bit, int stack_size);
+static int	is_stack_a_sorted(t_prog_state *state);
 
 ///
 // ---- sort_complex ____
@@ -79,6 +80,8 @@ void	sort_complex(t_prog_state *state)
 	{
 		iterate_bits(state, bit, stack_size);
 		push_all_to_stack_a(state);
+		if (is_stack_a_sorted(state))
+			break ;
 		bit++;
 	}
 }
@@ -184,3 +187,22 @@ void	push_all_to_stack_a(t_prog_state *state)
 //stack a: 3, 1
 //stack b: 4, 2
 //stack a: 2, 4, 3, 1
+
+static int	is_stack_a_sorted(t_prog_state *state)
+{
+	int		i;
+	int		stack_size;
+	t_node	*current_node;
+
+	i = 0;
+	stack_size = state->a->size;
+	current_node = state->a->top;
+	while (i < stack_size)
+	{
+		if (current_node->rank != i)
+			return (0);
+		current_node = current_node->next;
+		i++;
+	}
+	return (1);
+}
