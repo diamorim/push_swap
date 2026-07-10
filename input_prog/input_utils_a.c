@@ -6,7 +6,7 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 18:35:16 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/09 16:22:04 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/10 11:55:05 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,6 @@
 
 */
 #include "../push_swap.h"
-
-#define LONG_MAX_DIV (LONG_MAX / 10)
-#define LONG_MAX_MOD (LONG_MAX % 10)
 
 int	ft_isnumber(char *str)
 {

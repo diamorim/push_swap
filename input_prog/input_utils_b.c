@@ -6,11 +6,16 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 18:38:28 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/09 16:34:40 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/10 11:54:21 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+
+static int	check_maxint(char **argv);
+static int	reps_check(char **argv, int occ);
+static int	is_argv_number(char *argv[]);
+static int	is_argv_flags_repeated(char *argv[]);
 
 int	check_errors(int argc, char **argv)
 {
@@ -22,35 +27,16 @@ int	check_errors(int argc, char **argv)
 	argv++;
 	if (check_allflags(argv) > 1)
 		return (0);
-	while (argv[i])
-	{
-		if (check_flags(argv[i]))
-		{
-			i++;
-			continue ;
-		}
-		if (!ft_isnumber(argv[i]))
-			return (0);
-		i++;
-	}
-	i = 0;
+	if (!is_argv_number)
+		return (0);
 	if (!check_maxint(argv))
 		return (0);
-	while (argv[i])
-	{
-		if (check_flags(argv[i]))
-		{
-			i++;
-			continue ;
-		}
-		if (reps_check(argv, ft_atoi(argv[i])) > 1)
-			return (0);
-		i++;
-	}
+	if (!is_argv_flags_repeated)
+		return (0);
 	return (1);
 }
 
-int	check_maxint(char **argv)
+static int	check_maxint(char **argv)
 {
 	long	val;
 
@@ -71,7 +57,7 @@ int	check_maxint(char **argv)
 	return (1);
 }
 
-int	reps_check(char **argv, int occ)
+static int	reps_check(char **argv, int occ)
 {
 	int	occurences;
 
@@ -92,4 +78,40 @@ int	reps_check(char **argv, int occ)
 	return (occurences);
 }
 
-static int is_argv_num()
+static int	is_argv_number(char *argv[])
+{
+	int	i;
+
+	i = 0;
+	while (argv[i])
+	{
+		if (check_flags(argv[i]))
+		{
+			i++;
+			continue ;
+		}
+		if (!ft_isnumber(argv[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+static int	is_argv_flags_repeated(char *argv[])
+{
+	int	i;
+
+	i = 0;
+	while (argv[i])
+	{
+		if (check_flags(argv[i]))
+		{
+			i++;
+			continue ;
+		}
+		if (reps_check(argv, ft_atoi(argv[i])) > 1)
+			return (0);
+		i++;
+	}
+	return (1);
+}
