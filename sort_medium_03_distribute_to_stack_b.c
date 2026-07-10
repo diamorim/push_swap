@@ -6,84 +6,84 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 15:43:35 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/10 12:47:33 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/10 14:16:20 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	process_one_band(t_prog_state *state, int band, int chunk_size,
+static void	process_one_chunk(t_prog_state *state, int chunk, int chunk_size,
 				int n);
 static void	move_elements_to_stack_b(t_prog_state *state, int min,
 				int max, int width);
 
 //_____ distribute_to_stack_b _____
-//	band_idx 	= an index for each band
-//	chunk_size	= the number of elements per band
+//	chunk_idx 	= an index for each chunk
+//	chunk_size	= the number of elements per chunk
 //	num_chunks	= the number of of chunks in the entire stack
 //	n 			= the number of elements in stack 'a'
 //
-// Each chunk is a band. Each band is a chunk.
+// Each chunk is a chunk. Each chunk is a chunk.
 //
 //	Before this function has been called, the program calculates
 //	how much to divide the total number of elements of stack into smaller
 //	chunks using compute_chunk
 // 					(e.g.
-// 					000 - 100 (band 0)
-// 					101	- 200 (band 1)
-// 					201	- 300 (band 2)
-// 					301	- 400 (band 3)
+// 					000 - 100 (chunk 0)
+// 					101	- 200 (chunk 1)
+// 					201	- 300 (chunk 2)
+// 					301	- 400 (chunk 3)
 // 					etc.)
 //
 //	This function scans the entire stack to identify each element that fits
-//	within a specific range of a given band and then moves those elements
+//	within a specific range of a given chunk and then moves those elements
 //	from stack 'a' to stack 'b'.
 //
 void	distribute_to_stack_b(t_prog_state *state, int chunk_size,
 			int num_chunks, int n)
 {
-	int	band_idx;
+	int	chunk_idx;
 
-	band_idx = 0;
-	while (band_idx < num_chunks)
+	chunk_idx = 0;
+	while (chunk_idx < num_chunks)
 	{
-		process_one_band(state, band_idx, chunk_size, n);
-		band_idx++;
+		process_one_chunk(state, chunk_idx, chunk_size, n);
+		chunk_idx++;
 	}
 }
 
-//_____ process_one_band() _____
-//	min		=	the lowest range of a given band being processed
-//	max		=	the highest range of a given band being processed
-//	width 	= 	the number of elements to process in a given band
+//_____ process_one_chunk() _____
+//	min		=	the lowest range of a given chunk being processed
+//	max		=	the highest range of a given chunk being processed
+//	width 	= 	the number of elements to process in a given chunk
 //
-//	Going back to this example of bands:
+//	Going back to this example of chunks:
 // 					(e.g.
-// 					000 - 100 (band 0)
-// 					101	- 200 (band 1)
-// 					201	- 300 (band 2)
-// 					301	- 400 (band 3)
+// 					000 - 100 (chunk 0)
+// 					101	- 200 (chunk 1)
+// 					201	- 300 (chunk 2)
+// 					301	- 400 (chunk 3)
 // 					etc.)
 //
-// In the first band:
+// In the first chunk:
 // 		 			min		= 0
 // 					max		= 100
 // 					width	= 101
 //
-// In the second band
+// In the second chunk
 // 					min		= 101
 // 					max 	= 200
 // 					width	= 100
 //
 //
-static void	process_one_band(t_prog_state *state, int band_idx, int chunk_size,
-				int n)
+static void	process_one_chunk(t_prog_state *state, int chunk_idx,
+			int chunk_size, int n)
 {
 	int	min;
 	int	max;
 	int	width;
 
-	min = band_idx * chunk_size;
+	min = chunk_idx * chunk_size;
 	max = min + chunk_size;
 	if (max > n)
 		max = n;
@@ -92,7 +92,7 @@ static void	process_one_band(t_prog_state *state, int band_idx, int chunk_size,
 }
 
 //_____ move_elements_to_stack_b() _____
-// Each "band" is simply a chunk (a grouping of elements)
+// Each "chunk" is simply a chunk (a grouping of elements)
 //
 // moved	=	# of elements pulled from stack 'a' to stack 'b'
 // 				in a given round (using this function)
@@ -121,7 +121,7 @@ static void	process_one_band(t_prog_state *state, int band_idx, int chunk_size,
 // 		Repeat this process until all relevant elements in the current chunk
 //		have been moved to stack 'b'.
 //
-//		The more bands that have been sorted, the fewer elements
+//		The more chunks that have been sorted, the fewer elements
 //		in stack 'a' to process
 // 		so the sorting process moves more quickly over time.
 //

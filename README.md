@@ -109,7 +109,7 @@ We use a chunk-based sorting strategy that divides the input into chunks of appr
 
 4. Distribute to stack 'b', chunk-by-chunk. Process the chunks in ascending rank order.
 
-	For each band [min, max):
+	For each chunk [min, max):
 		-- Rotate stack 'a' until an element whose rank falls within the targeted chunk reaches the top
  		-- Push the element to stack 'b'
 		-- Repeat until the whole chunk has been processed
