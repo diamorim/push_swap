@@ -6,7 +6,7 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 18:38:28 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/10 12:09:42 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/10 12:55:07 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,16 @@ static int	is_argv_flags_repeated(char *argv[]);
 
 int	check_errors(int argc, char **argv)
 {
-	int	i;
-
-	i = 0;
 	if (argc < 2)
 		return (0);
 	argv++;
 	if (check_allflags(argv) > 1)
 		return (0);
-	if (!is_argv_number)
+	if (!is_argv_number(argv))
 		return (0);
 	if (!check_maxint(argv))
 		return (0);
-	if (!is_argv_flags_repeated)
+	if (!is_argv_flags_repeated(argv))
 		return (0);
 	return (1);
 }

@@ -80,6 +80,7 @@ int	find_pos_min(t_stack *s)
 
 		The `top` of the stack is position `0`
 		and the `bottom` of the stack is `size -1`.
+*/
 
 /*
 	____ find_pos_max() ____

@@ -6,16 +6,16 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 15:43:35 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/10 12:09:42 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/10 12:47:33 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	pull_elements_from_band(t_prog_state *state, int min,
-				int max, int width);
 static void	process_one_band(t_prog_state *state, int band, int chunk_size,
 				int n);
+static void	move_elements_to_stack_b(t_prog_state *state, int min,
+				int max, int width);
 
 //_____ distribute_to_stack_b _____
 //	band_idx 	= an index for each band

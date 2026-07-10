@@ -6,7 +6,7 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 18:31:48 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/10 12:09:42 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/10 12:36:13 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	op_sb(t_prog_state *state)
 		return ;
 	swap(state->b);
 	record_ops(state, OP_SB);
-	print_ops("sb\n");
+	print_op("sb\n");
 }
 
 void	op_pb(t_prog_state *state)
@@ -27,7 +27,7 @@ void	op_pb(t_prog_state *state)
 		return ;
 	push(state->a, state->b);
 	record_ops(state, OP_PB);
-	print_ops("pb\n");
+	print_op("pb\n");
 }
 
 void	op_rb(t_prog_state *state)
@@ -36,7 +36,7 @@ void	op_rb(t_prog_state *state)
 		return ;
 	rotate(state->b);
 	record_ops(state, OP_RB);
-	print_ops("rb\n");
+	print_op("rb\n");
 }
 
 void	op_rrb(t_prog_state *state)
@@ -45,5 +45,5 @@ void	op_rrb(t_prog_state *state)
 		return ;
 	reverse_rotate(state->b);
 	record_ops(state, OP_RRB);
-	print_ops("rrb\n");
+	print_op("rrb\n");
 }

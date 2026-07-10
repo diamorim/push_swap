@@ -6,7 +6,7 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 19:16:09 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/09 15:23:53 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/10 12:43:47 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,11 @@
 
 # include "libft/libft.h"
 
-int				check_maxint(char **argv);
 int				check_allflags(char **argv);
 long			ft_strtol(char *str);
 int				ft_isnumber(char *str);
 int				check_flags(char *str);
 int				check_errors(int argc, char **argv);
-int				reps_check(char **argv, int occ);
 
 typedef enum e_strategy
 {
@@ -115,7 +113,7 @@ void			push(t_stack *stack_1, t_stack *stack_2);
 void			rotate(t_stack *stack);
 void			reverse_rotate(t_stack *stack);
 void			record_ops(t_prog_state *state, t_op_type op);
-void			print_ops(char *str);
+void			print_op(char *str);
 
 void			op_sa(t_prog_state *state);
 void			op_pa(t_prog_state *state);

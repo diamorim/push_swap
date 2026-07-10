@@ -6,16 +6,16 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 18:38:28 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/10 12:09:42 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/10 12:45:59 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	check_maxint(char **argv);
 static int	reps_check(char **argv, int occ);
 static int	is_argv_number(char *argv[]);
 static int	is_argv_flags_repeated(char *argv[]);
+static int	check_maxint(char **argv);
 
 int	check_errors(int argc, char **argv)
 {

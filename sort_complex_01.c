@@ -6,7 +6,7 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 18:02:17 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/10 12:09:42 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/10 12:53:04 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,21 @@ void	sort_complex(t_prog_state *state)
 		iterate_bits(state, bit, stack_size);
 		push_all_to_stack_a(state);
 		bit++;
+	}
+}
+
+static void	iterate_bits(t_prog_state *state, int bit, int stack_size)
+{
+	int	i;
+
+	i = 0;
+	while (i < stack_size)
+	{
+		if ((state->a->top->rank >> bit) & 1)
+			op_ra(state);
+		else
+			op_pb(state);
+		i++;
 	}
 }
 

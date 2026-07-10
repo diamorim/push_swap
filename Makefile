@@ -2,27 +2,29 @@ NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 SRCS =	main.c \
-		stacks_prog/init_utils.c \
-		stacks_prog/stack_queries.c \
-		stacks_prog/stack_utils.c \
-		input_prog/input_parser.c \
-		input_prog/input_utils_a.c \
-		input_prog/input_utils_b.c \
-		operations_prog/operations_a.c \
-		operations_prog/operations_b.c \
-		operations_prog/operations_double.c \
-		operations_prog/operations_utils.c \
-		sorting_prog/sor_compute_disorder.c \
-		sorting_prog/sort_strategy_dispatcher.c \
-		sorting_prog/sort_adaptive.c \
-		sorting_prog/sort_simple.c \
-		sorting_prog/sort_medium_01_primary.c \
-		sorting_prog/sort_medium_02_compute_chunk.c \
-		sorting_prog/sort_medium_03_distribute_to_stack_b.c \
-		sorting_prog/sort_complex_01.c \
-		sorting_prog/sort_utils_01_handle_small_sort.c \
-		sorting_prog/sort_utils_02_extract_and_move_smart_rotate.c \
-		sorting_prog/sort_utils_03_rank.c
+		stack_utils_00_init.c \
+		stack_utils_01.c \
+		stack_utils_03_queries.c \
+		input_parser.c \
+		input_utils_a.c \
+		input_utils_b.c \
+		input_utils_c.c \
+		operations_a.c \
+		operations_b.c \
+		operations_double.c \
+		operations_utils.c \
+		print_op.c \
+		sor_compute_disorder.c \
+		sort_strategy_dispatcher.c \
+		sort_adaptive.c \
+		sort_simple.c \
+		sort_medium_01_primary.c \
+		sort_medium_02_compute_chunk.c \
+		sort_medium_03_distribute_to_stack_b.c \
+		sort_complex_01.c \
+		sort_utils_01_handle_small_sort.c \
+		sort_utils_02_extract_and_move_smart_rotate.c \
+		sort_utils_03_rank.c
 
 OBJS = $(SRCS:.c=.o)
 
