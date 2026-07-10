@@ -14,7 +14,7 @@
 
 #define MIN_CHUNK_SIZE 2
 
-/*
+/*	_____ compute_chunk_size() _____
 	n	= 	the number of elements in the stack
 	c 	= 	the approximate sq. root (rounding down)
 

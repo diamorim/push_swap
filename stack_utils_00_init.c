@@ -26,26 +26,6 @@ static int	init_guards(t_prog_state *state)
 	return (1);
 }
 
-/*
-	__ init.c __
-
-	__ Includes __
-		- init_prog_state()
-		- init_stack()
-		- free_prog_state()
-		- free_stack()
-
-	___ Used by ___
-		- main()
-
-	___ Purpose ___
-		- Try to allocate memory for the
-		prog_state and stacks
-	 	- Free memory for prog_state &
-			stack when memory is no longer
-			required.
-*/
-
 t_prog_state	*init_prog_state(void)
 {
 	t_prog_state	*state;

@@ -15,7 +15,7 @@
 static void	execute_rotation(t_prog_state *state, t_stack *s, int steps,
 				int reverse_flag);
 
-//	____ extract_move_lowest_to_stack_b() ____
+/*	_____ extract_move_lowest_to_stack_b() _____
 //		One by one, this function pushes
 //		everything from stack a to stack b
 //		except for the three largest values.
@@ -23,8 +23,7 @@ static void	execute_rotation(t_prog_state *state, t_stack *s, int steps,
 //		Note that the function uess 'smart_rotate'
 // 		to figure out what is the most efficient direction
 //		to get the element with the smallest value to the top.
-//
-
+*/
 void	extract_move_lowest_to_stack_b(t_prog_state *state)
 {
 	int	min_pos;
@@ -37,8 +36,7 @@ void	extract_move_lowest_to_stack_b(t_prog_state *state)
 	}
 }
 
-//
-//	____ smart_rotate() ____
+/*	_____ smart_rotate() _____
 //		- Attempts to rotate nodes in a given stack with
 //		the least number of ops possible.
 //		- Brings a node at a specific position to the top
@@ -48,21 +46,18 @@ void	extract_move_lowest_to_stack_b(t_prog_state *state)
 //		to the top or the bottom of the stack.
 //
 //		pos 0  ← top
-//		pos 1
-//		pos 2
+//		...
 //		pos 3
 //		pos 4   ← midpoint (size/2 = 5)
 //		pos 5
-//		pos 6
-//		pos 7
-//		pos 8
+//		...
 //		pos 9  ← bottom
 //
 //		- If the position of the element in the stack is in the:
 //			- first half ----->   rotates forward
 //			- second half ------> reverse rotates
 //
-
+ */
 void	smart_rotate(t_prog_state *state, t_stack *s, int pos)
 {
 	int	reverse_flag;
@@ -83,8 +78,7 @@ void	smart_rotate(t_prog_state *state, t_stack *s, int pos)
 	}
 }
 
-//
-//	____ execute_rotation() ____
+/*	_____ execute_rotation() _____
 //	- Executes 'rotate' on a given stack based on instructions
 //	from the caller -- smart_rotate()
 //
@@ -92,7 +86,7 @@ void	smart_rotate(t_prog_state *state, t_stack *s, int pos)
 //	- stack -- which stack to modify direction
 //	- whether to rotate forwards or backwards
 //
-
+ */
 static void	execute_rotation(t_prog_state *state, t_stack *s, int steps,
 				int reverse_flag)
 {
@@ -119,8 +113,7 @@ static void	execute_rotation(t_prog_state *state, t_stack *s, int steps,
 	}
 }
 
-//
-// ____ ft_swop ____
+/*	_____ ft_swop _____
 // Swaps values between two integer pointers
 //
 // This function is called by partition() in
@@ -129,7 +122,7 @@ static void	execute_rotation(t_prog_state *state, t_stack *s, int steps,
 //
 // It is not used elsewhere.
 //
-
+*/
 void	ft_swop(int *a, int *b)
 {
 	int	temp;

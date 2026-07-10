@@ -10,24 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-	____ stack_queries.c ____
-		The purpose of this file is to store functions
-		that are used by algorithms to gather information about
-		a given stack in order to decide what to sort.
-
-
-	___ Used by ___
-		- 'sort_simple' in sort_simple_selection.c
-		- 'sort_medium' in sort_medium_chunk.c
-
-
- */
-
 #include "push_swap.h"
 
-/*
-	__ find_pos_min() __
+/*	_____ find_pos_min() _____
   		Finds, and returns, the position
 		in a given stack for the *smallest*
 		value stored starting at the 'top'.
@@ -45,7 +30,6 @@
 					49 has the position of the
 					lowest value int the stack
 */
-
 int	find_pos_min(t_stack *s)
 {
 	t_node	*curr;
@@ -72,24 +56,13 @@ int	find_pos_min(t_stack *s)
 	return (pos_min);
 }
 
-/*
- 	__ find_pos_max() __
+/*	_____ find_pos_max() _____
   		Finds, and returns, the position
 		in a given stack for the *largest/highest*
 		value stored starting at the 'top'.
 
 		The `top` of the stack is position `0`
 		and the `bottom` of the stack is `size -1`.
-*/
-
-/*
-	____ find_pos_max() ____
-  		Finds, and returns, the position
-		in a given stack for the *largest*
-		value stored starting at the 'top'.
-
-		The `top` of the stack is position `0`
-		and the `bottom` of the stack is `size - 1`.
 
 		Say we have a given stack with:
 			position:	0		value	201
@@ -101,7 +74,6 @@ int	find_pos_min(t_stack *s)
 					201 has the position of the
 					highest value int the stack
 */
-
 int	find_pos_max(t_stack *s)
 {
 	t_node	*curr;

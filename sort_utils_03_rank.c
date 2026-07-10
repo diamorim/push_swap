@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-//
-// ____ rank() ____
+
+/*	_____ rank() _____
 //
 // Function inherits a stack (via state) and
 // create and migrates the values to an array.
@@ -27,6 +27,7 @@
 // Lastly, the function frees up memory allocated to the array
 // as it is no longer needed.
 //
+*/
 void	rank(t_prog_state *state)
 {
 	int		*arr;
@@ -51,8 +52,7 @@ void	rank(t_prog_state *state)
 	free(arr);
 }
 
-//
-// ____ stack_to_arr() ____
+/*	_____ stack_to_arr() _____
 //
 // Function creates and allocates memory for an
 // array and populates the array based on values
@@ -61,8 +61,7 @@ void	rank(t_prog_state *state)
 // Function loops through the entire stack from
 // beginning to end and returns the array, `arr`
 // to the caller.
-//
-
+*/
 int	*stack_to_arr(t_stack *stack)
 {
 	int		i;
@@ -85,8 +84,7 @@ int	*stack_to_arr(t_stack *stack)
 	return (arr);
 }
 
-//
-// ____ quick_sort ____
+/*	_____ quick_sort _____
 // Function sorts an array ---> the very first time, and
 // only time, the low is `0` and the high is the `size - 1`.
 //
@@ -98,6 +96,7 @@ int	*stack_to_arr(t_stack *stack)
 //
 //
 //
+*/
 void	quick_sort(int arr[], int low, int high)
 {
 	int	pivot_idx;
@@ -112,8 +111,7 @@ void	quick_sort(int arr[], int low, int high)
 	}
 }
 
-/*
-	_____ partition() _____
+/*	_____ partition() _____
 	Function always starts by assigning:
 
 	pivot	=	the value stored in the array at the high position
@@ -138,9 +136,7 @@ void	quick_sort(int arr[], int low, int high)
 
 	Function returns (i + 1) which becomes the next pivot index
 	for the caller.
-
  */
-
 int	partition(int arr[], int low, int high)
 {
 	int	i;
@@ -165,26 +161,27 @@ int	partition(int arr[], int low, int high)
 	return (i + 1);
 }
 
-// ____ binary_search() ____
-// Use of this function assumes that the array it
-// is searching through is presorted.
+/*	_____ binary_search() _____
+//	Use of this function assumes that the array it
+//	is searching through is presorted.
 //
-// Function assigns an index, 'mid', which begins initially
-// between the beginning ('0') & end ('n') positions of the array.
+//	Function assigns an index, 'mid', which begins initially
+//	between the beginning ('0') & end ('n') positions of the array.
 //
-// If the arr[mid] == target, function returns that position,
-// mid.
+//	If the arr[mid] == target, function returns that position,
+//	mid.
 //
-// If arr[mid] < target, then process repeats at the second half
-// of the array.
+//	If arr[mid] < target, then process repeats at the second half
+//	of the array.
 //
-// If arr[mid] > target, then process repeats in the first half
-// of the array.
+//	If arr[mid] > target, then process repeats in the first half
+//	of the array.
 //
-// Function continues to loop through a divide-and-conquer strategy
-// until, ultimatealy, it finds the target, at which point:
-// arr[mid] == target.
+//	Function continues to loop through a divide-and-conquer strategy
+//	until, ultimatealy, it finds the target, at which point:
+//	arr[mid] == target.
 //
+*/
 int	binary_search(int arr[], int n, int target)
 {
 	int	low;

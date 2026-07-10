@@ -152,7 +152,7 @@ static void	move_elements_to_stack_b(t_prog_state *state, int min,
 	}
 }
 
-//_____ push_elements_back_to_stack_a()_____
+/*	_____ push_elements_back_to_stack_a()_____
 //	Function searches for the position of the element with the highest value
 // and rotates the stack so that this element is at the top of stack 'b' and
 // then pushes that element over to stack 'a'
@@ -160,7 +160,7 @@ static void	move_elements_to_stack_b(t_prog_state *state, int min,
 // We use smart_rotate() to minimize the number of rotations required
 // by first looking at whether its faster to rotate in one direction or
 // the other.
-//
+*/
 void	push_elements_back_to_stack_a(t_prog_state *state)
 {
 	while (state->b->size > 0)

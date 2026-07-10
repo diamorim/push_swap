@@ -12,22 +12,8 @@
 
 #include "push_swap.h"
 
-void	run_prog(t_prog_state *state)
-{
-	if (!state || !state->a || state->a->size == 0)
-		return ;
-	if (is_sorted_asc(state->a))
-		return ;
-	state->disorder = compute_disorder(state->a);
-	dispatch_algo_strategy(state);
-}
-
-static int	error_exit(t_prog_state *state)
-{
-	free_prog_state(state);
-	write(2, "Error\n", 6);
-	return (1);
-}
+void	run_prog(t_prog_state *state);
+static int	error_exit(t_prog_state *state);
 
 int	main(int argc, char **argv)
 {
@@ -46,4 +32,21 @@ int	main(int argc, char **argv)
 	run_prog(state);
 	free_prog_state(state);
 	return (0);
+}
+
+void	run_prog(t_prog_state *state)
+{
+	if (!state || !state->a || state->a->size == 0)
+		return ;
+	if (is_sorted_asc(state->a))
+		return ;
+	state->disorder = compute_disorder(state->a);
+	dispatch_algo_strategy(state);
+}
+
+static int	error_exit(t_prog_state *state)
+{
+	free_prog_state(state);
+	write(2, "Error\n", 6);
+	return (1);
 }

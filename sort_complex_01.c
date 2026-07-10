@@ -18,8 +18,7 @@ void		push_all_to_stack_a(t_prog_state *state);
 static void	iterate_bits(t_prog_state *state, int bit, int stack_size);
 static int	is_stack_a_sorted(t_prog_state *state);
 
-///
-// ---- sort_complex ____
+/*	---- sort_complex ____
 // Function calculates and assigns a rank to all of
 // the values inside of a given stack using rank().
 //
@@ -59,8 +58,7 @@ static int	is_stack_a_sorted(t_prog_state *state);
 //
 // We do this until we have reviewed and compared every bit position and
 // pushed about half of the elements to stack `b` in descending order.
-//
-//
+*/
 void	sort_complex(t_prog_state *state)
 {
 	int	bit;
@@ -101,8 +99,7 @@ static void	iterate_bits(t_prog_state *state, int bit, int stack_size)
 	}
 }
 
-//
-// _____ count_bits _____
+/*	_____ count_bits _____
 // n	=	an integer for whom we are going to count the
 // number of bits
 //
@@ -146,7 +143,7 @@ static void	iterate_bits(t_prog_state *state, int bit, int stack_size)
 // 		- 0
 //
 // So 500 would be 9 bits.
-//
+*/
 int	count_bits(int n)
 {
 	int	bit_count;
@@ -159,14 +156,6 @@ int	count_bits(int n)
 	}
 	return (bit_count);
 }
-
-//
-// ____ push_all_to_stack_a ____
-// Function pushes nodes from stack b to
-// stack a from top to bottom (??)
-//
-// I, Noah, need to visualize this some more times.
-//
 
 void	push_all_to_stack_a(t_prog_state *state)
 {

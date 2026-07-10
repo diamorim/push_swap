@@ -10,34 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-	__dispatch_algo_strategy()__
-	This is used by prog_state() in main.c
-
-	The function receives a stack which
-	includes the "strategy" request (from the user
-	or by default) in CLI to execute the strategy.
-
-	__ Called by __
-		- prog_state() in mainc.
-
-	__ Includes
-		- is_sorted_sc()
-		- dispatch_algo_strategy()
-
-	__ Uses __
-		- is_sorted_asc()
-		- sort_adaptive()
-		- sort_simple()
-		- sort_medium()
-		- sort_complex()
-
-	Function uses a simple dispatch pattern.
-
-	__ Note about parameter(s) __
- */
-
 #include "push_swap.h"
+
+int	is_sorted_asc(t_stack *s);
 
 void	dispatch_algo_strategy(t_prog_state *state)
 {
@@ -67,34 +42,9 @@ void	dispatch_algo_strategy(t_prog_state *state)
 	}
 }
 
-/*
-	__ is_sorted_asc() __ is used by
-		- dispatch_algo_strategy()
-		- sort_adaptive()
-
-	Checks if a given stack (e.g. 'a') is
+/*	_____ is_sorted_asc() _____
+	Checks if a given stack (e.g. 'a') is already
 	sorted in ascending order.
-
-	IMPORTANT :-)
-		If the stack does not exist || is empty,
-		|| or has only one node ||
-		the stack is considered to be sorted &
-		function returns (1).
-
-	BASIC IDEA
-		This is a version of selection sort.
-
-		Function loops through the stack and looks
-		at each node.
-
-		If it finds one case where
-		it is not sorted, the function returns (0)
-		and stops the process.
-
-		If the function cannot find a single case of
-		'disorder' -- function returns (1)
-		where the stack is not sorted --- then -- the
-		function returns to the caller.
 */
 
 int	is_sorted_asc(t_stack *s)

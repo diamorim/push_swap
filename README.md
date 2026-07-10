@@ -60,9 +60,9 @@ The flags available are:
 
 You should add the flags as arguments to the program, the order does not matter so you can choose where to put it.
 e.g:
-	- ./push_swap 1 --simple 3 2
+	`- ./push_swap 1 --simple 3 2`
 
-if no flags are used the program will run with the `adaptive` flag by default.
+If no flags are used the program will run with `adaptive` setting by default.
 
 
 
@@ -71,6 +71,11 @@ if no flags are used the program will run with the `adaptive` flag by default.
 In terms of recieved input, our program considers any time a 
 larger number appears before a smaller number to be a 'mistake' aka 
 an instance of disorder.
+
+Per the subject:
+- If the numbers are already in the right order, the disorder is 0. 
+- If they are in the worst possible order, the disorder is 1. 
+- Anything in between means your stack is partly sorted, but still messy.
 
 Our program measures disorder on a scale from 0 to 1 based on the number
 of mistakes
@@ -113,6 +118,9 @@ If there are only 2 inputted elements (& they are not sorted in ascending order)
 If there are only 3 inputted elements (& they are not sorted in ascending order), the program:
 	-- rotates the largest element to the bottom
 	-- swaps the top two elements (if appropriate)
+
+We use `handle_small_sort()` for these small amount of inputs because --> for up <=3 elements, there are 
+<= 6 permutations and this can most effectively solved by <= 2 operations.
 
 
 ### Simple algorithm (O(n²))
@@ -226,8 +234,10 @@ The end result is stack 'a' is sorted in ascending order.
 
 
 
-### `quick_sort` algorithm
-We use quick sort with both `medium_sort()` and `complex_sort()` to rank the values relative to each other within an array. We do not use for operations within or between stacks.
+### `quick_sort` algorithm for computing rank per element
+Both `medium_sort()` and `complex_sort()` algorithms utilize `quick_sort` to compute the rank of
+values relative to each other within an array. We do not directlyy use `quick_sort()` to perform
+sorting operations within- or in-between stacks.
 
 Quick sort works by selecting one element as a pivot and partitioning the rest of the array into two groups — elements smaller than the pivot and elements larger than the pivot — then recursively sorting each group.
 

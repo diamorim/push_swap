@@ -12,18 +12,6 @@
 
 #include "push_swap.h"
 
-/*
-	___ Calls on ___
-		- new_node()
-		- stack_add_back()
-		- both are located currently
-		in stack_utils.c
-
-	___ Notes ___
-		Consider moving those functions here
-		if we do not call them anywhere else.
-*/
-
 int	parse_input(t_prog_state *state, char **argv)
 {
 	int		i;
