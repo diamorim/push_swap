@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 	t_prog_state	*state;
 
 	if (argc < 2)
-		return (error_exit(NULL));
+		return (0);
 	if (!check_errors(argc, argv))
 		return (error_exit(NULL));
 	state = init_prog_state();
