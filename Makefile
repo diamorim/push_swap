@@ -4,11 +4,11 @@ CFLAGS = -Wall -Wextra -Werror
 SRCS =	main.c \
 		stack_utils_00_init.c \
 		stack_utils_01.c \
-		stack_utils_03_queries.c \
+		stack_utils_02_queries.c \
 		input_parser.c \
-		input_utils_a.c \
-		input_utils_b.c \
-		input_utils_c.c \
+		input_utils_01.c \
+		input_utils_02.c \
+		input_utils_03.c \
 		operations_a.c \
 		operations_b.c \
 		operations_double.c \
