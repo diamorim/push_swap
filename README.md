@@ -1,4 +1,4 @@
-This project has been created as part of the 42 curriculum by <damorim- >, <norobins>.
+This project has been created as part of the 42 curriculum by damorim-, norobins.
 
 ## Description
 In this project, our program recieves instructions from a user 
@@ -28,6 +28,25 @@ must solely use a combination of these 11 operations.
 
 Our program uses 'pa', 'pb', 'ra', 'rb', 'rra' and 'rrb' to sort the elements 
 inside and between the stacks.
+
+
+## Contributors
+Both damorim- and norobins collaborated closely on architecture, testing, debugging, performance optimization, code review, algorithm analysis, documentation and final validation.
+
+We primarily split work across responsibilities below (but collaborated on these areas as well:) 
+
+### damorim-
+- Argument parsing and input validation
+- Quick sort and binary search implementation for value ranking
+- Complex sort algorithm
+- Implementation of all required stack operations
+
+
+### norobins
+- Data structure and stack initialization
+- Disorder metric computation
+- Simple (selection sort) and medium (chunk sort) algorithm implementation
+- Adaptive sorting strategy selection
 
 
 ## Instructions
@@ -281,8 +300,16 @@ For 500 random numbers, our program must use:
 
 
 ## Resources
-- Youtube
-- GeekForGeeks
-- ChatGPT
-- Claude LLM
-- Gemini
+
+#### References
+- 42 Peers :-)
+- YouTube & related websites
+	- BroCode, CS50, GeekForGeeks, Michael Sambol, Oceano, Polylog, Portfolio Courses, etc.
+- "Grokking Algorithms" by Aditya Bhargava
+
+
+#### AI 
+LLM tools used for
+- General research, project planning & visualization
+- Reviewing & visualizing algorithmic concepts
+- Assistance with debugging
