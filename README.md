@@ -85,35 +85,6 @@ If no flags are used the program will run with `adaptive` setting by default.
 
 
 
-
-### Disorder metric
-In terms of recieved input, our program considers any time a 
-larger number appears before a smaller number to be a 'mistake' aka 
-an instance of disorder.
-
-Per the subject:
-- If the numbers are already in the right order, the disorder is 0. 
-- If they are in the worst possible order, the disorder is 1. 
-- Anything in between means your stack is partly sorted, but still messy.
-
-Our program measures disorder on a scale from 0 to 1 based on the number
-of mistakes
-	mistakes = 0
-	total_pairs = 0
-	for i from 0 to size(a)-1:
-		for j from i+1 to size(a)-1:
-			total_pairs += 1
-			if a[i] > a[j]:
-				mistakes += 1
-	return mistakes / total_pairs
-
-Program measures disorder before any sorting operations are made.
-
-This disorder metric is used by the adaptive algorithm -- which is the 
-default algorithm for the program and can also be proactively selected by 
-the user to sort the input.
-
-
 ## Algorithm requirements
 The program implements four distinct sorting strategies -- in order to sort the
 elements and deliver a completely sorted stack 'a'.
@@ -126,8 +97,13 @@ elements and deliver a completely sorted stack 'a'.
    0.2 <= x <= 0.5  -- medium algorithm
 			>= 0.5  -- complex algorithm
 
+#### Performance benchmarks
+- For 100 random numbers, our goal is to achieve between 700 & 2,000 operations
+- For 500 random numbers, our goal is to achieve between 5,500 & 12,000 operations:
 
-## For very small # of inputs: we use `handle_small_sort*()`
+
+
+#### For very small # of inputs: we use `handle_small_sort*()`
 For all algorithims we call `handle_small_sort()` to handle cases where there are <= 3
 elements to sort.
 
@@ -147,10 +123,9 @@ We use a selection sort style algorithm to meet the O(n²) requirement for opera
 
 A classic selection sort repeatedly finds the smallest element and places it in its final position in sorted order. 
 
-If there are more than 3 elements, our implementation repeatedly (until there are only 3 elements left in stack 'a'):
+If there are 4+ elements in stack 'a', our implementation repeatedly (until there are only 3 elements left in stack 'a'):
 	- scans stack 'a' for the smallest element;
-	- rotates stack 'a' so that the smallest element is located at the 
-	top of the stack
+	- rotates stack 'a' so that the smallest element is located at the top of the stack
 	- pushes that element over to stack 'b'
 
 Next, our algorithm sorts these remaining three elements in stack 'a' with `sort_3()`.
@@ -158,30 +133,29 @@ Next, our algorithm sorts these remaining three elements in stack 'a' with `sort
 After this process, our program pushes each element in stack 'b' -- one-by-one -- back to stack 'a' until stack 'b' is completely empty.
 
 
-#### O(n²) & simple algorithm
-	- Across ~n extractions this algorithm delivers O(n²) operations in the worst case scenario.
+#### Why selection sort?
+- The implementation here is straight-forward and fits well w/ small data sets and our stack optimization challenge
 
-	- Each extraction from a stack of size k -- costs at most ⌊k/2⌋ rotations (smart_rotate picks the shorter direction) plus one push. 
 
-	- Summed over n − 3 extractions, the rotations are bounded by (n + (n-1) + ... + 4)/2 ≈ n²/4, so the total operation count is O(n²).
-
-	- O(n√n) and O(n log n) strategies will outperform O(n²) as input grows.
+#### Complexity
+- Time O(n²)
+- Space O(n)
 
 
 
 ### Medium algorithm (O(n√n)) 
-We use a chunk-based sorting strategy that divides the input into chunks of approximately √n consecutive ranks.
+We use a chunk-based sorting strategy that divides the input into chunks of approximately √n consecutive ranks. 
 
-1. If there are ≤3 elements, sort them with `handle_small_sort()` and return.
+Assuming there are 4+ elements our `medium_sort()` algorithm works as follows:
 
-#### 2. Rank every element:####
+#### 1. Rank every element:
 	Copy all values into an array, `quick_sort()` it, and assign each node its index in the sorted array as its rank.
 
-#### 3. Compute chunks#### 
+#### 2. Compute chunks
 	- chunk_size        = ⌊√n⌋ (the largest c with c² ≤ n), with a minimum of 2
-	- Number of chunks  = ceil(n / chunk_size)
+	- Number of chunks  = (n + chunk_size - 1) / chunk_size
 
-#### 4. Distribute to stack 'b', chunk-by-chunk
+#### 3. Distribute to stack 'b', chunk-by-chunk
 	Process chunks in ascending rank order.
 
 	For each chunk [min, max):
@@ -191,10 +165,10 @@ We use a chunk-based sorting strategy that divides the input into chunks of appr
 			- A safety guard stops the pass if a full revolution completes without a match
 			(defensive, should not trigger in normal use)
 
-5. At the end of phase 1, stack 'b' holds all elements -- with larger ranks generally closer to the top. They are grouped by chunk but not yet completely sorted.
+Once stack 'b' holds all the elements -- the elements with larger ranks are generally closer to the top. These elements are grouped by chunk ---->  but they are not yet, necessarily, perfectly sorted.
 
-#### 6. Push back to stack 'a'
-	- Repeatedly find the element with maximum rank in stack 'b' (find_pos_max)
+#### 4. Push back to stack 'a'
+	- Repeatedly find the element with maximum rank in stack 'b' via `find_pos_max()`
 	- `smart_rotate` it to the top along the shortest direction 
 	- Push the element to stack 'a' (`op_pa`)
 	- Repeat until stack 'b' is completely empty
@@ -202,24 +176,16 @@ We use a chunk-based sorting strategy that divides the input into chunks of appr
 The end result is stack 'a' sorted in ascending order. 
 
 
-
 #### (O(n√n)) & medium algorithm
+- Outperforms O(n²) algorithms and works well w/ medium-sized data sets
+- Consistently achieves standards required for operations counts
 
-- ##### Phase 1: chunking and pushing to stack 'b' 
-	- During each chunk pass, the loop rotates forward through a (`op_ra`) and never completes a full revolution without a match — the safety guard stops it first — so each surviving element is rotated past at most once per pass.
-	- One `op_pb` per element moved.
-	- Across ~√n passes the stack shrinks each time, so total rotations are bounded by n + (n − √n) + (n − 2√n) + … ≈ O(n√n).
 
-- ##### Phase 2: pushing back to stack 'a'
-	- n pushes (`op_pa`), each preceded by a smart_rotate to bring stack 'b's max to the top. 
-	- Because chunks are pushed in ascending rank order, the current max is always within the top ~√n region of b, so each rotation costs ≤ √n/2 operations → O(n√n) operations.
-
-- ##### Total (worst-case): 
-	- O(n√n) operations
-
+#### Complexity
+- Time O(n√n)
+- Space O(n)
 
 For details on our quick sort implementation, see `Quick sort algorithm` section.
-
 
 
 ### Complex algorithm (O(n log n))
@@ -243,13 +209,15 @@ We use an adaptation of LSD (least-significant digit) radix sort to achieve wors
 The end result is stack 'a' is sorted in ascending order.
 
 
-
 #### O(n log n) & complex algorithm
+- Time O(n long n)
+- Space O(n)
 
-- *Bit passes:* `count_bits(n − 1)` ≈ log₂(n) passes (7 for n=100, 9 for n=500).
- - *Per pass:* walks all n elements once — each element costs one operation (op_ra or op_pb) — then pushes them back with ~n op_pa. So each pass ≈ 2n
-   operations.
- - *Total:* 2n × log₂(n) = O(n log n) operations.
+- Radix sort is a archteypal sorting algorithm and performs extremely well for larger data sets
+- This algorithm consistently achieves our operation count goals and is works well with optimizing stacks
+
+
+
 
 
 
@@ -285,18 +253,57 @@ After the sort completes, `binary_search` is used to look up each node's value i
 
 
 
-### Performance Benchmarks
 
-For 100 random numbers, our program must use:
-	- Less than 2,000 operations to pass (minimum requirement)
-	- Less than 1,500 operations for good performance
-	- Less than 700 operations for excellent performance
+### Adaptive algorithm
+When there is no flag recieved as input the adaptive algorithm is the detault algorithm.
+
+Program uses an adaptive algorithm dispatcher to utilize a `sort_simple()`, `sort_medium()` or `sort_complex()` algorithm depending on the amount if disorder.
+
+The appropriate algorithm is dispatched based on the computed disorder as defined below via `Disorder metric`:
+			 < 0.2  -- simple algorithm
+   0.2 <= x <= 0.5  -- medium algorithm
+			>= 0.5  -- complex algorithm
+
+The adaptive algorithm is very effective because a `sort_simple()` approach can end up more efficient than the other algorithms
+if the data is already almost perfectly sorted.
+
+For larger, higher disorder data sets, the `sort_complex()` is going to be our best performer.. 
 
 
-For 500 random numbers, our program must use:
-	- Less than 12,000 operations to pass (minimum requirement)
-	- Less than 8,000 operations for good performance
-	- Less than 5,500 operations for excellent performance
+
+### Disorder metric
+In terms of recieved input, our program considers any time a 
+larger number appears before a smaller number to be a 'mistake' aka 
+an instance of disorder.
+
+Per the subject:
+- If the numbers are already in the right order, the disorder is 0. 
+- If they are in the worst possible order, the disorder is 1. 
+- Anything in between means your stack is partly sorted, but still messy.
+
+Our program measures disorder on a scale from 0 to 1 based on the number
+of mistakes
+	mistakes = 0
+	total_pairs = 0
+	for i from 0 to size(a)-1:
+		for j from i+1 to size(a)-1:
+			total_pairs += 1
+			if a[i] > a[j]:
+				mistakes += 1
+	return mistakes / total_pairs
+
+Program measures disorder before any sorting operations are made.
+
+This disorder metric is used by the adaptive algorithm -- which is the 
+default algorithm for the program and can also be proactively selected by 
+the user to sort the input.
+
+
+
+
+
+
+
 
 
 ## Resources
