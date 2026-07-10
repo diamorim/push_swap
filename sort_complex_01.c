@@ -171,12 +171,6 @@ void	push_all_to_stack_a(t_prog_state *state)
 	}
 }
 
-//4, 3, 2, 1
-//0100  0011   0010    0001
-//stack a: 3, 1
-//stack b: 4, 2
-//stack a: 2, 4, 3, 1
-
 static int	is_stack_a_sorted(t_prog_state *state)
 {
 	int		i;
