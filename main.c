@@ -29,7 +29,10 @@ int	main(int argc, char **argv)
 	if (!parse_input(state, argv + 1))
 		return (error_exit(state));
 	state->strat_req = strategy_from_argv(argv + 1);
+	state->bench = bench_from_argv(argv + 1);
 	run_prog(state);
+	if (state->bench)
+		print_bench_report(state);
 	free_prog_state(state);
 	return (0);
 }

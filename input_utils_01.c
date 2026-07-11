@@ -79,3 +79,19 @@ t_strategy	strategy_from_argv(char **argv)
 	}
 	return (ADAPTIVE);
 }
+
+int		bench_from_argv(char **argv)
+{
+	int	i;
+
+	if (!argv)
+		return (0);
+	i = 0;
+	while (argv[i])
+	{
+		if (ft_strncmp(argv[i], "--bench", 8) == 0)
+			return (1);
+		i++;
+	}
+	return (0);
+}

@@ -22,7 +22,7 @@ int	check_errors(int argc, char **argv)
 	if (argc < 2)
 		return (0);
 	argv++;
-	if (check_allflags(argv) > 1)
+	if (count_strategy_flags(argv) > 1)
 		return (0);
 	if (!is_argv_number(argv))
 		return (0);

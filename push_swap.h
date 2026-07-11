@@ -23,6 +23,11 @@ long			ft_strtol(char *str);
 int				ft_isnumber(char *str);
 int				check_flags(char *str);
 int				check_errors(int argc, char **argv);
+int				is_strategy_flag(char *str);
+int				count_strategy_flags(char **argv);
+int				bench_from_argv(char **argv);
+
+
 
 typedef enum e_strategy
 {
@@ -113,7 +118,6 @@ void			push(t_stack *stack_1, t_stack *stack_2);
 void			rotate(t_stack *stack);
 void			reverse_rotate(t_stack *stack);
 void			record_ops(t_prog_state *state, t_op_type op);
-void			print_op(char *str);
 
 void			op_sa(t_prog_state *state);
 void			op_pa(t_prog_state *state);
@@ -126,6 +130,11 @@ void			op_rrb(t_prog_state *state);
 void			op_ss(t_prog_state *state);
 void			op_rr(t_prog_state *state);
 void			op_rrr(t_prog_state *state);
+
+// ___ printing ___
+void			print_op(char *str);
+void			print_bench_report(t_prog_state *state);
+
 
 //	___	algorithm-sorting - sorting_prog` ___
 // Not including check_node here as functions with

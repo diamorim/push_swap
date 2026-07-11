@@ -13,6 +13,7 @@ SRCS =	main.c \
 		operations_b.c \
 		operations_double.c \
 		operations_utils.c \
+		print_bench.c \
 		print_op.c \
 		sor_compute_disorder.c \
 		sort_strategy_dispatcher.c \
