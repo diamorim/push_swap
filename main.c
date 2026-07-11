@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: norobins <norobins@student.42Berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 16:21:03 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/10 12:09:42 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/11 22:59:38 by norobins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	run_prog(t_prog_state *state);
+void		run_prog(t_prog_state *state);
 static int	error_exit(t_prog_state *state);
 
 int	main(int argc, char **argv)
