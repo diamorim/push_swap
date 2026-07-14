@@ -26,9 +26,33 @@
 - [Algorithms](./README.md#algorithm-requirements)
 - [Contributors](./README.md#contributors)
 
+## Memory leaks
+
+	- Throughout the defense, pay attention to the amount of memory
+	used by push_swap (using the command top for example) in order
+	to detect any anomalies and ensure that allocated memory is
+	properly freed. If there are significant memory leaks, the final
+	grade is 0.
+	Note: Minor memory issues may be acceptable depending on the implementation,
+	but major leaks or crashes should result in failure.
+
+### Tests
+
+1. memory leak test for simple:<br>
+![alt text](image-32.png)
+2. memory leak test for medium:<br>
+![alt text](image-33.png)
+3. memory leak test for complex:<br>
+![alt text](image-34.png)
+4. memory leak test for adaptive:<br>
+![alt text](image-35.png)
+5. memory leak test for benchmark:<br>
+![alt text](image-36.png)
+
 ## Error management
 
 ### Eval Requirement
+
 	- Error management
 	In this section, we'll evaluate push_swap's error management.
 	If most of these tests fail, no points will be awarded for this section.
@@ -143,6 +167,30 @@
 3. $>ARG="0 2 1"; ./push_swap $ARG | ./checker_linux $ARG<br>
 ![alt text](image-19.png)
 
+## Benchmark flag
+
+### Eval requirements
+
+	Test the benchmark mode functionality. This is not a failing requirement
+	but should be implemented according to the subject.
+	1. Run "$>./push_swap --bench --simple 5 4 3 2 1 2>/dev/null" and
+	verify it produces sorting instructions on stdout.
+	2. Run "$>./push_swap --bench --simple 5 4 3 2 1 2>bench.txt >/dev/null && cat bench.txt"
+	and verify the benchmark output contains most of:
+	◦ Disorder percentage (should be present)
+	◦ Strategy name and complexity class
+	◦ Total operations count
+	◦ Individual operation counts for operations
+	• Test disorder calculation with known inputs:
+	◦ For sorted input "1 2 3 4 5", disorder should be close to 0.00%
+	◦ For reverse sorted input "5 4 3 2 1", disorder should be close to 100.00%
+	Note: Minor variations in output format are acceptable if the core information is present.
+
+### Tests
+
+1. ./push_swap --bench --simple 5 4 3 2 1 2>/dev/null<br>
+![alt text](image-37.png)
+2. ./push_swap --bench --simple 5 4 3 2 1 2>bench.txt >/dev/null && cat bench.txt<br>
 ## Medium inputs
 
 ### Eval requirements
