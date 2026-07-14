@@ -168,3 +168,74 @@
 
 3. $>ARG="3 5 1 4 2"; ./push_swap $ARG | ./checker_linux $ARG<br>
 ![alt text](image-22.png)
+
+## Large Inputs
+
+### Eval requirements
+
+	- Large inputs (100 numbers)
+	Test with 100 random numbers. Use the checker binary provided.
+	Generate random numbers using: shuf -i 1-500 -n 100
+	• Run the test 2-3 times with different random sets.
+	• Check that the checker displays "OK" for all tests
+	• The program should use less than 2000 operations to pass this test.
+	• Less than 1500 is good, less than 700 is excellent performance.
+	Note: Some variation between runs is normal. Focus on overall correctness.
+
+### Tests
+
+1. first run:<br>
+![alt text](image-23.png)
+2. second run:<br>
+![alt text](image-24.png)
+3. third run:<br>
+![alt text](image-25.png)
+
+## Strategy flags
+
+### Eval requirements
+
+	- Strategy flags testing
+	Test different strategy flags with the same input:
+	• Generate 50 random numbers: shuf -i 1-200 -n 50
+	• Test the same input with --simple, --medium, --complex flags
+	• Most should produce valid output that sorts correctly
+	• Generally, --complex should use fewer instructions than --simple
+	• The --adaptive flag (or no flag) should work and choose automatically
+	Note: It's acceptable if not all strategies are perfectly optimized.
+	The important thing is that they work and show some performance differences
+
+### Tests
+
+simple<br>
+![alt text](image-26.png)
+
+medium<br>
+![alt text](image-27.png)
+
+complex<br>
+![alt text](image-28.png)
+
+adaptive<br>
+![alt text](image-29.png)
+
+## Very large inputs
+
+### Eval requirements
+
+	- Test with 500 random numbers. Use the checker binary provided.
+	Generate using: shuf -i 1-1000 -n 500
+	• Run the test 2 times with different random sets
+	• Check that the checker displays "OK" for both tests
+	• The program should use less than 12000 operations to pass this test.
+	• Less than 8000 is good, less than 5500 is excellent performance.
+	Note: This is a challenging test. Some variation in performance is expected.
+	Focus on correctness first, then performance
+
+### Tests
+
+1. first run:<br>
+![alt text](image-30.png)
+
+2. second run:<br>
+![alt text](image-31.png)
