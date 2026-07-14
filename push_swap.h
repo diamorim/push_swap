@@ -29,6 +29,7 @@ int				bench_from_argv(char **argv);
 
 typedef enum e_strategy
 {
+	NONE,
 	ADAPTIVE,
 	SIMPLE,
 	MEDIUM,

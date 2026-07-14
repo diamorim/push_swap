@@ -37,7 +37,9 @@ static void	print_percent_2dp(double d, int fd)
 
 static void	print_strategy_line(t_strategy s)
 {
-	if (s == SIMPLE)
+	if (s == NONE)
+		ft_putstr_fd("No strategy used. The stack is already sorted.\n", 2);
+	else if (s == SIMPLE)
 		ft_putstr_fd("simple (O(n^2))\n", 2);
 	else if (s == MEDIUM)
 		ft_putstr_fd("medium (O(n^2))\n", 2);

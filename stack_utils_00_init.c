@@ -44,7 +44,7 @@ t_prog_state	*init_prog_state(void)
 	while (i < OP_TYPES_TOTAL)
 		state->ops_count_per_type[i++] = 0;
 	state->strat_req = ADAPTIVE;
-	state->strat_used = ADAPTIVE;
+	state->strat_used = NONE;
 	state->bench = 0;
 	state->disorder = 0.0;
 	return (state);
