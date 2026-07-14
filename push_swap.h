@@ -66,14 +66,6 @@ typedef struct s_stack
 	int		size;
 }	t_stack;
 
-// bench is just boolean for the --bench benchmarking flag
-// strat_req is the strategy requested by the user in CLI
-// strat_used is the strategy our program uses
-// if the user selects adaptive strategy (or it runs
-// adaptive by default -- no user input)
-// 'n' is the input size of number of elements
-//
-
 typedef struct s_prog_state
 {
 	t_stack		*a;

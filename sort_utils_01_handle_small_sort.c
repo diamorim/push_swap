@@ -16,11 +16,15 @@ static void	rotate_largest_to_bottom(t_prog_state *state, int val_top,
 				int val_middle, int val_bottom);
 
 /*	____ handle_small_sort() ____
-		- 	This helper function acts as a disapatcher that
-		sorts anything less than or equal to 3 elements in a
-		stack (and returns a '1') or otherwise returns to
-		caller so that it knows to perforn a sorting job
-		on 4+ elements.
+//	This helper function acts as a dispatcher that
+//	sorts anything less than or equal to 3 elements in a
+//	stack (and returns a '1'). if there are 4 or 5 elements
+//	then it will push the lowest ones to stack 'b' and then
+//	call sort_3() to sort those in stack 'a'.
+//
+// 	If there are
+//	more than 5 elements it will return to the caller so it
+//	knows to proceed with rest of sort_simple().
 */
 int	handle_small_sort(t_prog_state *state)
 {
@@ -50,14 +54,14 @@ int	handle_small_sort(t_prog_state *state)
 }
 
 /*	_____ sort_3() _____
-	Sorts a 3-element stack in 1-or-2 operations.
-	- Assumes state->a->size is exactly 3.
-	- Guards against smaller sizes
-	- 'a'= top, 'b' = middle, 'c'= bottom
-
-	This is the most efficient algorithm when there
-	are only 3 elements to be sorted (6 possible unsorted
-	permutations).
+//	Sorts a 3-element stack in 0-to-2 operations.
+//	- Assumes state->a->size is exactly 3.
+//	- Guards against any size other than 3
+//	- 'a'= top, 'b' = middle, 'c'= bottom
+//
+//	This is the most efficient algorithm when there
+//	are only 3 elements to be sorted (5 possible unsorted
+//	permutations out of 6 total).
 */
 void	sort_3(t_prog_state *state)
 {

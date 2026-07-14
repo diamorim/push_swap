@@ -1,7 +1,7 @@
 This project has been created as part of the 42 curriculum by damorim-, norobins.
 
 ## Description
-In this project, our program recieves instructions from a user 
+In this project, our program receives instructions from a user 
 
 Program accepts a series of numbers and stores these into a stack 
 structure, stack 'a'.
@@ -31,7 +31,7 @@ inside and between the stacks.
 
 
 ## Contributors
-Both damorim- and norobins collaborated closely on architecture, testing, debugging, performance optimization, code review, algorithm analysis, documentation and final validation.
+Both damorim- and norobins collaborated closely on architecture, testing, debugging, performance optimization, code review, algorithm analysis, print benchmark, documentation and final validation.
 
 We primarily split work across responsibilities below (but collaborated on these areas as well:) 
 
@@ -64,9 +64,8 @@ There are some arguments that are not valid, such as:
 	- numbers bigger than the maximum integer
 	- numbers lower than the minimum integer
 	- floating-point numbers e.g 1.5
-	- 2 or more flags
+	- 2 or more strategy flags (e.g. `--simple` and `--medium` together)
 	- 1 or less arguments
-
 
 ### Flags
 Flags are used to force one specific [sorting algorithm](#__Algorithm_requirements__)
@@ -79,10 +78,18 @@ The flags available are:
 
 You should add the flags as arguments to the program, the order does not matter so you can choose where to put it.
 e.g:
-	`- ./push_swap 1 --simple 3 2`
+	`./push_swap 1 --simple 3 2`
 
 If no flags are used the program will run with `adaptive` setting by default.
 
+There is also a separate, optional flag that can be used:
+- `--bench`
+
+This enables you to print a benchmark report (disorder %, strategy used, and 
+operation counts) after sorting completes. It can be combined with 
+any of the strategy flags above.
+
+	`./push_swap 1 --bench --simple 3 2`
 
 
 ## Algorithm requirements
@@ -104,7 +111,7 @@ elements and deliver a completely sorted stack 'a'.
 
 
 #### For very small # of inputs: we use `handle_small_sort*()`
-For all algorithims we call `handle_small_sort()` to handle cases where there are <= 3
+For all algorithims we call `handle_small_sort()` to handle cases where there are <= 5
 elements to sort.
 
 If there are only 2 inputted elements (& they are not sorted in ascending order), the program:
@@ -115,15 +122,18 @@ If there are only 3 inputted elements (& they are not sorted in ascending order)
 	-- swaps the top two elements (if appropriate)
 
 We use `handle_small_sort()` for these small amount of inputs because --> for up <=3 elements, there are 
-<= 6 permutations and this can most effectively solved by <= 2 operations.
+<= 6 permutations and this can most effectively be solved by <= 2 operations.
 
 
 ### Simple algorithm (O(n²))
 We use a selection sort style algorithm to meet the O(n²) requirement for operations.
 
+- Time O(n²)
+- Space O(n)
+
 A classic selection sort repeatedly finds the smallest element and places it in its final position in sorted order. 
 
-If there are 4+ elements in stack 'a', our implementation repeatedly (until there are only 3 elements left in stack 'a'):
+If there are >5 elements in stack 'a', our implementation repeatedly (until there are only 3 elements left in stack 'a'):
 	- scans stack 'a' for the smallest element;
 	- rotates stack 'a' so that the smallest element is located at the top of the stack
 	- pushes that element over to stack 'b'
@@ -137,16 +147,13 @@ After this process, our program pushes each element in stack 'b' -- one-by-one -
 - The implementation here is straight-forward and fits well w/ small data sets and our stack optimization challenge
 
 
-#### Complexity
-- Time O(n²)
-- Space O(n)
-
-
 
 ### Medium algorithm (O(n√n)) 
 We use a chunk-based sorting strategy that divides the input into chunks of approximately √n consecutive ranks. 
+- Time O(n√n)
+- Space O(n)
 
-Assuming there are 4+ elements our `medium_sort()` algorithm works as follows:
+Assuming there are >5 elements our `medium_sort()` algorithm works as follows:
 
 #### 1. Rank every element:
 	Copy all values into an array, `quick_sort()` it, and assign each node its index in the sorted array as its rank.
@@ -176,20 +183,19 @@ Once stack 'b' holds all the elements -- the elements with larger ranks are gene
 The end result is stack 'a' sorted in ascending order. 
 
 
-#### (O(n√n)) & medium algorithm
+#### Why chunk sort?
 - Outperforms O(n²) algorithms and works well w/ medium-sized data sets
 - Consistently achieves standards required for operations counts
 
-
-#### Complexity
-- Time O(n√n)
-- Space O(n)
-
+#### Notes
 For details on our quick sort implementation, see `Quick sort algorithm` section.
 
 
 ### Complex algorithm (O(n log n))
-We use an adaptation of LSD (least-significant digit) radix sort to achieve worst-case O(n log n).
+- Time O(n log n)
+- Space O(n)
+
+We use an adaptation of LSD (least-significant digit) radix sort to achieve worst-case O(n log n). 
 
 1. Rank every element (same rank() as `medium sort()` — `quick_sort()` the values, assign each node its sorted index).
 
@@ -209,21 +215,17 @@ We use an adaptation of LSD (least-significant digit) radix sort to achieve wors
 The end result is stack 'a' is sorted in ascending order.
 
 
-#### O(n log n) & complex algorithm
-- Time O(n long n)
-- Space O(n)
 
-- Radix sort is a archteypal sorting algorithm and performs extremely well for larger data sets
-- This algorithm consistently achieves our operation count goals and is works well with optimizing stacks
-
-
+#### Why radix sort?
+- Radix sort works particularly well for larger data sets.
+- This algorithm consistently achieves our operation count goals and works well with optimizing stacks
 
 
 
 
 ### `quick_sort` algorithm for computing rank per element
 Both `medium_sort()` and `complex_sort()` algorithms utilize `quick_sort` to compute the rank of
-values relative to each other within an array. We do not directlyy use `quick_sort()` to perform
+values relative to each other within an array. We do not directly use `quick_sort()` to perform
 sorting operations within- or in-between stacks.
 
 Quick sort works by selecting one element as a pivot and partitioning the rest of the array into two groups — elements smaller than the pivot and elements larger than the pivot — then recursively sorting each group.
@@ -231,7 +233,7 @@ Quick sort works by selecting one element as a pivot and partitioning the rest o
 Our implementation works as follows:
 
 1. Choose a pivot.
-	- We always pick the last element of the current range (`arr[high]`) as the pivot -- this is the archtypeal Lomuto partition scheme.
+	- We always pick the last element of the current range (`arr[high]`) as the pivot -- this is the archetypal Lomuto partition scheme.
 
 2. Partition. Scan through the range with two indices:
  	- `i` tracks the boundary between the "smaller than pivot" group and the rest (starts one before low).
@@ -255,9 +257,9 @@ After the sort completes, `binary_search` is used to look up each node's value i
 
 
 ### Adaptive algorithm
-When there is no flag recieved as input the adaptive algorithm is the detault algorithm.
+When there is no flag received as input the adaptive algorithm is the default algorithm.
 
-Program uses an adaptive algorithm dispatcher to utilize a `sort_simple()`, `sort_medium()` or `sort_complex()` algorithm depending on the amount if disorder.
+Program uses an adaptive algorithm dispatcher to utilize a `sort_simple()`, `sort_medium()` or `sort_complex()` algorithm depending on the amount of disorder.
 
 The appropriate algorithm is dispatched based on the computed disorder as defined below via `Disorder metric`:
 			 < 0.2  -- simple algorithm
@@ -272,7 +274,7 @@ For larger, higher disorder data sets, the `sort_complex()` is going to be our b
 
 
 ### Disorder metric
-In terms of recieved input, our program considers any time a 
+In terms of received input, our program considers any time a 
 larger number appears before a smaller number to be a 'mistake' aka 
 an instance of disorder.
 
@@ -297,12 +299,6 @@ Program measures disorder before any sorting operations are made.
 This disorder metric is used by the adaptive algorithm -- which is the 
 default algorithm for the program and can also be proactively selected by 
 the user to sort the input.
-
-
-
-
-
-
 
 
 

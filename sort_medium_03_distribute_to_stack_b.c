@@ -20,19 +20,17 @@ static void	move_elements_to_stack_b(t_prog_state *state, int min,
 //_____ distribute_to_stack_b _____
 //	chunk_idx 	= an index for each chunk
 //	chunk_size	= the number of elements per chunk
-//	num_chunks	= the number of of chunks in the entire stack
+//	num_chunks	= the number of chunks in the entire stack
 //	n 			= the number of elements in stack 'a'
-//
-// Each chunk is a chunk. Each chunk is a chunk.
 //
 //	Before this function has been called, the program calculates
 //	how much to divide the total number of elements of stack into smaller
-//	chunks using compute_chunk
+//	chunks using compute_chunk_size()
 // 					(e.g.
-// 					000 - 100 (chunk 0)
-// 					101	- 200 (chunk 1)
-// 					201	- 300 (chunk 2)
-// 					301	- 400 (chunk 3)
+// 					000 -  99 (chunk 0)
+// 					100	- 199 (chunk 1)
+// 					200	- 299 (chunk 2)
+// 					300	- 399 (chunk 3)
 // 					etc.)
 //
 //	This function scans the entire stack to identify each element that fits
@@ -59,19 +57,19 @@ void	distribute_to_stack_b(t_prog_state *state, int chunk_size,
 //
 //	Going back to this example of chunks:
 // 					(e.g.
-// 					000 - 100 (chunk 0)
-// 					101	- 200 (chunk 1)
-// 					201	- 300 (chunk 2)
-// 					301	- 400 (chunk 3)
+// 					0   -  99 (chunk 0)
+// 					100 - 199 (chunk 1)
+// 					200 - 299 (chunk 2)
+// 					300 - 399 (chunk 3)
 // 					etc.)
 //
 // In the first chunk:
 // 		 			min		= 0
 // 					max		= 100
-// 					width	= 101
+// 					width	= 100
 //
 // In the second chunk
-// 					min		= 101
+// 					min		= 100
 // 					max 	= 200
 // 					width	= 100
 //
@@ -98,15 +96,17 @@ static void	process_one_chunk(t_prog_state *state, int chunk_idx,
 // 				in a given round (using this function)
 // rev		=	# of rotations ("revolutions") since last time an element
 // 				was pushed from stack 'a' to stack 'b'
+//
+// 				The loop also guards against spinning indefinitely:
+// 				if rev exceeds the current size of stack 'a', it means we've rotated
+// 				through the entire stack without finding a matching element,
+// 				so the loop stops even if fewer than 'width' elements were moved.
+//
 // r		= 	the rank of a given element being examined in stack 'a'
 //
 // The idea of the function is to push elements from stack 'a' to stack 'b'
 // such that elements with a higher rank (they hold larger values relative to
 // elements with a lower rank) are at the top of stack 'b'.
-// e.g. 8 		7		7
-// 		7		8		8
-// 		3		3		2
-// 		2		2		3
 //
 // The function does not perfectly sort the elements.
 //

@@ -18,14 +18,18 @@ void		push_all_to_stack_a(t_prog_state *state);
 static void	iterate_bits(t_prog_state *state, int bit, int stack_size);
 static int	is_stack_a_sorted(t_prog_state *state);
 
-/*	---- sort_complex ____
-// Function calculates and assigns a rank to all of
+/*	_____ sort_complex() _____
+// For <=5 elements, function calls handle_small_sort
+// due to its higher efficiency.
+//
+// For more than 5 elements, sort_complex
+// calculates and assigns a rank to all of
 // the values inside of a given stack using rank().
 //
 // Next, we use a radix sort using binary.
 //
-// Let's asume two scenarios:
-// - 100 unqiue elements in a stack
+// Let's assume two scenarios:
+// - 100 unique elements in a stack
 // - 500 unique elements in a stack
 //
 // In binary, a stack size of 100 has 7 bits
@@ -37,7 +41,7 @@ static int	is_stack_a_sorted(t_prog_state *state);
 // 		876543210
 //
 // We loop through the stack biggest_bit amount of
-// times which is detemined by the # of bits counted in
+// times which is determined by the # of bits counted in
 // the stack.
 //
 // So if we have 500 elements in a stack, the it would be
@@ -45,10 +49,10 @@ static int	is_stack_a_sorted(t_prog_state *state);
 //
 // Then its comparing the right-most bit to see
 // if it's 1:
-// 		- if so, we rotate the stack to examine  the next element
+// 		- if so, we rotate the stack to examine the next element
 // 		- if not, we push the element to stack 'b'
 //
-// We do this for every element in the stack that still residing in stack 'a'
+// We do this for every element in the stack that is still residing in stack 'a'
 //
 // Once that round is finished, we use push_all_to_stack_a()
 // to push those back to stack `a` in linear order.
@@ -103,14 +107,14 @@ static void	iterate_bits(t_prog_state *state, int bit, int stack_size)
 // n	=	an integer for whom we are going to count the
 // number of bits
 //
-// Function counts how many bits are neede to
-// represent a given number, `n` before
+// Function counts how many bits are needed to
+// represent a given number, `n`, before
 // the expression of a number in base-2 becomes
 // only 0s.
 //
 // Let's say that we have:
 // 111110100 (500 =
-// 				  = 256 + 128 + 64 + 32 + 0 + 8 + 0 + 0 + 0
+// 				  = 256 + 128 + 64 + 32 + 16 + 0 + 4 + 0 + 0
 // 				  = 9 bit count
 //
 //		1111 (15	= 8 + 4 + 2 + 1)	= 4 bit count
@@ -119,14 +123,14 @@ static void	iterate_bits(t_prog_state *state, int bit, int stack_size)
 //		0001 (1	= 			  1)		= 1 bit count
 //
 //
-// // Another example"
+// Another example"
 // 		 1011 (11	= 8 + 0 + 2 + 1)	= 4 bit count
 // 		 0101 (5	=     4 + 0 + 1)	= 3 bit count
 // 		 0010 (2	=  		  2 + 0)	= 2 bit count
 // 		 0001 (1	= 			  1)	= 1 bit count
 //
-// 	With each passing of this loop in count_bits()
-// we divide n by 2 and round down until its 0.
+// With each passing of this loop in count_bits()
+// we divide 'n' by 2 and round down until it's 0.
 //
 // The count will be everything until 0.
 //

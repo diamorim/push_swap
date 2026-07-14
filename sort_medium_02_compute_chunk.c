@@ -18,10 +18,13 @@
 	n	= 	the number of elements in the stack
 	c 	= 	the approximate sq. root (rounding down)
 
-	The minimum number of chunks is always 2
+	The minimum chunk size is always 2
 
 	Function returns *approximately* the square root
 	of the number of elements in the stack.
+
+	If c would exceed n, it is capped at n so the chunk size
+	never exceeds the number of elements in the stack.
 
 	(e.g. if	n = 100 c = 10,		sq. root = 10.00000
 				n = 17	c = 4		sq. root =  4.12310
