@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: norobins <norobins@student.42Berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 19:16:09 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/10 13:33:57 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/11 23:01:31 by norobins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ int				check_errors(int argc, char **argv);
 int				is_strategy_flag(char *str);
 int				count_strategy_flags(char **argv);
 int				bench_from_argv(char **argv);
-
-
 
 typedef enum e_strategy
 {
@@ -134,7 +132,6 @@ void			op_rrr(t_prog_state *state);
 // ___ printing ___
 void			print_op(char *str);
 void			print_bench_report(t_prog_state *state);
-
 
 //	___	algorithm-sorting - sorting_prog` ___
 // Not including check_node here as functions with

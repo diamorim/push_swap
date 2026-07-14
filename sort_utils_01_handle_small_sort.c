@@ -6,7 +6,7 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 18:18:48 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/10 12:09:42 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/14 12:52:20 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,14 @@ int	handle_small_sort(t_prog_state *state)
 	if (state->a->size == 3)
 	{
 		sort_3(state);
+		return (1);
+	}
+	if (state->a->size == 4 || state->a->size == 5)
+	{
+		extract_move_lowest_to_stack_b(state);
+		sort_3(state);
+		while (state->b->size > 0)
+			op_pa(state);
 		return (1);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 18:02:17 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/10 13:10:34 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/14 12:55:02 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	sort_complex(t_prog_state *state)
 	int	biggest_bit;
 	int	stack_size;
 
-	if (state->a->size <= 3)
+	if (state->a->size <= 5)
 	{
 		handle_small_sort(state);
 		return ;

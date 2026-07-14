@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_utils_a.c                                    :+:      :+:    :+:   */
+/*   input_utils_01.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: norobins <norobins@student.42Berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 18:35:16 by diamo             #+#    #+#             */
-/*   Updated: 2026/07/10 13:29:30 by diamo            ###   ########.fr       */
+/*   Updated: 2026/07/11 22:59:03 by norobins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ t_strategy	strategy_from_argv(char **argv)
 	return (ADAPTIVE);
 }
 
-int		bench_from_argv(char **argv)
+int	bench_from_argv(char **argv)
 {
 	int	i;
 
