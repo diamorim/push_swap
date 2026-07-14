@@ -1,11 +1,4 @@
-
-
 #include "push_swap.h"
-
-static const char	*g_op_labels[OP_TYPES_TOTAL] = {
-	"sa", "sb", "ss", "pa", "pb",
-	"ra", "rb", "rr", "rra", "rrb", "rrr"
-};
 
 static void	print_percent_2dp(double d, int fd)
 {
@@ -44,12 +37,16 @@ static void	print_strategy_line(t_strategy s)
 
 static void	print_op_breakdown(t_prog_state *state)
 {
-	int	i;
+	const char	*op_labels[OP_TYPES_TOTAL] = {
+		"sa", "sb", "ss", "pa", "pb",
+		"ra", "rb", "rr", "rra", "rrb", "rrr"
+	};
+	int			i;
 
 	i = 0;
 	while (i < OP_TYPES_TOTAL)
 	{
-		ft_putstr_fd((char *)g_op_labels[i], 2);
+		ft_putstr_fd((char *)op_labels[i], 2);
 		ft_putstr_fd(": ", 2);
 		ft_putnbr_fd(state->ops_count_per_type[i], 2);
 		ft_putchar_fd('\n', 2);
