@@ -52,7 +52,8 @@ static int	is_stack_a_sorted(t_prog_state *state);
 // 		- if so, program rotates the stack to examine the next element
 // 		- if not, program pushes the element to stack 'b'
 //
-// Program does this for every element in the stack that is still residing in stack 'a'
+// Program does this for every element in the stack that is still
+// residing in stack 'a'
 //
 // Once that round is finished, program uses push_all_to_stack_a()
 // to push those back to stack `a` in linear order.
