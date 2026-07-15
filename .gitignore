@@ -65,3 +65,5 @@ dkms.conf
 # eval tests
 
 Eval_tests/
+checker_linux
+push_swap
