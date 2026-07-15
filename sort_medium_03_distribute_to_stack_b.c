@@ -90,35 +90,32 @@ static void	process_one_chunk(t_prog_state *state, int chunk_idx,
 }
 
 //_____ move_elements_to_stack_b() _____
-// Each "chunk" is simply a chunk (a grouping of elements)
+//	Each "chunk" is simply a chunk (a grouping of elements)
 //
-// moved	=	# of elements pulled from stack 'a' to stack 'b'
-// 				in a given round (using this function)
-// rev		=	# of rotations ("revolutions") since last time an element
-// 				was pushed from stack 'a' to stack 'b'
+//	moved	=	# of elements pulled from stack 'a' to stack 'b'
+//				in a given round (using this function)
+//	rev		=	# of rotations ("revolutions") since last time an element
+//				was pushed from stack 'a' to stack 'b'
 //
-// 				The loop also guards against spinning indefinitely:
-// 				if rev exceeds the current size of stack 'a', it means we've rotated
-// 				through the entire stack without finding a matching element,
-// 				so the loop stops even if fewer than 'width' elements were moved.
+//				The loop also guards against spinning indefinitely:
+// 				if rev > size, the loop exits.
 //
-// r		= 	the rank of a given element being examined in stack 'a'
+//	r		= 	the rank of a given element being examined in stack 'a'
 //
-// The idea of the function is to push elements from stack 'a' to stack 'b'
-// such that elements with a higher rank (they hold larger values relative to
-// elements with a lower rank) are at the top of stack 'b'.
+//	The idea of the function is to push elements from stack 'a' to stack 'b'
+//	in ascending chunk order.
 //
-// The function does not perfectly sort the elements.
+//	The function does not perfectly sort the elements.
 //
-// Rather, it's more like a pre-sort -- which decreases future operations.
+//	Rather, it's more like a pre-sort -- which decreases future operations.
 //
-// Function examines each element in stack `a`:
-// 		If the rank of the element fits within the current
-// 		chunk's [min, max) range, push that element to stack 'b'.
+//	Function examines each element in stack `a`:
+//		If the rank of the element fits within the current
+//		chunk's [min, max) range, push that element to stack 'b'.
 //
 //		Otherwise, rotate to next element in stack 'a' via op_ra().
 //
-// 		Repeat this process until all relevant elements in the current chunk
+//		Repeat this process until all relevant elements in the current chunk
 //		have been moved to stack 'b'.
 //
 //		The more chunks that have been sorted, the fewer elements
@@ -158,7 +155,7 @@ static void	move_elements_to_stack_b(t_prog_state *state, int min,
 // then pushes that element over to stack 'a'
 //
 // We use smart_rotate() to minimize the number of rotations required
-// by first looking at whether its faster to rotate in one direction or
+// by first looking at whether it's faster to rotate in one direction or
 // the other.
 */
 void	push_elements_back_to_stack_a(t_prog_state *state)

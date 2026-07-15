@@ -16,9 +16,9 @@ static void	execute_rotation(t_prog_state *state, t_stack *s, int steps,
 				int reverse_flag);
 
 /*	_____ extract_move_lowest_to_stack_b() _____
-//		One by one, this function pushes
-//		everything from stack a to stack b
-//		except for the three largest values.
+//		One by one, this function identifies the smallest
+//		elements and pushes them from stack 'a' to stack 'b'
+//		except for the three remaining values.
 //
 //		Note that the function uses 'smart_rotate'
 // 		to figure out what is the most efficient direction
@@ -78,8 +78,8 @@ void	smart_rotate(t_prog_state *state, t_stack *s, int pos)
 }
 
 /*	_____ execute_rotation() _____
-//	- Executes a 'rotate' forwards or in reverse for a given stack based on instructions
-//	from the caller -- smart_rotate()
+//	- Executes a 'rotate' forwards or in reverse for a given stack based
+//	on instructions from the caller -- smart_rotate()
 //
 //	Caller instructs:
 //	- which stack to rotate

@@ -90,12 +90,8 @@ int	*stack_to_arr(t_stack *stack)
 //
 //	The partition, as we will see in the partition() function
 //	is always set to 'high' for whichever section is being
-//	sorted. The choice if 'high' position as the pivot is known
+//	sorted. The choice of 'high' position as the pivot is known
 //	as Lomuto partition.
-//
-//
-//
-//
 */
 void	quick_sort(int arr[], int low, int high)
 {

@@ -54,7 +54,7 @@ int	handle_small_sort(t_prog_state *state)
 }
 
 /*	_____ sort_3() _____
-//	Sorts a 3-element stack in 0-to-2 operations.
+//	Sorts a 3-element stack in 1-to-2 operations.
 //	- Assumes state->a->size is exactly 3.
 //	- Guards against any size other than 3
 //	- 'a'= top, 'b' = middle, 'c'= bottom

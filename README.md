@@ -1,13 +1,20 @@
 This project has been created as part of the 42 curriculum by damorim-, norobins.
 
 ## Description
-In this project, our program receives instructions from a user 
+Push_swap is an algorithmic sorting project from the 42 curriculum.
 
-Program accepts a series of numbers and stores these into a stack 
-structure, stack 'a'.
+The objective is to sort a stack of unique integers using only a restricted 
+set of stack operations --> while minimizing the number of operations performed, 
+subject to the project's performance thresholds.
 
-The goal of our program is to sort these numbers in ascending order
-using an additional stack, stack 'b', and a limited # of operations.
+This implementation emphasizes algorithmic complexity, optimization, and adaptive strategy 
+selection. Rather than relying on a single sorting algorithm, it incorporates four distinct 
+sorting strategies and dynamically selects the most appropriate one based on the measured disorder 
+of the input stack.
+
+We are allowed to use two stacks and are able to move elements within a stack or between stacks
+with a limited number of operations.
+
 
 | Operation | Description |
 | --- | --- |
@@ -26,7 +33,7 @@ using an additional stack, stack 'b', and a limited # of operations.
 In order to change the order of an element in either stack, the program
 must solely use a combination of these 11 operations.
 
-Our program uses 'pa', 'pb', 'ra', 'rb', 'rra' and 'rrb' to sort the elements 
+Our program uses 'pa', 'pb', 'sa', 'ra', 'rb', 'rra' and 'rrb' to sort the elements 
 inside and between the stacks.
 
 
@@ -65,7 +72,6 @@ There are some arguments that are not valid, such as:
 	- numbers lower than the minimum integer
 	- floating-point numbers e.g 1.5
 	- 2 or more strategy flags (e.g. `--simple` and `--medium` together)
-	- 1 or less arguments
 
 ### Flags
 Flags are used to force one specific [sorting algorithm](#__Algorithm_requirements__)
@@ -101,7 +107,7 @@ elements and deliver a completely sorted stack 'a'.
 - 3. Complex algorithm  (O(n log n))
 - 4. Adaptive algorithm
 			 < 0.2  -- simple algorithm
-   0.2 <= x <= 0.5  -- medium algorithm
+   0.2 <= x  < 0.5  -- medium algorithm
 			>= 0.5  -- complex algorithm
 
 #### Performance benchmarks
@@ -129,7 +135,7 @@ We use `handle_small_sort()` for these small amount of inputs because --> for up
 We use a selection sort style algorithm to meet the O(n²) requirement for operations.
 
 - Time O(n²)
-- Space O(n)
+- Space O(1)
 
 A classic selection sort repeatedly finds the smallest element and places it in its final position in sorted order. 
 
@@ -161,7 +167,7 @@ Assuming there are >5 elements our `medium_sort()` algorithm works as follows:
 #### 2. Compute chunks
 	- chunk_size        = ⌊√n⌋ (the largest c with c² ≤ n), with a minimum of 2
 	- Number of chunks  = (n + chunk_size - 1) / chunk_size
-
+s
 #### 3. Distribute to stack 'b', chunk-by-chunk
 	Process chunks in ascending rank order.
 
@@ -169,8 +175,8 @@ Assuming there are >5 elements our `medium_sort()` algorithm works as follows:
 		- Scan stack 'a' from the top (forward rotation only - `op_ra`)
 		-  When an element whose rank, is within [min, max), reaches the top, push it to stack 'b'
 		- Repeat until the whole chunk has been moved
-			- A safety guard stops the pass if a full revolution completes without a match
-			(defensive, should not trigger in normal use)
+			- A safety guard stops the pass if a full revolution plus one extra rotation 
+			completes without amatch (defensive, should not trigger in normal use)
 
 Once stack 'b' holds all the elements -- the elements with larger ranks are generally closer to the top. These elements are grouped by chunk ---->  but they are not yet, necessarily, perfectly sorted.
 

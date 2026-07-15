@@ -26,42 +26,43 @@ static int	is_stack_a_sorted(t_prog_state *state);
 // calculates and assigns a rank to all of
 // the values inside of a given stack using rank().
 //
-// Next, we use a radix sort using binary.
+// Next, program uses a radix sort using binary.
 //
 // Let's assume two scenarios:
 // - 100 unique elements in a stack
 // - 500 unique elements in a stack
 //
-// In binary, a stack size of 100 has 7 bits
-// 		  1100100
+// In binary, 0-99 requires  7 bits
+// 		  1100011
 // 		  6543210
 //
 // In binary, a stack size of 500 has 9 bits
 // 		111110100
 // 		876543210
 //
-// We loop through the stack biggest_bit amount of
+// Program loops through the stack biggest_bit amount of
 // times which is determined by the # of bits counted in
 // the stack.
 //
-// So if we have 500 elements in a stack, the it would be
+// So if there are 500 elements in a stack, then it would be
 // 9 times.
 //
-// Then its comparing the right-most bit to see
+// Then program compares the right-most bit to see
 // if it's 1:
-// 		- if so, we rotate the stack to examine the next element
-// 		- if not, we push the element to stack 'b'
+// 		- if so, program rotates the stack to examine the next element
+// 		- if not, program pushes the element to stack 'b'
 //
-// We do this for every element in the stack that is still residing in stack 'a'
+// Program does this for every element in the stack that is still residing in stack 'a'
 //
-// Once that round is finished, we use push_all_to_stack_a()
+// Once that round is finished, program uses push_all_to_stack_a()
 // to push those back to stack `a` in linear order.
 //
-// After finishing that examination/sorting round, we increment to
+// After finishing that examination/sorting round, program increments to
 // the next bit position.
 //
-// We do this until we have reviewed and compared every bit position and
-// pushed about half of the elements to stack `b` in descending order.
+//	Program does this until it has reviewed and compared every bit position.
+//	In each pass, roughly half the elements (those with the current bit = 0)
+//	are pushed to stack `b`, while the rest are rotated within stack `a`.
 */
 void	sort_complex(t_prog_state *state)
 {
@@ -135,9 +136,9 @@ static void	iterate_bits(t_prog_state *state, int bit, int stack_size)
 // The count will be everything until 0.
 //
 // So if we started with:
-//		- 500; next it would be
-//		- 250; then
-// 		- 125;
+//		- 499; next it would be
+//		- 249; then
+// 		- 124;
 // 		- 62;
 // 		- 31;
 // 		- 15
