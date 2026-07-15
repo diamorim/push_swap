@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_utils_02_extract_and_move_smart_rotate        :+:      :+:    :+:   */
+/*   sort_utils_02_extract_and_move_smart_rotate.c      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */

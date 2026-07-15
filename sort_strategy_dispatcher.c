@@ -43,10 +43,9 @@ void	dispatch_algo_strategy(t_prog_state *state)
 }
 
 /*	_____ is_sorted_asc() _____
-	Checks if a given stack (e.g. 'a') is already
-	sorted in ascending order.
+//	Checks if a given stack (e.g. 'a') is already
+//	sorted in ascending order.
 */
-
 int	is_sorted_asc(t_stack *s)
 {
 	t_node	*node;
