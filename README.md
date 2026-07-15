@@ -1,4 +1,4 @@
-This project has been created as part of the 42 curriculum by damorim-, norobins.
+_This project has been created as part of the 42 curriculum by damorim-, norobins._
 
 ## Description
 Push_swap is an algorithmic sorting project from the 42 curriculum.
