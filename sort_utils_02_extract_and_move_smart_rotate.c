@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_utils_02_extract_and_move_smart_rotate        :+:      :+:    :+:   */
+/*   sort_utils_02_extract_and_move_smart_rotate.c      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -16,11 +16,11 @@ static void	execute_rotation(t_prog_state *state, t_stack *s, int steps,
 				int reverse_flag);
 
 /*	_____ extract_move_lowest_to_stack_b() _____
-//		One by one, this function pushes
-//		everything from stack a to stack b
-//		except for the three largest values.
+//		One by one, this function identifies the smallest
+//		elements and pushes them from stack 'a' to stack 'b'
+//		except for the three remaining values.
 //
-//		Note that the function uess 'smart_rotate'
+//		Note that the function uses 'smart_rotate'
 // 		to figure out what is the most efficient direction
 //		to get the element with the smallest value to the top.
 */
@@ -37,26 +37,25 @@ void	extract_move_lowest_to_stack_b(t_prog_state *state)
 }
 
 /*	_____ smart_rotate() _____
-//		- Attempts to rotate nodes in a given stack with
-//		the least number of ops possible.
-//		- Brings a node at a specific position to the top
-//		of a given stack.
+//	- Attempts to rotate nodes in a given stack with
+//	the least number of ops possible.
+//	- Brings a node at a specific position to the top
+//	of a given stack.
 //
-//		- Calculates if the position of an element is closer
-//		to the top or the bottom of the stack.
+//	- Calculates if the position of an element is closer
+//	to the top or the bottom of the stack.
 //
-//		pos 0  ← top
-//		...
-//		pos 3
-//		pos 4   ← midpoint (size/2 = 5)
-//		pos 5
-//		...
-//		pos 9  ← bottom
+//	pos 0  ← top
+//	...
+//	pos 3
+//	pos 4
+//	pos 5   ← midpoint (size/2 = 5)
+//	...
+//	pos 9  ← bottom
 //
-//		- If the position of the element in the stack is in the:
-//			- first half ----->   rotates forward
-//			- second half ------> reverse rotates
-//
+//	- If the position of the element in the stack is in the:
+//		- first half ----->   rotates forward
+//		- second half ------> reverse rotates
  */
 void	smart_rotate(t_prog_state *state, t_stack *s, int pos)
 {
@@ -79,14 +78,15 @@ void	smart_rotate(t_prog_state *state, t_stack *s, int pos)
 }
 
 /*	_____ execute_rotation() _____
-//	- Executes 'rotate' on a given stack based on instructions
-//	from the caller -- smart_rotate()
+//	- Executes a 'rotate' forwards or in reverse for a given stack based
+//	on instructions from the caller -- smart_rotate()
 //
 //	Caller instructs:
-//	- stack -- which stack to modify direction
+//	- which stack to rotate
+//	- how many steps (rotations) to perform
 //	- whether to rotate forwards or backwards
 //
- */
+*/
 static void	execute_rotation(t_prog_state *state, t_stack *s, int steps,
 				int reverse_flag)
 {
@@ -114,13 +114,13 @@ static void	execute_rotation(t_prog_state *state, t_stack *s, int steps,
 }
 
 /*	_____ ft_swop _____
-// Swaps values between two integer pointers
+//	Swaps values between two integer pointers
 //
-// This function is called by partition() in
-// sort_utils_03_rank.c -- which is used by rank()
-// which is used by sort_medium() and sort_complex().
+//	This function is called by partition() in
+//	sort_utils_03_rank.c -- which is used by rank()
+//	which is used by sort_medium() and sort_complex().
 //
-// It is not used elsewhere.
+//	It is not used elsewhere.
 //
 */
 void	ft_swop(int *a, int *b)

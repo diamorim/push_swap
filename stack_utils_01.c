@@ -54,10 +54,10 @@ void	stack_add_front(t_stack *stack, t_node *new)
 }
 
 /*	_____ stack_add_back() _____
-		This function receives a pointer
-		to a stack as well as a node
-		and adds the node to the back of
-		the stack.
+//	This function receives a pointer
+//	to a stack as well as a node
+//	and adds the node to the back of
+//	the stack.
 */
 void	stack_add_back(t_stack *stack, t_node *new)
 {

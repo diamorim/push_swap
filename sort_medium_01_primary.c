@@ -18,20 +18,23 @@ void	distribute_to_stack_b(t_prog_state *state, int chunk_size,
 			int num_chunks, int n);
 
 /*	_____ sort_medium()_____
-//	The idea of this function is first split the stack
-//	into evenly sized chunks -- we do this to minimize the
-//	number of operations.
+//	For <=5 elements, function calls handle_small_sort()
+//	due to its higher efficiency.
 //
-//	We determine the # of chunks based on the approximate
+//	For more than 5 elements, sort_medium() proceeds to
+//	split the stack into approximately evenly sized chunks. We do this
+//	to minimize the number of total operations used to sort.
+//
+//	We determine the chunk size based on the floor of the
 //	square root of the # of elements in the stack (rounding down).
 //
 //	sort_medium() will go through every element in stack `a` at
 //	least once and push 1 chunk worth of elements into stack 'b'
 // 	on each pass and on successive journeys examine fewer &
-// fewer elements.
+//	fewer elements.
 //
-// The number of chunks is detemined by the approximate sq. root
-// of the number of elements (i.e. compute_chunk()).
+//	chunk_size is calculated via compute_chunk_size(), and num_chunks
+//	is derived from it using a ceiling-division formula.
 */
 void	sort_medium(t_prog_state *state)
 {

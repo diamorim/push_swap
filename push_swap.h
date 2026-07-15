@@ -29,6 +29,7 @@ int				bench_from_argv(char **argv);
 
 typedef enum e_strategy
 {
+	NONE,
 	ADAPTIVE,
 	SIMPLE,
 	MEDIUM,
@@ -64,14 +65,6 @@ typedef struct s_stack
 	t_node	*top;
 	int		size;
 }	t_stack;
-
-// bench is just boolean for the --bench benchmarking flag
-// strat_req is the strategy requested by the user in CLI
-// strat_used is the strategy our program uses
-// if the user selects adaptive strategy (or it runs
-// adaptive by default -- no user input)
-// 'n' is the input size of number of elements
-//
 
 typedef struct s_prog_state
 {
@@ -158,8 +151,6 @@ void			quick_sort(int arr[], int low, int high);
 int				partition(int arr[], int low, int high);
 int				binary_search(int arr[], int n, int x);
 void			rank(t_prog_state *state);
-void			rank_stack(t_stack *s);
-void			radix_sort(t_prog_state *state);
 void			ft_swop(int *a, int *b);
 void			distribute_to_stack_b(t_prog_state *state, int chunk_size,
 					int num_chunks, int n);

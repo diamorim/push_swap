@@ -18,46 +18,52 @@ void		push_all_to_stack_a(t_prog_state *state);
 static void	iterate_bits(t_prog_state *state, int bit, int stack_size);
 static int	is_stack_a_sorted(t_prog_state *state);
 
-/*	---- sort_complex ____
-// Function calculates and assigns a rank to all of
+/*	_____ sort_complex() _____
+// For <=5 elements, function calls handle_small_sort
+// due to its higher efficiency.
+//
+// For more than 5 elements, sort_complex
+// calculates and assigns a rank to all of
 // the values inside of a given stack using rank().
 //
-// Next, we use a radix sort using binary.
+// Next, program uses a radix sort using binary.
 //
-// Let's asume two scenarios:
-// - 100 unqiue elements in a stack
+// Let's assume two scenarios:
+// - 100 unique elements in a stack
 // - 500 unique elements in a stack
 //
-// In binary, a stack size of 100 has 7 bits
-// 		  1100100
+// In binary, 0-99 requires  7 bits
+// 		  1100011
 // 		  6543210
 //
-// In binary, a stack size of 500 has 9 bits
-// 		111110100
+// In binary, a stack size of 500 (0-to-499) has 9 bits
+// 		111110011
 // 		876543210
 //
-// We loop through the stack biggest_bit amount of
-// times which is detemined by the # of bits counted in
+// Program loops through the stack biggest_bit amount of
+// times which is determined by the # of bits counted in
 // the stack.
 //
-// So if we have 500 elements in a stack, the it would be
+// So if there are 500 elements in a stack, then it would be
 // 9 times.
 //
-// Then its comparing the right-most bit to see
+// Then program compares the right-most bit to see
 // if it's 1:
-// 		- if so, we rotate the stack to examine  the next element
-// 		- if not, we push the element to stack 'b'
+// 		- if so, program rotates the stack to examine the next element
+// 		- if not, program pushes the element to stack 'b'
 //
-// We do this for every element in the stack that still residing in stack 'a'
+// Program does this for every element in the stack that is still
+// residing in stack 'a'
 //
-// Once that round is finished, we use push_all_to_stack_a()
+// Once that round is finished, program uses push_all_to_stack_a()
 // to push those back to stack `a` in linear order.
 //
-// After finishing that examination/sorting round, we increment to
+// After finishing that examination/sorting round, program increments to
 // the next bit position.
 //
-// We do this until we have reviewed and compared every bit position and
-// pushed about half of the elements to stack `b` in descending order.
+//	Program does this until it has reviewed and compared every bit position.
+//	In each pass, roughly half the elements (those with the current bit = 0)
+//	are pushed to stack `b`, while the rest are rotated within stack `a`.
 */
 void	sort_complex(t_prog_state *state)
 {
@@ -100,49 +106,49 @@ static void	iterate_bits(t_prog_state *state, int bit, int stack_size)
 }
 
 /*	_____ count_bits _____
-// n	=	an integer for whom we are going to count the
-// number of bits
+	// n   =   an integer for whom we are going to count the
+//	number of bits
 //
-// Function counts how many bits are neede to
-// represent a given number, `n` before
-// the expression of a number in base-2 becomes
-// only 0s.
+//	Function counts how many bits are needed to
+//	represent a given number, `n`, before
+//	the expression of a number in base-2 becomes
+//	only 0s.
 //
-// Let's say that we have:
-// 111110100 (500 =
-// 				  = 256 + 128 + 64 + 32 + 0 + 8 + 0 + 0 + 0
-// 				  = 9 bit count
+//	Let's say that we have:
+//	111110011 (499 =
+//		= 256 + 128 + 64 + 32 + 16 + 0 + 0 + 2 + 1
+//		= 9 bit count
 //
-//		1111 (15	= 8 + 4 + 2 + 1)	= 4 bit count
-//		0111 (7	=     4 + 2 + 1)		= 3 bit count
-//		0011 (3	=  		  2 + 1)		= 2 bit count
-//		0001 (1	= 			  1)		= 1 bit count
+//		= 1111 (15   = 8 + 4 + 2 + 1)	= 4 bit count
+//		= 0111 (7   =	   4 + 2 + 1)	= 3 bit count
+//		= 0011 (3   =		   2 + 1)	= 2 bit count
+//		= 0001 (1   =			   1)	= 1 bit count
 //
 //
-// // Another example"
-// 		 1011 (11	= 8 + 0 + 2 + 1)	= 4 bit count
-// 		 0101 (5	=     4 + 0 + 1)	= 3 bit count
-// 		 0010 (2	=  		  2 + 0)	= 2 bit count
-// 		 0001 (1	= 			  1)	= 1 bit count
+//	Another example:
+//		= 1011 (11	= 8 + 0 + 2 + 1)	= 4 bit count
+//		= 0101 (5	=	  4 + 0 + 1)	= 3 bit count
+//		= 0010 (2	=		  2 + 0)	= 2 bit count
+//		= 0001 (1	=			  1)	= 1 bit count
 //
-// 	With each passing of this loop in count_bits()
-// we divide n by 2 and round down until its 0.
+//	With each passing of this loop in count_bits()
+//	we divide 'n' by 2 and round down until it's 0.
 //
-// The count will be everything until 0.
+//	The count will be everything until 0.
 //
-// So if we started with:
-//		- 500; next it would be
-//		- 250; then
-// 		- 125;
-// 		- 62;
-// 		- 31;
-// 		- 15
-// 		- 7
-// 		- 3
-// 		- 1
-// 		- 0
+//	So if we started with:
+//		- 499; next it would be
+//		- 249; then
+//		- 124;
+//		- 62;
+//		- 31;
+//		- 15
+//		- 7
+//		- 3
+//		- 1
+//		- 0
 //
-// So 500 would be 9 bits.
+//	So 499 would be 9 bits.
 */
 int	count_bits(int n)
 {

@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/11 23:00:05 by norobins          #+#    #+#             */
+/*   Created: 2026/07/11 23:00:05 by diamo             #+#    #+#             */
 /*   Updated: 2026/07/14 19:38:15 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -37,10 +37,12 @@ static void	print_percent_2dp(double d, int fd)
 
 static void	print_strategy_line(t_strategy s)
 {
-	if (s == SIMPLE)
+	if (s == NONE)
+		ft_putstr_fd("No strategy used. The stack is already sorted.\n", 2);
+	else if (s == SIMPLE)
 		ft_putstr_fd("simple (O(n^2))\n", 2);
 	else if (s == MEDIUM)
-		ft_putstr_fd("medium (O(n sqrroot n))\n", 2);
+		ft_putstr_fd("medium (O(n sq.root n))\n", 2);
 	else if (s == COMPLEX)
 		ft_putstr_fd("complex (O(n log n))\n", 2);
 	else

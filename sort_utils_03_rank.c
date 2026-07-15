@@ -14,18 +14,18 @@
 
 /*	_____ rank() _____
 //
-// Function inherits a stack (via state) and
-// create and migrates the values to an array.
+//	Function inherits a stack (via state) and
+//	creates/migrates the values to an array.
 //
-// Next it sorts the values in the array using
-// quick_sort().
+//	Next it sorts the values in the array using
+//	quick_sort().
 //
-// Then, the function assigns inside of the stack a rank
-// for each of the values stored in array/stack using binary
-// search inside of the array.
+//	Then, the function assigns inside of the stack a rank
+//	for each of the values stored in array/stack using binary
+//	search inside of the array.
 //
-// Lastly, the function frees up memory allocated to the array
-// as it is no longer needed.
+//	Lastly, the function frees up memory allocated to the array
+//	as it is no longer needed.
 //
 */
 void	rank(t_prog_state *state)
@@ -54,13 +54,13 @@ void	rank(t_prog_state *state)
 
 /*	_____ stack_to_arr() _____
 //
-// Function creates and allocates memory for an
-// array and populates the array based on values
-// from a given stack.
+//	Function creates and allocates memory for an
+//	array and populates the array based on values
+//	from a given stack.
 //
-// Function loops through the entire stack from
-// beginning to end and returns the array, `arr`
-// to the caller.
+//	Function loops through the entire stack from
+//	beginning to end and returns the array, `arr`
+//	to the caller.
 */
 int	*stack_to_arr(t_stack *stack)
 {
@@ -85,17 +85,13 @@ int	*stack_to_arr(t_stack *stack)
 }
 
 /*	_____ quick_sort _____
-// Function sorts an array ---> the very first time, and
-// only time, the low is `0` and the high is the `size - 1`.
+//	Function sorts an array ---> the very first time, and
+//	only time, the low is `0` and the high is the `size - 1`.
 //
-// The partition, as we will see in the partition() function
-// is always set to 'high' for whichever section is being
-// sorted. The choice if 'high' position as the pivot is known
+//	The partition, as we will see in the partition() function
+//	is always set to 'high' for whichever section is being
+//	sorted. The choice of 'high' position as the pivot is known
 //	as Lomuto partition.
-//
-//
-//
-//
 */
 void	quick_sort(int arr[], int low, int high)
 {
@@ -112,31 +108,31 @@ void	quick_sort(int arr[], int low, int high)
 }
 
 /*	_____ partition() _____
-	Function always starts by assigning:
-
-	pivot	=	the value stored in the array at the high position
-	i		=	the position just before low
-	j		=	low
-
-	We then move through the partition from low to high
-	using j to move through it.
-
-	As we do so, we compare the value stored at arr[j]
-	to the value stored as the pivot value (the original
-	value stored at arr[high]).
-
-	If the value of arr[j] is less than the pivot value:
-	- increment i (advance the 'boundary' of smaller elements)
-	- swap the values stored within arr[i] and arr[j]
-
-	We do this until j == high position.
-
-	Lastly we swap the values in the array at i+1 (arr[i+1])
-	and high positions (arr[high]).
-
-	Function returns (i + 1) which becomes the next pivot index
-	for the caller.
- */
+//	Function always starts by assigning:
+//
+//	pivot	=	the value stored in the array at the high position
+//	i		=	the position just before low
+//	j		=	low
+//
+//	We then move through the partition from low to high
+//	using j to move through it.
+//
+//	As we do so, we compare the value stored at arr[j]
+//	to the value stored as the pivot value (the original
+//	value stored at arr[high]).
+//
+//	If the value of arr[j] is less than the pivot value:
+//	- increment i (advance the 'boundary' of smaller elements)
+//	- swap the values stored within arr[i] and arr[j]
+//
+//	We do this until j == high position.
+//
+//	Lastly we swap the values in the array at i+1 (arr[i+1])
+//	and high positions (arr[high]).
+//
+//	Function returns (i + 1) which becomes the next pivot index
+//	for the caller.
+*/
 int	partition(int arr[], int low, int high)
 {
 	int	i;
@@ -178,8 +174,10 @@ int	partition(int arr[], int low, int high)
 //	of the array.
 //
 //	Function continues to loop through a divide-and-conquer strategy
-//	until, ultimatealy, it finds the target, at which point:
-//	arr[mid] == target.
+//	until the range narrows to a single position (low == high),
+//	or the target is found at mid (arr[mid] == target).
+//
+//	Returns the position of the target, or low if the loop exits.
 //
 */
 int	binary_search(int arr[], int n, int target)
