@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_bench.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: norobins <norobins@student.42Berlin.de>    +#+  +:+       +#+        */
+/*   By: diamo <diamo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 23:00:05 by norobins          #+#    #+#             */
-/*   Updated: 2026/07/11 23:00:41 by norobins         ###   ########.fr       */
+/*   Updated: 2026/07/14 19:38:15 by diamo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	print_strategy_line(t_strategy s)
 	else if (s == SIMPLE)
 		ft_putstr_fd("simple (O(n^2))\n", 2);
 	else if (s == MEDIUM)
-		ft_putstr_fd("medium (O(n√n))\n", 2);
+		ft_putstr_fd("medium (O(n sqrroot n))\n", 2);
 	else if (s == COMPLEX)
 		ft_putstr_fd("complex (O(n log n))\n", 2);
 	else
