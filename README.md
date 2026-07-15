@@ -33,12 +33,12 @@ with a limited number of operations.
 In order to change the order of an element in either stack, the program
 must solely use a combination of these 11 operations.
 
-Our program uses 'pa', 'pb', 'sa', 'ra', 'rb', 'rra' and 'rrb' to sort the elements 
-inside and between the stacks.
+Our program uses a combination of some of these elements to sort them  
+inside a stack and between the stacks.
 
 
 ## Contributors
-Both damorim- and norobins collaborated closely on architecture, testing, debugging, performance optimization, code review, algorithm analysis, print benchmark, documentation and final validation.
+Both damorim- and norobins collaborated closely on architecture, testing, debugging, performance optimization, code review, algorithm analysis, benchmark reporting, documentation and final validation.
 
 We primarily split work across responsibilities below (but collaborated on these areas as well:) 
 
@@ -120,16 +120,6 @@ elements and deliver a completely sorted stack 'a'.
 For all algorithims we call `handle_small_sort()` to handle cases where there are <= 5
 elements to sort.
 
-If there are only 2 inputted elements (& they are not sorted in ascending order), the program:
-	-- swaps those two elements
-
-If there are only 3 inputted elements (& they are not sorted in ascending order), the program:
-	-- rotates the largest element to the bottom
-	-- swaps the top two elements (if appropriate)
-
-We use `handle_small_sort()` for these small amount of inputs because --> for up <=3 elements, there are 
-<= 6 permutations and this can most effectively be solved by <= 2 operations.
-
 
 ### Simple algorithm (O(n²))
 We use a selection sort style algorithm to meet the O(n²) requirement for operations.
@@ -141,7 +131,7 @@ A classic selection sort repeatedly finds the smallest element and places it in 
 
 If there are >5 elements in stack 'a', our implementation repeatedly (until there are only 3 elements left in stack 'a'):
 	- scans stack 'a' for the smallest element;
-	- rotates stack 'a' so that the smallest element is located at the top of the stack
+	- rotates (or reverse-rotates) stack 'a' so that the smallest element is located at the top of the stack
 	- pushes that element over to stack 'b'
 
 Next, our algorithm sorts these remaining three elements in stack 'a' with `sort_3()`.
@@ -176,7 +166,7 @@ s
 		-  When an element whose rank, is within [min, max), reaches the top, push it to stack 'b'
 		- Repeat until the whole chunk has been moved
 			- A safety guard stops the pass if a full revolution plus one extra rotation 
-			completes without amatch (defensive, should not trigger in normal use)
+			completes without a match (defensive, should not trigger in normal use)
 
 Once stack 'b' holds all the elements -- the elements with larger ranks are generally closer to the top. These elements are grouped by chunk ---->  but they are not yet, necessarily, perfectly sorted.
 
@@ -201,7 +191,7 @@ For details on our quick sort implementation, see `Quick sort algorithm` section
 - Time O(n log n)
 - Space O(n)
 
-We use an adaptation of LSD (least-significant digit) radix sort to achieve worst-case O(n log n). 
+We use an adaptation of bitwise radix sort to achieve worst-case O(n log n). 
 
 1. Rank every element (same rank() as `medium sort()` — `quick_sort()` the values, assign each node its sorted index).
 
@@ -269,7 +259,7 @@ Program uses an adaptive algorithm dispatcher to utilize a `sort_simple()`, `sor
 
 The appropriate algorithm is dispatched based on the computed disorder as defined below via `Disorder metric`:
 			 < 0.2  -- simple algorithm
-   0.2 <= x <= 0.5  -- medium algorithm
+   0.2 <= x < 0.5  -- medium algorithm
 			>= 0.5  -- complex algorithm
 
 The adaptive algorithm is very effective because a `sort_simple()` approach can end up more efficient than the other algorithms

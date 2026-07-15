@@ -22,10 +22,10 @@ void	distribute_to_stack_b(t_prog_state *state, int chunk_size,
 //	due to its higher efficiency.
 //
 //	For more than 5 elements, sort_medium() proceeds to
-//	split the stack into ˜evenly sized chunks. We do this
+//	split the stack into approximately evenly sized chunks. We do this
 //	to minimize the number of total operations used to sort.
 //
-//	We determine the chunk size based on the approximate
+//	We determine the chunk size based on the floor of the
 //	square root of the # of elements in the stack (rounding down).
 //
 //	sort_medium() will go through every element in stack `a` at

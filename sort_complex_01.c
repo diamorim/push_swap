@@ -36,8 +36,8 @@ static int	is_stack_a_sorted(t_prog_state *state);
 // 		  1100011
 // 		  6543210
 //
-// In binary, a stack size of 500 has 9 bits
-// 		111110100
+// In binary, a stack size of 500 (0-to-499) has 9 bits
+// 		111110011
 // 		876543210
 //
 // Program loops through the stack biggest_bit amount of
@@ -105,49 +105,49 @@ static void	iterate_bits(t_prog_state *state, int bit, int stack_size)
 }
 
 /*	_____ count_bits _____
-// n	=	an integer for whom we are going to count the
-// number of bits
+	// n   =   an integer for whom we are going to count the
+//	number of bits
 //
-// Function counts how many bits are needed to
-// represent a given number, `n`, before
-// the expression of a number in base-2 becomes
-// only 0s.
+//	Function counts how many bits are needed to
+//	represent a given number, `n`, before
+//	the expression of a number in base-2 becomes
+//	only 0s.
 //
-// Let's say that we have:
-// 111110100 (500 =
-// 				  = 256 + 128 + 64 + 32 + 16 + 0 + 4 + 0 + 0
-// 				  = 9 bit count
+//	Let's say that we have:
+//	111110011 (499 =
+//		= 256 + 128 + 64 + 32 + 16 + 0 + 0 + 2 + 1
+//		= 9 bit count
 //
-//		1111 (15	= 8 + 4 + 2 + 1)	= 4 bit count
-//		0111 (7	=     4 + 2 + 1)		= 3 bit count
-//		0011 (3	=  		  2 + 1)		= 2 bit count
-//		0001 (1	= 			  1)		= 1 bit count
+//		= 1111 (15   = 8 + 4 + 2 + 1)	= 4 bit count
+//		= 0111 (7   =	   4 + 2 + 1)	= 3 bit count
+//		= 0011 (3   =		   2 + 1)	= 2 bit count
+//		= 0001 (1   =			   1)	= 1 bit count
 //
 //
-// Another example"
-// 		 1011 (11	= 8 + 0 + 2 + 1)	= 4 bit count
-// 		 0101 (5	=     4 + 0 + 1)	= 3 bit count
-// 		 0010 (2	=  		  2 + 0)	= 2 bit count
-// 		 0001 (1	= 			  1)	= 1 bit count
+//	Another example:
+//		= 1011 (11	= 8 + 0 + 2 + 1)	= 4 bit count
+//		= 0101 (5	=	  4 + 0 + 1)	= 3 bit count
+//		= 0010 (2	=		  2 + 0)	= 2 bit count
+//		= 0001 (1	=			  1)	= 1 bit count
 //
-// With each passing of this loop in count_bits()
-// we divide 'n' by 2 and round down until it's 0.
+//	With each passing of this loop in count_bits()
+//	we divide 'n' by 2 and round down until it's 0.
 //
-// The count will be everything until 0.
+//	The count will be everything until 0.
 //
-// So if we started with:
+//	So if we started with:
 //		- 499; next it would be
 //		- 249; then
-// 		- 124;
-// 		- 62;
-// 		- 31;
-// 		- 15
-// 		- 7
-// 		- 3
-// 		- 1
-// 		- 0
+//		- 124;
+//		- 62;
+//		- 31;
+//		- 15
+//		- 7
+//		- 3
+//		- 1
+//		- 0
 //
-// So 500 would be 9 bits.
+//	So 499 would be 9 bits.
 */
 int	count_bits(int n)
 {

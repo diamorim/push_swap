@@ -174,8 +174,10 @@ int	partition(int arr[], int low, int high)
 //	of the array.
 //
 //	Function continues to loop through a divide-and-conquer strategy
-//	until, ultimately, it finds the target, at which point:
-//	arr[mid] == target.
+//	until the range narrows to a single position (low == high),
+//	or the target is found at mid (arr[mid] == target).
+//
+//	Returns the position of the target, or low if the loop exits.
 //
 */
 int	binary_search(int arr[], int n, int target)

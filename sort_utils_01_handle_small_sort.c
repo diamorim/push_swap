@@ -60,8 +60,7 @@ int	handle_small_sort(t_prog_state *state)
 //	- 'a'= top, 'b' = middle, 'c'= bottom
 //
 //	This is the most efficient algorithm when there
-//	are only 3 elements to be sorted (5 possible unsorted
-//	permutations out of 6 total).
+//	are only 3 elements to be sorted.
 */
 void	sort_3(t_prog_state *state)
 {

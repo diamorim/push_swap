@@ -26,11 +26,11 @@ static void	move_elements_to_stack_b(t_prog_state *state, int min,
 //	Before this function has been called, the program calculates
 //	how much to divide the total number of elements of stack into smaller
 //	chunks using compute_chunk_size()
-// 					(e.g.
-// 					000 -  99 (chunk 0)
-// 					100	- 199 (chunk 1)
-// 					200	- 299 (chunk 2)
-// 					300	- 399 (chunk 3)
+// 					(e.g. for n = 100, chunk_size = 10:
+// 					00 -  9 (chunk 0)
+// 					10	- 19 (chunk 1)
+// 					20	- 29 (chunk 2)
+// 					30	- 39 (chunk 3)
 // 					etc.)
 //
 //	This function scans the entire stack to identify each element that fits
@@ -57,21 +57,21 @@ void	distribute_to_stack_b(t_prog_state *state, int chunk_size,
 //
 //	Going back to this example of chunks:
 // 					(e.g.
-// 					0   -  99 (chunk 0)
-// 					100 - 199 (chunk 1)
-// 					200 - 299 (chunk 2)
-// 					300 - 399 (chunk 3)
+// 					  0 -   9 (chunk 0)
+// 					 10 -  19 (chunk 1)
+// 					 20 -  29 (chunk 2)
+// 					 30 -  39 (chunk 3)
 // 					etc.)
 //
 // In the first chunk:
-// 		 			min		= 0
-// 					max		= 100
-// 					width	= 100
+// 		 			min		=  0
+// 					max		= 10
+// 					width	= 10
 //
 // In the second chunk
-// 					min		= 100
-// 					max 	= 200
-// 					width	= 100
+// 					min		= 10
+// 					max 	= 20
+// 					width	= 10
 //
 //
 static void	process_one_chunk(t_prog_state *state, int chunk_idx,
