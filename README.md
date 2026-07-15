@@ -58,14 +58,25 @@ We primarily split work across responsibilities below (but collaborated on these
 
 ## Instructions
 
-### How to launch the program
+### Compilation
 
-1. open your terminal in the root of the project and use the command `make`
-2. launch the program with `./push_swap <arguments>`
-e.g `./push_swap 3 2 1`
+- open the terminal in the root of ur repository and type `make`
 
+### Available Rules
+
+- make
+- make clean
+- make fclean
+- make re
+
+### Execution
+
+- open the terminal in the root of the repository and type `./push_swap <arguments>`e.g
+
+	`push_swap 3 2 1`
 
 ### Restrictions
+
 There are some arguments that are not valid, such as:
 	- any non-number character (apart from flags)
 	- numbers bigger than the maximum integer
