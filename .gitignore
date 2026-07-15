@@ -67,3 +67,7 @@ dkms.conf
 Eval_tests/
 checker_linux
 push_swap
+
+# libft
+
+libft/libft.a
