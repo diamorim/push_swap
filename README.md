@@ -122,12 +122,11 @@ elements to sort.
 
 
 ### Simple algorithm (O(n²))
-We use a selection sort style algorithm to meet the O(n²) requirement for operations.
+We use an adapted version of a selection sort algorithm to meet the O(n²) requirement for operations. It is 
+not 100% classic version.
 
 - Time O(n²)
 - Space O(1)
-
-A classic selection sort repeatedly finds the smallest element and places it in its final position in sorted order. 
 
 If there are >5 elements in stack 'a', our implementation repeatedly (until there are only 3 elements left in stack 'a'):
 	- scans stack 'a' for the smallest element;
@@ -155,9 +154,9 @@ Assuming there are >5 elements our `medium_sort()` algorithm works as follows:
 	Copy all values into an array, `quick_sort()` it, and assign each node its index in the sorted array as its rank.
 
 #### 2. Compute chunks
-	- chunk_size        = ⌊√n⌋ (the largest c with c² ≤ n), with a minimum of 2
+	- chunk_size        = ⌊√n⌋ (the largest c with c² ≤ n), with a minimum of 2 (function assumes more than 5 elements being sorted if function is called)
 	- Number of chunks  = (n + chunk_size - 1) / chunk_size
-s
+
 #### 3. Distribute to stack 'b', chunk-by-chunk
 	Process chunks in ascending rank order.
 
@@ -211,12 +210,9 @@ We use an adaptation of bitwise radix sort to achieve worst-case O(n log n).
 The end result is stack 'a' is sorted in ascending order.
 
 
-
 #### Why radix sort?
 - Radix sort works particularly well for larger data sets.
 - This algorithm consistently achieves our operation count goals and works well with optimizing stacks
-
-
 
 
 ### `quick_sort` algorithm for computing rank per element
@@ -259,11 +255,10 @@ Program uses an adaptive algorithm dispatcher to utilize a `sort_simple()`, `sor
 
 The appropriate algorithm is dispatched based on the computed disorder as defined below via `Disorder metric`:
 			 < 0.2  -- simple algorithm
-   0.2 <= x < 0.5  -- medium algorithm
+	0.2 <= x < 0.5  -- medium algorithm
 			>= 0.5  -- complex algorithm
 
-The adaptive algorithm is very effective because a `sort_simple()` approach can end up more efficient than the other algorithms
-if the data is already almost perfectly sorted.
+The adaptive algorithm is very effective because a `sort_simple()` approach can end up more efficient than the other algorithms if the data is already almost perfectly sorted.
 
 For larger, higher disorder data sets, the `sort_complex()` is going to be our best performer.. 
 
